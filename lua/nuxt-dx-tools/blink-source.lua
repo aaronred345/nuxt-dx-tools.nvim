@@ -155,6 +155,12 @@ local function make_completion_item(entry, prefix)
     label = label .. "/"
   end
 
+  -- For insertText, only include the entry name (not the prefix)
+  local insert_text = entry.name
+  if entry.is_dir then
+    insert_text = insert_text .. "/"
+  end
+
   local kind
   if entry.is_dir then
     kind = CompletionItemKind.Folder
@@ -168,7 +174,7 @@ local function make_completion_item(entry, prefix)
     label = label,
     kind = kind,
     detail = entry.is_dir and "Directory" or "File",
-    insertText = label,
+    insertText = insert_text,
     documentation = {
       kind = "markdown",
       value = string.format("**%s**\n\n`%s`", entry.is_dir and "Directory" or "File", entry.path),
