@@ -151,13 +151,58 @@ To enable Nuxt path alias autocompletion:
 
 ## 🚀 Usage
 
+### LSP Integration
+
+This plugin seamlessly enhances standard LSP commands with Nuxt-specific features. **You can use your normal LSP workflow** and automatically get Nuxt enhancements:
+
+#### Standard LSP Commands (Enhanced)
+
+- **`vim.lsp.buf.hover()` / `K`** - Shows Nuxt-specific hover info:
+  - Virtual module documentation (`#imports`, `#app`, etc.)
+  - Data fetching patterns (cache keys, SSR warnings)
+  - API route signatures and return types
+  - Then falls back to standard LSP hover
+
+- **`vim.lsp.buf.signature_help()` / `<C-k>`** - Shows signatures for:
+  - `useAsyncData`, `useFetch`, `useState`
+  - `definePageMeta`, `defineEventHandler`
+  - `navigateTo`, `useRouter`, `useRoute`
+  - And all other Nuxt composables
+
+- **`vim.lsp.buf.code_action()` / `<leader>ca`** - Provides actions like:
+  - Replace deprecated APIs (e.g., `useAsync` → `useAsyncData`)
+  - Add cache keys to data fetching
+  - Create test files
+  - Find usages of auto-imported symbols
+  - Fix `definePageMeta` placement
+  - Then shows standard LSP code actions
+
+- **`vim.lsp.buf.definition()` / `gd`** - Enhanced navigation:
+  - Virtual modules (#imports, #app) → type definitions
+  - Auto-imported components → source files
+  - API routes ($fetch calls) → handler files
+  - definePageMeta references → layouts/middleware
+  - Then falls back to standard LSP definition
+
+- **`vim.lsp.buf.references()` / `gr`** - Find references including:
+  - Auto-imported symbol usages (no explicit imports needed)
+  - Data fetch cache key usages
+  - Then shows standard LSP references
+
+- **`vim.lsp.buf.workspace_symbol()` / `<leader>ws`** - Workspace symbols including:
+  - All auto-imported composables
+  - All auto-imported components
+  - Then shows standard LSP workspace symbols
+
+**This means you don't need to learn new commands!** Just use your existing LSP workflow and get Nuxt superpowers automatically.
+
 ### Default Keymaps
 
 All keymaps are prefixed with `<leader>n`:
 
 #### Core Navigation
-- `gd` - Enhanced go to definition
-- `K` - Enhanced hover (shows API signatures, data fetch info, virtual modules)
+- `gd` - Enhanced go to definition (works like standard LSP)
+- `K` - Enhanced hover (works like standard LSP)
 
 #### Fuzzy Navigation
 - `<leader>np` - Jump to page (fuzzy picker)

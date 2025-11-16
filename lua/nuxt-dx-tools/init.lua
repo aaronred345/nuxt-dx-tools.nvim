@@ -211,6 +211,10 @@ function M.setup(opts)
   utils.set_config(M.config)
   api_routes.set_config(M.config)
 
+  -- Setup LSP integration (enhances standard LSP commands)
+  local lsp_integration = require("nuxt-dx-tools.lsp-integration")
+  lsp_integration.setup()
+
   -- Setup diagnostics if enabled
   if M.config.diagnostics_enabled then
     if not diagnostics then diagnostics = require("nuxt-dx-tools.diagnostics") end
