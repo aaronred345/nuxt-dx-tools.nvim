@@ -333,7 +333,9 @@ function M:get_completions(ctx, callback)
   end
 
   local typed_path = get_import_path(line)
+  vim.notify(string.format("DEBUG: typed_path from get_import_path: '%s'", typed_path or "nil"), vim.log.levels.INFO)
   if not typed_path then
+    vim.notify("DEBUG: typed_path is nil, returning empty", vim.log.levels.WARN)
     call_callback(callback, ctx, {})
     return
   end
@@ -359,14 +361,25 @@ function M:get_completions(ctx, callback)
   local aliases = path_aliases.get_aliases()
   local root = path_aliases.get_nuxt_root()
 
+  vim.notify(string.format("DEBUG aliases and root:\n  root: %s\n  aliases count: %d\n  typed_path: %s",
+    root or "nil",
+    aliases and vim.tbl_count(aliases) or 0,
+    typed_path or "nil"), vim.log.levels.INFO)
+
   if not root then
+    vim.notify("DEBUG: No Nuxt root found, returning empty", vim.log.levels.WARN)
     call_callback(callback, ctx, {})
     return
   end
 
   -- Check if typed path starts with any alias
+  vim.notify(string.format("DEBUG: Checking aliases for typed_path='%s'", typed_path), vim.log.levels.INFO)
   for alias, target in pairs(aliases) do
-    if typed_path:match("^" .. vim.pesc(alias)) then
+    local pattern = "^" .. vim.pesc(alias)
+    local matches = typed_path:match(pattern)
+    vim.notify(string.format("  Checking alias '%s' with pattern '%s': %s", alias, pattern, matches and "MATCH" or "no match"), vim.log.levels.INFO)
+    if matches then
+      vim.notify(string.format("DEBUG: Matched alias '%s', getting directory contents", alias), vim.log.levels.INFO)
       -- Target is now an absolute path
       local base_dir = target
       local path_after_alias = typed_path:gsub("^" .. vim.pesc(alias) .. "/?", "")
@@ -396,6 +409,7 @@ function M:get_completions(ctx, callback)
   end
 
   -- SCENARIO 3: User hasn't typed anything yet - show all options
+  vim.notify("DEBUG: SCENARIO 3 - showing all aliases", vim.log.levels.INFO)
 
   -- Show all available aliases
   for alias, target in pairs(aliases) do
