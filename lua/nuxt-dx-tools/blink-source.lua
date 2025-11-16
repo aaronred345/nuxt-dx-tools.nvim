@@ -148,17 +148,11 @@ local function get_directory_contents(dir_path)
 end
 
 -- Create a completion item from a directory entry
-local function make_completion_item(entry, prefix)
+local function make_completion_item(entry, prefix, typed_path)
   -- Build the complete path for label
   local complete_path = prefix .. entry.name
   if entry.is_dir then
     complete_path = complete_path .. "/"
-  end
-
-  -- For insert, only the filename (not prefix which is already typed)
-  local insert_name = entry.name
-  if entry.is_dir then
-    insert_name = insert_name .. "/"
   end
 
   local kind
@@ -174,7 +168,9 @@ local function make_completion_item(entry, prefix)
     label = complete_path,
     kind = kind,
     detail = entry.is_dir and "Directory" or "File",
-    insertText = insert_name,
+    insertText = complete_path,
+    -- word tells blink.cmp what to replace
+    word = typed_path or "",
     filterText = entry.name,
     sortText = entry.name,
     documentation = {
@@ -226,7 +222,7 @@ function M:get_completions(ctx, callback)
 
     local entries = get_directory_contents(target_dir)
     for _, entry in ipairs(entries) do
-      table.insert(items, make_completion_item(entry, prefix))
+      table.insert(items, make_completion_item(entry, prefix, typed_path))
     end
 
     call_callback(callback, { items = items })
@@ -265,7 +261,7 @@ function M:get_completions(ctx, callback)
       local entries = get_directory_contents(search_dir)
 
       for _, entry in ipairs(entries) do
-        table.insert(items, make_completion_item(entry, prefix))
+        table.insert(items, make_completion_item(entry, prefix, typed_path))
       end
 
       call_callback(callback, { items = items })
