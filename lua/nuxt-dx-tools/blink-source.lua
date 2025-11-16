@@ -177,26 +177,54 @@ local function make_completion_item(entry, prefix)
   }
 end
 
+-- Helper to safely call completion callback
+local function call_callback(callback, result)
+  if type(callback) == "function" then
+    callback(result)
+  elseif type(callback) == "table" and callback.callback then
+    callback:callback(result)
+  end
+end
+
 -- Main completion function
 function M:get_completions(ctx, callback)
+  -- Debug logging
+  vim.schedule(function()
+    vim.notify("[blink-source] get_completions called", vim.log.levels.DEBUG)
+  end)
+
   -- Load path aliases module
   local ok, path_aliases = pcall(require, "nuxt-dx-tools.path-aliases")
   if not ok then
-    callback({ items = {} })
+    vim.schedule(function()
+      vim.notify("[blink-source] Failed to load path-aliases: " .. tostring(path_aliases), vim.log.levels.ERROR)
+    end)
+    call_callback(callback, { items = {} })
     return
   end
 
   local line = ctx.line or ctx.cursor_before_line or vim.api.nvim_get_current_line()
 
+  vim.schedule(function()
+    vim.notify("[blink-source] Line: " .. line, vim.log.levels.DEBUG)
+  end)
+
   -- Only provide completions in import statements
   if not (line:match('from%s+["\']') or line:match('import%s+["\']') or line:match('import%(["\']')) then
-    callback({ items = {} })
+    vim.schedule(function()
+      vim.notify("[blink-source] Not in import statement", vim.log.levels.DEBUG)
+    end)
+    call_callback(callback, { items = {} })
     return
   end
 
   local typed_path = get_import_path(line)
+  vim.schedule(function()
+    vim.notify("[blink-source] Typed path: " .. tostring(typed_path), vim.log.levels.DEBUG)
+  end)
+
   if not typed_path then
-    callback({ items = {} })
+    call_callback(callback, { items = {} })
     return
   end
 
@@ -213,7 +241,7 @@ function M:get_completions(ctx, callback)
       table.insert(items, make_completion_item(entry, prefix))
     end
 
-    callback({ items = items })
+    call_callback(callback, { items = items })
     return
   end
 
@@ -221,8 +249,17 @@ function M:get_completions(ctx, callback)
   local aliases = path_aliases.get_aliases()
   local root = path_aliases.get_nuxt_root()
 
+  vim.schedule(function()
+    local alias_count = 0
+    for _ in pairs(aliases) do alias_count = alias_count + 1 end
+    vim.notify(string.format("[blink-source] Found %d aliases, root: %s", alias_count, tostring(root)), vim.log.levels.DEBUG)
+  end)
+
   if not root then
-    callback({ items = {} })
+    vim.schedule(function()
+      vim.notify("[blink-source] No Nuxt root found", vim.log.levels.WARN)
+    end)
+    call_callback(callback, { items = {} })
     return
   end
 
@@ -241,14 +278,26 @@ function M:get_completions(ctx, callback)
         end
       end
 
+      vim.schedule(function()
+        vim.notify(string.format("[blink-source] Searching directory: %s", search_dir), vim.log.levels.DEBUG)
+      end)
+
       local prefix = get_label_prefix(typed_path)
       local entries = get_directory_contents(search_dir)
+
+      vim.schedule(function()
+        vim.notify(string.format("[blink-source] Found %d entries", #entries), vim.log.levels.DEBUG)
+      end)
 
       for _, entry in ipairs(entries) do
         table.insert(items, make_completion_item(entry, prefix))
       end
 
-      callback({ items = items })
+      vim.schedule(function()
+        vim.notify(string.format("[blink-source] Returning %d items", #items), vim.log.levels.DEBUG)
+      end)
+
+      call_callback(callback, { items = items })
       return
     end
   end
@@ -267,6 +316,10 @@ function M:get_completions(ctx, callback)
       },
     })
   end
+
+  vim.schedule(function()
+    vim.notify(string.format("[blink-source] Showing %d alias options", #items), vim.log.levels.DEBUG)
+  end)
 
   -- Also suggest relative paths
   table.insert(items, {
@@ -291,7 +344,7 @@ function M:get_completions(ctx, callback)
     },
   })
 
-  callback({ items = items })
+  call_callback(callback, { items = items })
 end
 
 -- Resolve additional information for a completion item
