@@ -103,31 +103,39 @@ local function show_nuxt_signature()
 
   -- Get symbol info
   local symbol_info = type_parser.get_symbol_info(func_name)
-  if symbol_info and symbol_info.raw_line then
-    -- Extract signature from raw line
-    local signature = symbol_info.raw_line:match(":%s*(.+)")
-    if signature then
-      local lines = {
-        "```typescript",
-        "// Nuxt Auto-import",
-        func_name .. ": " .. signature,
-        "```",
-      }
+  if symbol_info and symbol_info.import_path then
+    log("Found symbol info for: " .. func_name)
 
-      if symbol_info.import_path then
+    local lines = {
+      "```typescript",
+      "// Nuxt Auto-import",
+      "import { " .. func_name .. " } from '" .. symbol_info.import_path .. "'",
+      "```",
+      "",
+      "**Source:** `" .. symbol_info.import_path .. "`",
+    }
+
+    -- Add context about the source
+    if symbol_info.import_path:match("^#app") then
+      table.insert(lines, "")
+      table.insert(lines, "*Built-in Nuxt composable - check docs for signature*")
+    elseif symbol_info.import_path:match("node_modules") then
+      local module_name = symbol_info.import_path:match("node_modules/([^/]+)")
+      if module_name then
         table.insert(lines, "")
-        table.insert(lines, "**Source:** `" .. symbol_info.import_path .. "`")
+        table.insert(lines, "*From module: " .. module_name .. "*")
       end
-
-      vim.lsp.util.open_floating_preview(lines, "markdown", {
-        border = "rounded",
-        focusable = false,
-        focus = false,
-      })
-      return true
     end
+
+    vim.lsp.util.open_floating_preview(lines, "markdown", {
+      border = "rounded",
+      focusable = false,
+      focus = false,
+    })
+    return true
   end
 
+  log("No symbol info found for: " .. func_name)
   return false
 end
 

@@ -69,39 +69,33 @@ function M.parse_imports()
       table.insert(sample_lines, line)
     end
 
-    -- Match: export const useFoo: typeof import('...').useFoo
-    local name, import_path = line:match("export%s+const%s+(%w+)%s*:%s*typeof%s+import%(['\"]([^'\"]+)['\"]%)%.(%w+)")
-    if name then
-      imports[name] = {
-        name = name,
-        type = "composable",
-        import_path = import_path,
-        raw_line = line,
-      }
-      log("Found composable: " .. name .. " from " .. import_path)
+    -- Match: export { symbol1, symbol2, ... } from 'path';
+    local export_list, import_path = line:match("export%s+{%s*([^}]+)%s*}%s+from%s+['\"]([^'\"]+)['\"]")
+    if export_list and import_path then
+      -- Split the export list by commas
+      for symbol in export_list:gmatch("([%w_]+)") do
+        if not imports[symbol] then
+          imports[symbol] = {
+            name = symbol,
+            type = "composable",
+            import_path = import_path,
+            raw_line = line,
+          }
+          log("Found export: " .. symbol .. " from " .. import_path)
+        end
+      end
     end
 
-    -- Match: export const Foo: typeof import('...').default
-    name, import_path = line:match("export%s+const%s+(%w+)%s*:%s*typeof%s+import%(['\"]([^'\"]+)['\"]%)%.default")
-    if name then
-      imports[name] = {
-        name = name,
-        type = "composable",
-        import_path = import_path,
-        raw_line = line,
-      }
-      log("Found default import: " .. name .. " from " .. import_path)
-    end
-
-    -- Match simple exports
-    name = line:match("export%s+const%s+(%w+)%s*:")
+    -- Also match older format: export const useFoo: typeof import('...').useFoo
+    local name, old_import_path = line:match("export%s+const%s+(%w+)%s*:%s*typeof%s+import%(['\"]([^'\"]+)['\"]%)")
     if name and not imports[name] then
       imports[name] = {
         name = name,
-        type = "symbol",
+        type = "composable",
+        import_path = old_import_path,
         raw_line = line,
       }
-      log("Found symbol: " .. name)
+      log("Found typed export: " .. name .. " from " .. old_import_path)
     end
   end
 
@@ -278,12 +272,35 @@ function M.get_hover_text(symbol)
   if info.type == "composable" or info.type == "symbol" then
     table.insert(lines, "```typescript")
     table.insert(lines, "// Nuxt Auto-import")
-    table.insert(lines, info.raw_line or ("const " .. symbol))
+
+    -- Show a more helpful declaration
+    if info.import_path then
+      table.insert(lines, "import { " .. symbol .. " } from '" .. info.import_path .. "'")
+    else
+      table.insert(lines, "export { " .. symbol .. " }")
+    end
+
     table.insert(lines, "```")
 
     if info.import_path then
       table.insert(lines, "")
       table.insert(lines, "**Source:** `" .. info.import_path .. "`")
+
+      -- Add helpful context based on import path
+      if info.import_path:match("^#app") then
+        table.insert(lines, "")
+        table.insert(lines, "*Built-in Nuxt composable*")
+      elseif info.import_path:match("^%.%.") then
+        table.insert(lines, "")
+        table.insert(lines, "*Project composable or utility*")
+      elseif info.import_path:match("node_modules") then
+        -- Extract module name
+        local module_name = info.import_path:match("node_modules/([^/]+)")
+        if module_name then
+          table.insert(lines, "")
+          table.insert(lines, "*From module: " .. module_name .. "*")
+        end
+      end
     end
   elseif info.type == "component" then
     table.insert(lines, "```vue")
