@@ -149,17 +149,10 @@ end
 
 -- Create a completion item from a directory entry
 local function make_completion_item(entry, prefix)
-  -- Show full path in label for clarity
-  local label = prefix .. entry.name
+  -- Build the complete path
+  local complete_path = prefix .. entry.name
   if entry.is_dir then
-    label = label .. "/"
-  end
-
-  -- For insertText, include the full path (prefix + name)
-  -- blink.cmp will handle the replacement properly
-  local insert_text = prefix .. entry.name
-  if entry.is_dir then
-    insert_text = insert_text .. "/"
+    complete_path = complete_path .. "/"
   end
 
   local kind
@@ -172,12 +165,12 @@ local function make_completion_item(entry, prefix)
   end
 
   return {
-    label = label,
+    label = complete_path,
     kind = kind,
     detail = entry.is_dir and "Directory" or "File",
-    insertText = insert_text,
-    -- filterText helps blink.cmp filter items correctly
+    insertText = complete_path,
     filterText = entry.name,
+    sortText = entry.name,
     documentation = {
       kind = "markdown",
       value = string.format("**%s**\n\n`%s`", entry.is_dir and "Directory" or "File", entry.path),
