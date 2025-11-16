@@ -250,7 +250,7 @@ local function make_completion_item(entry, prefix, typed_path, context)
     end
   end
 
-  return {
+  local item = {
     label = complete_path,
     kind = kind,
     detail = entry.is_dir and "Directory" or "File",
@@ -266,6 +266,13 @@ local function make_completion_item(entry, prefix, typed_path, context)
       value = string.format("**%s**\n\n`%s`", entry.is_dir and "Directory" or "File", entry.path),
     },
   }
+
+  vim.notify(string.format("DEBUG completion item:\n  label: %s\n  insertText: %s\n  textEdit.newText: %s\n  textEdit.range: [%d,%d] to [%d,%d]",
+    item.label, item.insertText, item.textEdit.newText,
+    item.textEdit.range.start.line, item.textEdit.range.start.character,
+    item.textEdit.range['end'].line, item.textEdit.range['end'].character), vim.log.levels.INFO)
+
+  return item
 end
 
 -- Helper to safely call completion callback
@@ -279,6 +286,10 @@ end
 
 -- Main completion function
 function M:get_completions(ctx, callback)
+  -- Debug context
+  vim.notify(string.format("DEBUG get_completions context:\n  cursor: %s\n  line: %s",
+    ctx.cursor and string.format("[%d, %d]", ctx.cursor[1], ctx.cursor[2]) or "nil",
+    ctx.line or "nil"), vim.log.levels.INFO)
   -- Load path aliases module
   local ok, path_aliases = pcall(require, "nuxt-dx-tools.path-aliases")
   if not ok then
