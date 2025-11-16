@@ -463,48 +463,4 @@ function M:get_completions(ctx, callback)
   call_callback(callback, ctx, items)
 end
 
--- Resolve additional information for a completion item
-function M:resolve(item, callback)
-  vim.notify(string.format("DEBUG resolve called for item:\n  label: %s\n  textEdit: %s",
-    item.label or "nil",
-    item.textEdit and string.format("{newText='%s', range=[%d,%d]->[%d,%d]}",
-      item.textEdit.newText or "nil",
-      item.textEdit.range.start.line, item.textEdit.range.start.character,
-      item.textEdit.range['end'].line, item.textEdit.range['end'].character) or "nil"), vim.log.levels.INFO)
-
-  if type(callback) == "function" then
-    callback(item)
-  elseif type(callback) == "table" and callback.resolve then
-    callback:resolve(item)
-  end
-end
-
--- Execute action when completion item is selected
-function M:execute(item, callback)
-  local item_str = "nil"
-  if item then
-    item_str = string.format("label='%s', insertText='%s'", item.label or "nil", item.insertText or "nil")
-    if item.textEdit then
-      item_str = item_str .. string.format(", textEdit={newText='%s', range=[%d,%d]->[%d,%d]}",
-        item.textEdit.newText or "nil",
-        item.textEdit.range.start.line, item.textEdit.range.start.character,
-        item.textEdit.range['end'].line, item.textEdit.range['end'].character)
-    end
-  end
-
-  vim.notify(string.format("DEBUG execute called for item:\n  %s", item_str), vim.log.levels.INFO)
-
-  -- If item has data we need to apply, do it here
-  if item and item.data and item.data.apply_edit then
-    vim.notify("DEBUG: Applying custom edit from item.data", vim.log.levels.INFO)
-    -- Apply custom text edit here if needed
-  end
-
-  -- In newer blink.cmp versions, execute might not need to do anything for simple sources
-  -- Just return without error
-  if type(callback) == "function" then
-    callback()
-  end
-end
-
 return M
