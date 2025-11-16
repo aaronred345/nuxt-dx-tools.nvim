@@ -235,7 +235,9 @@ function M.show_hover()
   table.insert(hover_content, preview)
   table.insert(hover_content, "```")
   table.insert(hover_content, "")
-  table.insert(hover_content, "Press <leader>nt to test this endpoint")
+  table.insert(hover_content, "*Press `gd` to open the handler file*")
+  table.insert(hover_content, "")
+  table.insert(hover_content, "*Press `<leader>nt` to test this endpoint*")
 
   vim.lsp.util.open_floating_preview(hover_content, "markdown", {
     border = "rounded",

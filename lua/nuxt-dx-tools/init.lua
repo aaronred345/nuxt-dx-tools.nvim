@@ -20,7 +20,7 @@ local page_meta = require("nuxt-dx-tools.page-meta")
 -- Lazy-loaded feature modules
 local migration_helpers, data_fetching, virtual_modules, picker
 local find_usages, diagnostics, test_helpers, scaffold
-local snippets, health_report
+local snippets, health_report, route_resolver
 
 -- Main go-to-definition handler
 function M.goto_definition()
@@ -38,15 +38,22 @@ function M.goto_definition()
   local meta_result = page_meta.goto_definition(word, line)
   if meta_result then return end
 
-  -- 3. Check for API routes
+  -- 3. Check for page routes (navigateTo, NuxtLink)
+  if not route_resolver then
+    route_resolver = require("nuxt-dx-tools.route-resolver")
+  end
+  local route_result = route_resolver.goto_route_file()
+  if route_result then return end
+
+  -- 4. Check for API routes
   local api_result = api_routes.goto_definition()
   if api_result then return end
 
-  -- 4. Check for components
+  -- 5. Check for components
   local comp_result = components.goto_definition(word)
   if comp_result then return end
 
-  -- 5. Check for custom plugin definitions (e.g., $dialog)
+  -- 6. Check for custom plugin definitions (e.g., $dialog)
   if word:match("^%$") then
     local plugin_name = word:gsub("^%$", "")
     local def_file = utils.find_custom_plugin_definition(plugin_name)
@@ -59,7 +66,7 @@ function M.goto_definition()
     end
   end
 
-  -- 6. Fall back to LSP definition
+  -- 7. Fall back to LSP definition
   vim.lsp.buf.definition()
 end
 
@@ -81,6 +88,12 @@ function M.show_hover()
     data_fetching = require("nuxt-dx-tools.data-fetching")
   end
   if data_fetching.show_hover() then return end
+
+  -- Try page routes
+  if not route_resolver then
+    route_resolver = require("nuxt-dx-tools.route-resolver")
+  end
+  if route_resolver.show_hover() then return end
 
   -- Try API routes
   local result = api_routes.show_hover()

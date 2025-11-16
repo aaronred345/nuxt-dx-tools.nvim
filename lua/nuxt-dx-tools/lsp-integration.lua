@@ -262,6 +262,17 @@ function M.setup_buffer(bufnr)
 
   log("Setting up buffer " .. bufnr)
 
+  -- Override go to definition with our custom implementation
+  vim.keymap.set("n", "gd", function()
+    log("gd pressed in buffer " .. bufnr)
+
+    -- Use our enhanced goto_definition that handles components, routes, API endpoints
+    require("nuxt-dx-tools").goto_definition()
+  end, {
+    buffer = bufnr,
+    desc = "Nuxt DX: Enhanced go to definition",
+  })
+
   -- Override hover with our custom implementation
   vim.keymap.set("n", "K", function()
     log("K pressed in buffer " .. bufnr)

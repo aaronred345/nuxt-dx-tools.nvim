@@ -173,10 +173,12 @@ This means:
 #### Standard LSP Commands (Enhanced)
 
 - **`vim.lsp.buf.hover()` / `K`** - Shows Nuxt-specific hover info:
-  - **ALL auto-imported symbols** (composables, components, utilities)
+  - **ALL auto-imported symbols** (composables, components, utilities) with source paths
+  - **Page routes** in `navigateTo()` and `<NuxtLink>` with resolved file paths
+  - **API routes** with handler signatures, parameters, and return types
   - Virtual module documentation (`#imports`, `#app`, etc.)
   - Data fetching patterns (cache keys, SSR warnings)
-  - API route signatures and return types
+  - **Hints to press `gd`** to jump to source files
   - Combines with standard LSP hover when both available
 
 - **`vim.lsp.buf.signature_help()` / `<C-k>`** - Shows signatures for:
@@ -196,8 +198,9 @@ This means:
 
 - **`vim.lsp.buf.definition()` / `gd`** - Enhanced navigation:
   - Virtual modules (#imports, #app) → type definitions
-  - Auto-imported components → source files
-  - API routes ($fetch calls) → handler files
+  - Auto-imported components → source files in `components/`
+  - **Page routes** (`navigateTo('/path')`, `<NuxtLink to="/path">`) → page files
+  - **API routes** (`$fetch('/api/endpoint')`, `useFetch('/api/...')`) → handler files in `server/api/`
   - definePageMeta references → layouts/middleware
   - Then falls back to standard LSP definition
 

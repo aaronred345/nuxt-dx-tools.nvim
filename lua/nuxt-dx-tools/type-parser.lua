@@ -311,6 +311,8 @@ function M.get_hover_text(symbol)
     if info.path then
       table.insert(lines, "")
       table.insert(lines, "**Source:** `" .. info.path .. "`")
+      table.insert(lines, "")
+      table.insert(lines, "*Press `gd` to open the component file*")
     end
   end
 
