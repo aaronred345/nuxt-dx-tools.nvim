@@ -151,13 +151,6 @@ end
 local function calculate_text_edit_range(context, typed_path)
   local line = context.line
 
-  vim.notify(string.format("DEBUG calculate_text_edit_range:\n  line: %s\n  cursor: [%d,%d]\n  typed_path: %s\n  bounds: %s",
-    line,
-    context.cursor and context.cursor[1] or 0,
-    context.cursor and context.cursor[2] or 0,
-    typed_path or "nil",
-    context.bounds and string.format("start=%d, len=%d", context.bounds.start_col, context.bounds.length) or "nil"), vim.log.levels.INFO)
-
   -- Find the opening quote to determine where the path string starts
   local quote_pos = nil
   local line_before_cursor = line:sub(1, context.cursor[2])
@@ -185,8 +178,6 @@ local function calculate_text_edit_range(context, typed_path)
     start = { line = context.cursor[1] - 1, character = start_char },
     ['end'] = { line = context.cursor[1] - 1, character = end_char }
   }
-
-  vim.notify(string.format("  range: start.char=%d, end.char=%d", range.start.character, range['end'].character), vim.log.levels.INFO)
 
   return range
 end
@@ -236,9 +227,6 @@ local function make_completion_item(entry, prefix, typed_path, context)
     end
   end
 
-  -- Determine word to replace (from quote to cursor)
-  local word = typed_path or ""
-
   local item = {
     label = complete_path,
     kind = kind,
@@ -257,11 +245,6 @@ local function make_completion_item(entry, prefix, typed_path, context)
     },
   }
 
-  vim.notify(string.format("DEBUG completion item:\n  label: %s\n  textEdit: {newText=%s, range=[%d,%d]->[%d,%d]}",
-    item.label, item.textEdit.newText,
-    item.textEdit.range.start.line, item.textEdit.range.start.character,
-    item.textEdit.range['end'].line, item.textEdit.range['end'].character), vim.log.levels.INFO)
-
   return item
 end
 
@@ -275,23 +258,6 @@ local function call_callback(callback, context, items)
     items = items,
   }
 
-  -- Log what we're returning
-  local log_msg = string.format("DEBUG call_callback returning %d items", #items)
-  if #items > 0 then
-    local first = items[1]
-    log_msg = log_msg .. string.format("\n  First item: label='%s'", first.label or "nil")
-    if first.textEdit then
-      log_msg = log_msg .. string.format("\n    textEdit.newText='%s'\n    textEdit.range=[%d,%d]->[%d,%d]",
-        first.textEdit.newText or "nil",
-        first.textEdit.range.start.line, first.textEdit.range.start.character,
-        first.textEdit.range['end'].line, first.textEdit.range['end'].character)
-    end
-    if first.insertText then
-      log_msg = log_msg .. string.format("\n    insertText='%s'", first.insertText)
-    end
-  end
-  vim.notify(log_msg, vim.log.levels.INFO)
-
   if type(callback) == "function" then
     callback(result)
   elseif type(callback) == "table" and callback.callback then
@@ -301,47 +267,23 @@ end
 
 -- Main completion function
 function M:get_completions(ctx, callback)
-  -- Debug context - show ALL context fields
-  local ctx_debug = "DEBUG get_completions - FULL CONTEXT:\n"
-  for k, v in pairs(ctx) do
-    if type(v) == "table" then
-      if k == "cursor" then
-        ctx_debug = ctx_debug .. string.format("  %s: [%s, %s]\n", k, v[1] or "nil", v[2] or "nil")
-      elseif k == "bounds" then
-        ctx_debug = ctx_debug .. string.format("  %s: {start_col=%s, length=%s}\n", k, v.start_col or "nil", v.length or "nil")
-      else
-        ctx_debug = ctx_debug .. string.format("  %s: <table>\n", k)
-      end
-    else
-      ctx_debug = ctx_debug .. string.format("  %s: %s\n", k, tostring(v))
-    end
-  end
-  vim.notify(ctx_debug, vim.log.levels.INFO)
   -- Load path aliases module
   local ok, path_aliases = pcall(require, "nuxt-dx-tools.path-aliases")
   if not ok then
-    vim.notify("DEBUG: Failed to load path-aliases module", vim.log.levels.ERROR)
     call_callback(callback, ctx, {})
     return
   end
-  vim.notify("DEBUG: path-aliases module loaded successfully", vim.log.levels.INFO)
 
   local line = ctx.line or ctx.cursor_before_line or vim.api.nvim_get_current_line()
-  vim.notify(string.format("DEBUG: line = '%s'", line), vim.log.levels.INFO)
 
   -- Only provide completions in import statements
-  local is_import = line:match('from%s+["\']') or line:match('import%s+["\']') or line:match('import%(["\']')
-  vim.notify(string.format("DEBUG: is_import = %s", is_import and "true" or "false"), vim.log.levels.INFO)
-  if not is_import then
-    vim.notify("DEBUG: Not an import statement, returning empty", vim.log.levels.WARN)
+  if not (line:match('from%s+["\']') or line:match('import%s+["\']') or line:match('import%(["\']')) then
     call_callback(callback, ctx, {})
     return
   end
 
   local typed_path = get_import_path(line)
-  vim.notify(string.format("DEBUG: typed_path from get_import_path: '%s'", typed_path or "nil"), vim.log.levels.INFO)
   if not typed_path then
-    vim.notify("DEBUG: typed_path is nil, returning empty", vim.log.levels.WARN)
     call_callback(callback, ctx, {})
     return
   end
@@ -367,25 +309,14 @@ function M:get_completions(ctx, callback)
   local aliases = path_aliases.get_aliases()
   local root = path_aliases.get_nuxt_root()
 
-  vim.notify(string.format("DEBUG aliases and root:\n  root: %s\n  aliases count: %d\n  typed_path: %s",
-    root or "nil",
-    aliases and vim.tbl_count(aliases) or 0,
-    typed_path or "nil"), vim.log.levels.INFO)
-
   if not root then
-    vim.notify("DEBUG: No Nuxt root found, returning empty", vim.log.levels.WARN)
     call_callback(callback, ctx, {})
     return
   end
 
   -- Check if typed path starts with any alias
-  vim.notify(string.format("DEBUG: Checking aliases for typed_path='%s'", typed_path), vim.log.levels.INFO)
   for alias, target in pairs(aliases) do
-    local pattern = "^" .. vim.pesc(alias)
-    local matches = typed_path:match(pattern)
-    vim.notify(string.format("  Checking alias '%s' with pattern '%s': %s", alias, pattern, matches and "MATCH" or "no match"), vim.log.levels.INFO)
-    if matches then
-      vim.notify(string.format("DEBUG: Matched alias '%s', getting directory contents", alias), vim.log.levels.INFO)
+    if typed_path:match("^" .. vim.pesc(alias)) then
       -- Target is now an absolute path
       local base_dir = target
       local path_after_alias = typed_path:gsub("^" .. vim.pesc(alias) .. "/?", "")
@@ -415,7 +346,6 @@ function M:get_completions(ctx, callback)
   end
 
   -- SCENARIO 3: User hasn't typed anything yet - show all options
-  vim.notify("DEBUG: SCENARIO 3 - showing all aliases", vim.log.levels.INFO)
 
   -- Show all available aliases
   for alias, target in pairs(aliases) do
