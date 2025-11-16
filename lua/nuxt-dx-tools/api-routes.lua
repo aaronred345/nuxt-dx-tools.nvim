@@ -117,6 +117,74 @@ function M.goto_definition()
   end
 end
 
+-- Extract handler signature from file
+function M.extract_handler_signature(file_path)
+  local content = utils.read_file(file_path)
+  if not content then return nil end
+
+  -- Try to extract defineEventHandler signature
+  local handler_pattern = "defineEventHandler%s*%(%s*%(([^)]*)%)"
+  local async_pattern = "defineEventHandler%s*%(%s*async%s*%(%s*([^)]*)%)"
+
+  local params = content:match(async_pattern) or content:match(handler_pattern)
+  if params then
+    return {
+      parameters = params,
+      is_async = content:match("async") ~= nil,
+    }
+  end
+
+  -- Try to extract export default signature
+  local export_pattern = "export%s+default%s+defineEventHandler%s*%(%s*%(([^)]*)%)"
+  params = content:match(export_pattern)
+  if params then
+    return {
+      parameters = params,
+      is_async = content:match("async") ~= nil,
+    }
+  end
+
+  return nil
+end
+
+-- Extract return type from handler
+function M.extract_return_type(file_path)
+  local content = utils.read_file(file_path)
+  if not content then return nil end
+
+  -- Look for explicit return type
+  local return_type_pattern = ":%s*Promise<([^>]+)>"
+  local return_type = content:match(return_type_pattern)
+  if return_type then return return_type end
+
+  -- Look for return statements to infer type
+  local return_patterns = {
+    "return%s+%{",  -- object
+    "return%s+%[",  -- array
+    "return%s+['\"]", -- string
+    "return%s+%d", -- number
+    "return%s+true", -- boolean
+    "return%s+false", -- boolean
+  }
+
+  local type_map = {
+    [1] = "object",
+    [2] = "array",
+    [3] = "string",
+    [4] = "number",
+    [5] = "boolean",
+    [6] = "boolean",
+  }
+
+  for i, pattern in ipairs(return_patterns) do
+    if content:match(pattern) then
+      return type_map[i]
+    end
+  end
+
+  return nil
+end
+
 function M.show_hover()
   local api_info = M.extract_api_info()
   if not api_info then return false end
@@ -131,7 +199,7 @@ function M.show_hover()
   if not file then return false end
 
   local preview_lines = {}
-  for i = 1, 3 do
+  for i = 1, 10 do
     local line = file:read("*line")
     if not line then break end
     table.insert(preview_lines, line)
@@ -141,15 +209,35 @@ function M.show_hover()
   local preview = table.concat(preview_lines, "\n")
   local relative_path = route_file:gsub(utils.find_nuxt_root() .. "/", "")
 
+  -- Extract signature information
+  local signature = M.extract_handler_signature(route_file)
+  local return_type = M.extract_return_type(route_file)
+
   local hover_content = {
     "**Server Route:** " .. api_info.path,
     "**Method:** " .. api_info.method,
     "**File:** " .. relative_path,
-    "",
-    "```typescript",
-    preview,
-    "```",
   }
+
+  if signature then
+    table.insert(hover_content, "**Parameters:** " .. (signature.parameters ~= "" and signature.parameters or "none"))
+    if signature.is_async then
+      table.insert(hover_content, "**Type:** async handler")
+    end
+  end
+
+  if return_type then
+    table.insert(hover_content, "**Returns:** " .. return_type)
+  end
+
+  table.insert(hover_content, "")
+  table.insert(hover_content, "```typescript")
+  table.insert(hover_content, preview)
+  table.insert(hover_content, "```")
+  table.insert(hover_content, "")
+  table.insert(hover_content, "*Press `gd` to open the handler file*")
+  table.insert(hover_content, "")
+  table.insert(hover_content, "*Press `<leader>nt` to test this endpoint*")
 
   vim.lsp.util.open_floating_preview(hover_content, "markdown", {
     border = "rounded",
@@ -158,6 +246,76 @@ function M.show_hover()
   })
 
   return true
+end
+
+-- Open terminal to test API endpoint
+function M.test_endpoint_in_terminal()
+  local api_info = M.extract_api_info()
+  if not api_info then
+    vim.notify("No API endpoint found under cursor", vim.log.levels.WARN)
+    return
+  end
+
+  local route_file = M.find_server_route(api_info.path, api_info.method)
+  if not route_file then
+    vim.notify("API route not found: " .. api_info.path, vim.log.levels.WARN)
+    return
+  end
+
+  -- Create curl command based on method
+  local method = api_info.method:upper()
+  local url = "http://localhost:3000" .. api_info.path
+
+  local curl_cmd
+  if method == "GET" then
+    curl_cmd = string.format("curl -X GET '%s' | jq", url)
+  elseif method == "POST" then
+    curl_cmd = string.format("curl -X POST '%s' -H 'Content-Type: application/json' -d '{}' | jq", url)
+  elseif method == "PUT" then
+    curl_cmd = string.format("curl -X PUT '%s' -H 'Content-Type: application/json' -d '{}' | jq", url)
+  elseif method == "DELETE" then
+    curl_cmd = string.format("curl -X DELETE '%s' | jq", url)
+  else
+    curl_cmd = string.format("curl -X %s '%s' | jq", method, url)
+  end
+
+  -- Open terminal in a split
+  vim.cmd("botright split")
+  vim.cmd("terminal " .. curl_cmd)
+  vim.cmd("startinsert")
+end
+
+-- Open handler file in terminal for quick testing
+function M.open_handler_in_terminal()
+  local api_info = M.extract_api_info()
+  if not api_info then
+    vim.notify("No API endpoint found under cursor", vim.log.levels.WARN)
+    return
+  end
+
+  local route_file = M.find_server_route(api_info.path, api_info.method)
+  if not route_file then
+    vim.notify("API route not found: " .. api_info.path, vim.log.levels.WARN)
+    return
+  end
+
+  local root = utils.find_nuxt_root()
+  local relative_path = route_file:gsub(root .. "/", "")
+
+  -- Open terminal with helpful commands
+  vim.cmd("botright split")
+  vim.cmd("terminal")
+
+  -- Wait for terminal to be ready and send commands
+  vim.defer_fn(function()
+    local chan_id = vim.b.terminal_job_id
+    if chan_id then
+      vim.fn.chansend(chan_id, "# Testing Nitro handler: " .. relative_path .. "\r")
+      vim.fn.chansend(chan_id, "# Run: npm run dev\r")
+      vim.fn.chansend(chan_id, "# Test: curl http://localhost:3000" .. api_info.path .. "\r")
+      vim.fn.chansend(chan_id, "\r")
+    end
+  end, 100)
 end
 
 return M

@@ -71,21 +71,64 @@ function M.load_composable_mappings()
   return mappings
 end
 
+-- Debug flag (will be set by debug command)
+local DEBUG = false
+
+local function log(msg)
+  if DEBUG then
+    vim.notify("[Nuxt Components] " .. msg, vim.log.levels.INFO)
+  end
+end
+
+function M.enable_debug()
+  DEBUG = true
+end
+
 -- Go to component definition
 function M.goto_definition(word)
+  log("goto_definition called for: " .. word)
+
   local components = cache.get_components()
+  log("Cache has " .. vim.tbl_count(components) .. " components")
+
   if components[word] then
+    log("Found component in cache: " .. components[word])
     vim.cmd("edit " .. components[word])
     return true
   end
 
   -- Try composables
   local composables = cache.get_composables()
+  log("Cache has " .. vim.tbl_count(composables) .. " composables")
+
   if composables[word] then
+    log("Found composable in cache: " .. composables[word])
     vim.cmd("edit " .. composables[word])
     return true
   end
 
+  -- Fallback: try type parser for component info
+  log("Trying type parser as fallback")
+  local type_parser = require("nuxt-dx-tools.type-parser")
+  local symbol_info = type_parser.get_symbol_info(word)
+
+  if symbol_info then
+    log("Type parser found symbol, type: " .. (symbol_info.type or "nil"))
+  end
+
+  if symbol_info and symbol_info.type == "component" and symbol_info.path then
+    log("Type parser has component path: " .. symbol_info.path)
+    -- Make sure the file exists
+    if vim.fn.filereadable(symbol_info.path) == 1 then
+      log("File is readable, opening: " .. symbol_info.path)
+      vim.cmd("edit " .. symbol_info.path)
+      return true
+    else
+      log("File is not readable: " .. symbol_info.path)
+    end
+  end
+
+  log("Component not found for: " .. word)
   return false
 end
 
