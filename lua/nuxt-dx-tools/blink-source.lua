@@ -222,10 +222,19 @@ local function make_completion_item(entry, prefix, typed_path, context)
     kind = CompletionItemKind.Module
   end
 
-  -- Calculate what text to insert (just the name + "/" if directory)
-  local insert_text = entry.name
-  if entry.is_dir then
-    insert_text = insert_text .. "/"
+  -- Calculate what text to insert
+  -- If typed_path has no slash (e.g., just "~"), include the full prefix
+  -- Otherwise, just insert the name
+  local insert_text
+  if typed_path and not typed_path:match('/') then
+    -- No slash yet, include full path with prefix (e.g., "~/components/")
+    insert_text = complete_path
+  else
+    -- Has slash, just insert the name (e.g., "components/")
+    insert_text = entry.name
+    if entry.is_dir then
+      insert_text = insert_text .. "/"
+    end
   end
 
   -- Calculate the range for text replacement
