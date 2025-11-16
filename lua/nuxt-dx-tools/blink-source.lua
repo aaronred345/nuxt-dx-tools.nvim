@@ -148,11 +148,17 @@ local function get_directory_contents(dir_path)
 end
 
 -- Create a completion item from a directory entry
-local function make_completion_item(entry, prefix, range_start, cursor_line)
-  -- Build the complete path
+local function make_completion_item(entry, prefix)
+  -- Build the complete path for label
   local complete_path = prefix .. entry.name
   if entry.is_dir then
     complete_path = complete_path .. "/"
+  end
+
+  -- For insert, only the filename (not prefix which is already typed)
+  local insert_name = entry.name
+  if entry.is_dir then
+    insert_name = insert_name .. "/"
   end
 
   local kind
@@ -164,24 +170,11 @@ local function make_completion_item(entry, prefix, range_start, cursor_line)
     kind = CompletionItemKind.Module
   end
 
-  -- Create textEdit with proper range to replace the import path
-  local text_edit = nil
-  if range_start and cursor_line then
-    text_edit = {
-      newText = complete_path,
-      range = {
-        start = { line = cursor_line, character = range_start },
-        ["end"] = { line = cursor_line, character = range_start + #prefix + #entry.name + (entry.is_dir and 1 or 0) },
-      },
-    }
-  end
-
   return {
     label = complete_path,
     kind = kind,
     detail = entry.is_dir and "Directory" or "File",
-    insertText = complete_path,
-    textEdit = text_edit,
+    insertText = insert_name,
     filterText = entry.name,
     sortText = entry.name,
     documentation = {
@@ -202,9 +195,6 @@ end
 
 -- Main completion function
 function M:get_completions(ctx, callback)
-  -- Store cursor position for textEdit range
-  local cursor_line = ctx.cursor.line
-  local cursor_col = ctx.cursor.col
   -- Load path aliases module
   local ok, path_aliases = pcall(require, "nuxt-dx-tools.path-aliases")
   if not ok then
@@ -226,13 +216,6 @@ function M:get_completions(ctx, callback)
     return
   end
 
-  -- Find the position of the import path in the line for textEdit range
-  local quote_start = line:find('["\']', line:find('import') or line:find('from') or 1)
-  if not quote_start then
-    call_callback(callback, { items = {} })
-    return
-  end
-
   local items = {}
   local current_file = vim.api.nvim_buf_get_name(0)
 
@@ -243,7 +226,7 @@ function M:get_completions(ctx, callback)
 
     local entries = get_directory_contents(target_dir)
     for _, entry in ipairs(entries) do
-      table.insert(items, make_completion_item(entry, prefix, quote_start, cursor_line))
+      table.insert(items, make_completion_item(entry, prefix))
     end
 
     call_callback(callback, { items = items })
@@ -282,7 +265,7 @@ function M:get_completions(ctx, callback)
       local entries = get_directory_contents(search_dir)
 
       for _, entry in ipairs(entries) do
-        table.insert(items, make_completion_item(entry, prefix, quote_start, cursor_line))
+        table.insert(items, make_completion_item(entry, prefix))
       end
 
       call_callback(callback, { items = items })
