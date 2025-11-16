@@ -253,7 +253,8 @@ function M:get_completions(ctx, callback)
     if typed_path:match("^" .. vim.pesc(alias)) then
       vim.notify(string.format("[nuxt-dx-tools] Matched alias: %s -> %s", alias, target), vim.log.levels.INFO)
 
-      local base_dir = root .. "/" .. target
+      -- Target is now an absolute path
+      local base_dir = target
       local path_after_alias = typed_path:gsub("^" .. vim.pesc(alias) .. "/?", "")
 
       -- Determine which directory to search
@@ -262,13 +263,11 @@ function M:get_completions(ctx, callback)
         local subdir = path_after_alias:match("^(.+)/[^/]*$")
         if subdir then
           search_dir = base_dir .. "/" .. subdir
+          -- Normalize the path
+          search_dir = vim.fn.fnamemodify(search_dir, ":p")
+          search_dir = search_dir:gsub("[/\\]$", "")
         end
       end
-
-      -- Normalize the path (resolve .. and . and fix separators)
-      search_dir = vim.fn.fnamemodify(search_dir, ":p")
-      -- Remove trailing slash if present
-      search_dir = search_dir:gsub("[/\\]$", "")
 
       vim.notify(string.format("[nuxt-dx-tools] Searching directory: %s", search_dir), vim.log.levels.INFO)
 
@@ -292,14 +291,20 @@ function M:get_completions(ctx, callback)
 
   -- Show all available aliases
   for alias, target in pairs(aliases) do
+    -- Make target relative to root for display
+    local display_target = target
+    if root and target:find(root, 1, true) == 1 then
+      display_target = target:sub(#root + 2) -- +2 to skip the separator
+    end
+
     table.insert(items, {
       label = alias .. "/",
       kind = CompletionItemKind.Folder,
-      detail = "→ " .. target,
+      detail = "→ " .. display_target,
       insertText = alias .. "/",
       documentation = {
         kind = "markdown",
-        value = string.format("**Path Alias**\n\nResolves to `%s`", target),
+        value = string.format("**Path Alias**\n\nResolves to `%s`", display_target),
       },
     })
   end
