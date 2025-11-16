@@ -251,6 +251,8 @@ function M:get_completions(ctx, callback)
   -- Check if typed path starts with any alias
   for alias, target in pairs(aliases) do
     if typed_path:match("^" .. vim.pesc(alias)) then
+      vim.notify(string.format("[nuxt-dx-tools] Matched alias: %s -> %s", alias, target), vim.log.levels.INFO)
+
       local base_dir = root .. "/" .. target
       local path_after_alias = typed_path:gsub("^" .. vim.pesc(alias) .. "/?", "")
 
@@ -263,13 +265,18 @@ function M:get_completions(ctx, callback)
         end
       end
 
+      vim.notify(string.format("[nuxt-dx-tools] Searching directory: %s", search_dir), vim.log.levels.INFO)
+
       local prefix = get_label_prefix(typed_path)
       local entries = get_directory_contents(search_dir)
+
+      vim.notify(string.format("[nuxt-dx-tools] Found %d entries in directory", #entries), vim.log.levels.INFO)
 
       for _, entry in ipairs(entries) do
         table.insert(items, make_completion_item(entry, prefix))
       end
 
+      vim.notify(string.format("[nuxt-dx-tools] Returning %d items for alias", #items), vim.log.levels.INFO)
       call_callback(callback, { items = items })
       return
     end
