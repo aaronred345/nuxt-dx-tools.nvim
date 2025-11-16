@@ -58,10 +58,16 @@ function M.parse_imports()
 
   local imports = {}
   local line_count = 0
+  local sample_lines = {}
 
   -- Parse each line
   for line in content:gmatch("[^\r\n]+") do
     line_count = line_count + 1
+
+    -- Collect first few export lines for debugging
+    if line:match("^%s*export") and #sample_lines < 5 then
+      table.insert(sample_lines, line)
+    end
 
     -- Match: export const useFoo: typeof import('...').useFoo
     local name, import_path = line:match("export%s+const%s+(%w+)%s*:%s*typeof%s+import%(['\"]([^'\"]+)['\"]%)%.(%w+)")
@@ -100,22 +106,47 @@ function M.parse_imports()
   end
 
   log("Parsed " .. line_count .. " lines, found " .. vim.tbl_count(imports) .. " imports")
+
+  if #sample_lines > 0 and vim.tbl_count(imports) == 0 then
+    log("Sample export lines from file:")
+    for i, line in ipairs(sample_lines) do
+      log("  Line " .. i .. ": " .. line)
+    end
+  end
+
   return imports
 end
 
 -- Parse .nuxt/components.d.ts for all components
 function M.parse_components()
   local root = utils.find_nuxt_root()
-  if not root then return {} end
+  if not root then
+    log("No Nuxt root found for components")
+    return {}
+  end
 
   local components_file = root .. "/.nuxt/components.d.ts"
+  log("Parsing components from: " .. components_file)
+
   local content = utils.read_file(components_file)
-  if not content then return {} end
+  if not content then
+    log("Could not read components file")
+    return {}
+  end
 
   local components = {}
+  local line_count = 0
+  local sample_lines = {}
 
   -- Parse component declarations
   for line in content:gmatch("[^\r\n]+") do
+    line_count = line_count + 1
+
+    -- Collect first few component lines for debugging
+    if (line:match("'%w+'%s*:") or (line:match("%w+%s*:") and not line:match("^%s*export"))) and #sample_lines < 5 then
+      table.insert(sample_lines, line)
+    end
+
     -- Match: 'ComponentName': typeof import('path').default
     local name, path = line:match("'([%w]+)'%s*:%s*typeof%s+import%(['\"]([^'\"]+)['\"]%)%.default")
     if name then
@@ -125,6 +156,7 @@ function M.parse_components()
         path = path,
         raw_line = line,
       }
+      log("Found component (quoted): " .. name .. " from " .. path)
     end
 
     -- Match: ComponentName: typeof import('path').default
@@ -136,6 +168,16 @@ function M.parse_components()
         path = path,
         raw_line = line,
       }
+      log("Found component (unquoted): " .. name .. " from " .. path)
+    end
+  end
+
+  log("Parsed " .. line_count .. " lines, found " .. vim.tbl_count(components) .. " components")
+
+  if #sample_lines > 0 and vim.tbl_count(components) == 0 then
+    log("Sample component lines from file:")
+    for i, line in ipairs(sample_lines) do
+      log("  Line " .. i .. ": " .. line)
     end
   end
 
