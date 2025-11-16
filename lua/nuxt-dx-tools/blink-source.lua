@@ -133,27 +133,83 @@ local function get_directory_contents(dir_path)
         path = full_path,
       })
     else
-      -- Only show importable files
+      -- Show all files
       local ext = name:match("%.([^%.]+)$")
-      if ext and vim.tbl_contains({ "vue", "ts", "js", "mjs", "jsx", "tsx" }, ext) then
-        table.insert(entries, {
-          name = name,
-          is_dir = false,
-          path = full_path,
-          extension = ext,
-        })
-      end
+      table.insert(entries, {
+        name = name,
+        is_dir = false,
+        path = full_path,
+        extension = ext,
+      })
     end
   end
 
   return entries
 end
 
+-- Calculate the text edit range for completion replacement
+local function calculate_text_edit_range(context, typed_path)
+  local line = context.line
+
+  vim.notify(string.format("DEBUG calculate_text_edit_range:\n  line: %s\n  cursor: [%d,%d]\n  typed_path: %s\n  bounds: %s",
+    line,
+    context.cursor and context.cursor[1] or 0,
+    context.cursor and context.cursor[2] or 0,
+    typed_path or "nil",
+    context.bounds and string.format("start=%d, len=%d", context.bounds.start_col, context.bounds.length) or "nil"), vim.log.levels.INFO)
+
+  -- Find where the path segment starts (after the last /)
+  local line_before_cursor = line:sub(1, context.cursor[2])
+  local last_slash_pos = nil
+  for i = #line_before_cursor, 1, -1 do
+    if line_before_cursor:sub(i, i) == '/' then
+      last_slash_pos = i  -- This is 1-indexed Lua position
+      break
+    end
+  end
+
+  -- Calculate the range start (0-indexed LSP position)
+  local start_char
+  if last_slash_pos then
+    -- Position after the slash (Lua 1-indexed pos N -> LSP 0-indexed pos N)
+    start_char = last_slash_pos
+  elseif context.bounds then
+    -- No slash in path, so we're replacing the trigger character (like ~, @, #)
+    -- bounds.start_col is 1-indexed and points to AFTER the trigger character
+    -- We need to go back 2 positions to include the trigger character in the replacement
+    -- Example: import "~" with cursor at 9, bounds.start_col=10
+    --          Position 8 is '~', position 9 is after '~'
+    --          start_char should be 8 to replace the '~'
+    start_char = context.bounds.start_col - 2
+  else
+    -- Fallback: find the quote and start after it
+    local quote_pos = nil
+    for i = 1, #line do
+      local char = line:sub(i, i)
+      if char == '"' or char == "'" then
+        quote_pos = i  -- Lua 1-indexed
+        break
+      end
+    end
+    start_char = quote_pos or 0  -- Lua 1-indexed -> LSP 0-indexed happens to work out
+  end
+
+  local range = {
+    start = { line = (context.cursor and context.cursor[1] or 1) - 1, character = start_char },
+    ['end'] = { line = (context.cursor and context.cursor[1] or 1) - 1, character = context.cursor[2] }
+  }
+
+  vim.notify(string.format("  range: start.char=%d, end.char=%d", range.start.character, range['end'].character), vim.log.levels.INFO)
+
+  return range
+end
+
 -- Create a completion item from a directory entry
-local function make_completion_item(entry, prefix)
-  local label = prefix .. entry.name
+local function make_completion_item(entry, prefix, typed_path, context)
+  -- Build the complete path for label
+  local complete_path = prefix .. entry.name
   if entry.is_dir then
-    label = label .. "/"
+    complete_path = complete_path .. "/"
   end
 
   local kind
@@ -165,24 +221,78 @@ local function make_completion_item(entry, prefix)
     kind = CompletionItemKind.Module
   end
 
-  return {
-    label = label,
+  -- Calculate what text to insert
+  -- If typed_path has no slash (e.g., just "~"), include the full prefix
+  -- Otherwise, just insert the name
+  local insert_text
+  if typed_path and not typed_path:match('/') then
+    -- No slash yet, include full path with prefix (e.g., "~/components/")
+    insert_text = complete_path
+  else
+    -- Has slash, just insert the name (e.g., "components/")
+    insert_text = entry.name
+    if entry.is_dir then
+      insert_text = insert_text .. "/"
+    end
+  end
+
+  -- Calculate the range for text replacement
+  local range = calculate_text_edit_range(context, typed_path)
+
+  -- Check if next character is "/" and we're inserting a directory
+  -- If so, extend the range to replace the existing "/"
+  if entry.is_dir and context.line then
+    local cursor_pos = context.cursor and context.cursor[2] or #context.line
+    local next_char = context.line:sub(cursor_pos + 1, cursor_pos + 1)
+    if next_char == "/" then
+      range['end'].character = range['end'].character + 1
+    end
+  end
+
+  local item = {
+    label = complete_path,
     kind = kind,
     detail = entry.is_dir and "Directory" or "File",
-    insertText = label,
+    insertText = insert_text,  -- Include both insertText and textEdit like official path source
+    textEdit = {
+      newText = insert_text,
+      range = range
+    },
+    filterText = entry.name,
+    sortText = (entry.is_dir and "1" or "2") .. entry.name:lower(),
     documentation = {
       kind = "markdown",
       value = string.format("**%s**\n\n`%s`", entry.is_dir and "Directory" or "File", entry.path),
     },
   }
+
+  vim.notify(string.format("DEBUG completion item:\n  label: %s\n  textEdit.newText: %s\n  textEdit.range: [%d,%d] to [%d,%d]",
+    item.label, item.textEdit.newText,
+    item.textEdit.range.start.line, item.textEdit.range.start.character,
+    item.textEdit.range['end'].line, item.textEdit.range['end'].character), vim.log.levels.INFO)
+
+  return item
+end
+
+-- Helper to safely call completion callback
+local function call_callback(callback, result)
+  if type(callback) == "function" then
+    callback(result)
+  elseif type(callback) == "table" and callback.callback then
+    callback:callback(result)
+  end
 end
 
 -- Main completion function
 function M:get_completions(ctx, callback)
+  -- Debug context
+  vim.notify(string.format("DEBUG get_completions context:\n  cursor: %s\n  line: %s",
+    ctx.cursor and string.format("[%d, %d]", ctx.cursor[1], ctx.cursor[2]) or "nil",
+    ctx.line or "nil"), vim.log.levels.INFO)
   -- Load path aliases module
   local ok, path_aliases = pcall(require, "nuxt-dx-tools.path-aliases")
   if not ok then
-    callback({ items = {} })
+    call_callback(callback, { items = {} })
     return
   end
 
@@ -190,13 +300,13 @@ function M:get_completions(ctx, callback)
 
   -- Only provide completions in import statements
   if not (line:match('from%s+["\']') or line:match('import%s+["\']') or line:match('import%(["\']')) then
-    callback({ items = {} })
+    call_callback(callback, { items = {} })
     return
   end
 
   local typed_path = get_import_path(line)
   if not typed_path then
-    callback({ items = {} })
+    call_callback(callback, { items = {} })
     return
   end
 
@@ -210,10 +320,10 @@ function M:get_completions(ctx, callback)
 
     local entries = get_directory_contents(target_dir)
     for _, entry in ipairs(entries) do
-      table.insert(items, make_completion_item(entry, prefix))
+      table.insert(items, make_completion_item(entry, prefix, typed_path, ctx))
     end
 
-    callback({ items = items })
+    call_callback(callback, { items = items })
     return
   end
 
@@ -222,14 +332,15 @@ function M:get_completions(ctx, callback)
   local root = path_aliases.get_nuxt_root()
 
   if not root then
-    callback({ items = {} })
+    call_callback(callback, { items = {} })
     return
   end
 
   -- Check if typed path starts with any alias
   for alias, target in pairs(aliases) do
     if typed_path:match("^" .. vim.pesc(alias)) then
-      local base_dir = root .. "/" .. target
+      -- Target is now an absolute path
+      local base_dir = target
       local path_after_alias = typed_path:gsub("^" .. vim.pesc(alias) .. "/?", "")
 
       -- Determine which directory to search
@@ -238,6 +349,9 @@ function M:get_completions(ctx, callback)
         local subdir = path_after_alias:match("^(.+)/[^/]*$")
         if subdir then
           search_dir = base_dir .. "/" .. subdir
+          -- Normalize the path
+          search_dir = vim.fn.fnamemodify(search_dir, ":p")
+          search_dir = search_dir:gsub("[/\\]$", "")
         end
       end
 
@@ -245,25 +359,32 @@ function M:get_completions(ctx, callback)
       local entries = get_directory_contents(search_dir)
 
       for _, entry in ipairs(entries) do
-        table.insert(items, make_completion_item(entry, prefix))
+        table.insert(items, make_completion_item(entry, prefix, typed_path, ctx))
       end
 
-      callback({ items = items })
+      call_callback(callback, { items = items })
       return
     end
   end
 
   -- SCENARIO 3: User hasn't typed anything yet - show all options
+
   -- Show all available aliases
   for alias, target in pairs(aliases) do
+    -- Make target relative to root for display
+    local display_target = target
+    if root and target:find(root, 1, true) == 1 then
+      display_target = target:sub(#root + 2) -- +2 to skip the separator
+    end
+
     table.insert(items, {
       label = alias .. "/",
       kind = CompletionItemKind.Folder,
-      detail = "→ " .. target,
+      detail = "→ " .. display_target,
       insertText = alias .. "/",
       documentation = {
         kind = "markdown",
-        value = string.format("**Path Alias**\n\nResolves to `%s`", target),
+        value = string.format("**Path Alias**\n\nResolves to `%s`", display_target),
       },
     })
   end
@@ -291,17 +412,25 @@ function M:get_completions(ctx, callback)
     },
   })
 
-  callback({ items = items })
+  call_callback(callback, { items = items })
 end
 
 -- Resolve additional information for a completion item
 function M:resolve(item, callback)
-  callback(item)
+  if type(callback) == "function" then
+    callback(item)
+  elseif type(callback) == "table" and callback.resolve then
+    callback:resolve(item)
+  end
 end
 
 -- Execute action when completion item is selected
 function M:execute(item, callback)
-  callback()
+  -- In newer blink.cmp versions, execute might not need to do anything for simple sources
+  -- Just return without error
+  if type(callback) == "function" then
+    callback()
+  end
 end
 
 return M

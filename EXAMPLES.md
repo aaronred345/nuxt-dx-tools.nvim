@@ -189,12 +189,21 @@ require('cmp').setup({
 
 ### blink.cmp
 
-The plugin is automatically detected by blink.cmp. Just install the plugin and it works!
+For blink.cmp, you need to add the source to your configuration:
 
 ```lua
--- blink.cmp will automatically find and use the completion source
-require('blink-cmp').setup({
-  -- ... your config
+require('blink.cmp').setup({
+  sources = {
+    default = { 'lsp', 'path', 'snippets', 'buffer', 'nuxt-dx-tools' },
+    providers = {
+      ['nuxt-dx-tools'] = {
+        name = 'nuxt-dx-tools',
+        module = 'nuxt-dx-tools.blink-source',
+        score_offset = 10, -- Prioritize path alias completions
+      },
+    },
+  },
+  -- ... rest of your config
 })
 ```
 

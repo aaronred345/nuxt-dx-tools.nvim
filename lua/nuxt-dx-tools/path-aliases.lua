@@ -31,6 +31,7 @@ local function clean_json(content)
 end
 
 -- Parse a single tsconfig.json file and extract path mappings
+-- Returns paths relative to the tsconfig file's directory
 local function parse_tsconfig_file(filepath)
   if not utils.file_exists(filepath) then
     return {}
@@ -48,10 +49,11 @@ local function parse_tsconfig_file(filepath)
   local ok, tsconfig = pcall(vim.json.decode, content)
   if not ok then
     -- If JSON parsing fails, fall back to regex parsing
-    return parse_tsconfig_regex(content)
+    return parse_tsconfig_regex(content, filepath)
   end
 
   local paths = {}
+  local tsconfig_dir = vim.fn.fnamemodify(filepath, ":h")
 
   -- Extract paths from compilerOptions
   if tsconfig.compilerOptions and tsconfig.compilerOptions.paths then
@@ -64,7 +66,12 @@ local function parse_tsconfig_file(filepath)
         local alias = alias_pattern:gsub("/%*$", "")
         local target = target_pattern:gsub("^%./", ""):gsub("/%*$", "")
 
-        paths[alias] = target
+        -- Resolve target path relative to tsconfig directory, then make it relative to Nuxt root
+        local absolute_target = vim.fn.fnamemodify(tsconfig_dir .. "/" .. target, ":p")
+        -- Remove trailing separator
+        absolute_target = absolute_target:gsub("[/\\]$", "")
+
+        paths[alias] = absolute_target
       end
     end
   end
@@ -73,8 +80,10 @@ local function parse_tsconfig_file(filepath)
 end
 
 -- Fallback regex-based parser for when JSON parsing fails
-parse_tsconfig_regex = function(content)
+-- Note: This needs the filepath to resolve paths correctly
+parse_tsconfig_regex = function(content, filepath)
   local paths = {}
+  local tsconfig_dir = vim.fn.fnamemodify(filepath or "", ":h")
 
   -- Find the "paths" section in compilerOptions
   local paths_section = content:match('"paths"%s*:%s*(%b{})')
@@ -93,7 +102,14 @@ parse_tsconfig_regex = function(content)
       local alias = alias_pattern:gsub("/%*$", "")
       local target = target_pattern:gsub("^%./", ""):gsub("/%*$", "")
 
-      paths[alias] = target
+      -- Resolve target path relative to tsconfig directory
+      if filepath and filepath ~= "" then
+        local absolute_target = vim.fn.fnamemodify(tsconfig_dir .. "/" .. target, ":p")
+        absolute_target = absolute_target:gsub("[/\\]$", "")
+        paths[alias] = absolute_target
+      else
+        paths[alias] = target
+      end
     end
   end
 
@@ -189,18 +205,13 @@ end
 -- Resolve an aliased path to an absolute filesystem path
 function M.resolve_alias_path(import_path)
   local aliases = M.get_aliases()
-  local root = M.get_nuxt_root()
-
-  if not root then
-    return nil
-  end
 
   -- Check each alias to see if it matches the import path
   for alias, target in pairs(aliases) do
     if import_path:match("^" .. vim.pesc(alias)) then
-      -- Replace the alias with the target path
+      -- Replace the alias with the target path (target is now absolute)
       local resolved = import_path:gsub("^" .. vim.pesc(alias), target)
-      return root .. "/" .. resolved
+      return resolved
     end
   end
 
@@ -287,6 +298,7 @@ end
 -- Show all configured aliases
 function M.show_aliases()
   local aliases = M.get_aliases()
+  local root = M.get_nuxt_root()
 
   if vim.tbl_isempty(aliases) then
     vim.notify("No path aliases found in tsconfig.json", vim.log.levels.WARN)
@@ -296,7 +308,12 @@ function M.show_aliases()
   local lines = { "Path Aliases:", "" }
 
   for alias, target in pairs(aliases) do
-    table.insert(lines, string.format("  %s → %s", alias, target))
+    -- Make path relative to root for display if possible
+    local display_target = target
+    if root and target:find(root, 1, true) == 1 then
+      display_target = target:sub(#root + 2) -- +2 to skip the separator
+    end
+    table.insert(lines, string.format("  %s → %s", alias, display_target))
   end
 
   vim.notify(table.concat(lines, "\n"), vim.log.levels.INFO)
