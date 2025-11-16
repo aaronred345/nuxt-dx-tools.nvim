@@ -209,7 +209,10 @@ function M:get_completions(ctx, callback)
   end
 
   local typed_path = get_import_path(line)
+  vim.notify("[nuxt-dx-tools] Typed path: " .. tostring(typed_path), vim.log.levels.INFO)
+
   if not typed_path then
+    vim.notify("[nuxt-dx-tools] No typed path found", vim.log.levels.WARN)
     call_callback(callback, { items = {} })
     return
   end
@@ -235,7 +238,12 @@ function M:get_completions(ctx, callback)
   local aliases = path_aliases.get_aliases()
   local root = path_aliases.get_nuxt_root()
 
+  local alias_count = 0
+  for _ in pairs(aliases) do alias_count = alias_count + 1 end
+  vim.notify(string.format("[nuxt-dx-tools] Found %d aliases, root: %s", alias_count, tostring(root)), vim.log.levels.INFO)
+
   if not root then
+    vim.notify("[nuxt-dx-tools] No Nuxt root found", vim.log.levels.WARN)
     call_callback(callback, { items = {} })
     return
   end
@@ -268,6 +276,8 @@ function M:get_completions(ctx, callback)
   end
 
   -- SCENARIO 3: User hasn't typed anything yet - show all options
+  vim.notify("[nuxt-dx-tools] No alias matched, showing all options", vim.log.levels.INFO)
+
   -- Show all available aliases
   for alias, target in pairs(aliases) do
     table.insert(items, {
@@ -305,6 +315,7 @@ function M:get_completions(ctx, callback)
     },
   })
 
+  vim.notify(string.format("[nuxt-dx-tools] Returning %d items", #items), vim.log.levels.INFO)
   call_callback(callback, { items = items })
 end
 
