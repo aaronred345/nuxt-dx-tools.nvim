@@ -104,7 +104,8 @@ function M.setup(plugin)
   vim.api.nvim_create_user_command("NuxtDebug", function()
     require("nuxt-dx-tools.lsp-integration").enable_debug()
     require("nuxt-dx-tools.type-parser").enable_debug()
-    vim.notify("Nuxt DX debug mode enabled for LSP integration and type parser", vim.log.levels.INFO)
+    require("nuxt-dx-tools.components").enable_debug()
+    vim.notify("Nuxt DX debug mode enabled", vim.log.levels.INFO)
   end, { desc = "Nuxt: Enable debug logging for LSP integration" })
 end
 

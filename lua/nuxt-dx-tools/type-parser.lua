@@ -143,26 +143,46 @@ function M.parse_components()
 
     -- Match: 'ComponentName': typeof import('path').default
     local name, path = line:match("'([%w]+)'%s*:%s*typeof%s+import%(['\"]([^'\"]+)['\"]%)%.default")
-    if name then
+    if name and path then
+      -- Resolve relative path from .nuxt directory
+      local absolute_path = path
+      if path:match("^%.%.") then
+        -- Path is relative to .nuxt directory, resolve it
+        absolute_path = vim.fn.simplify(root .. "/.nuxt/" .. path)
+      elseif not path:match("^/") then
+        -- Relative path without ../, assume it's from root
+        absolute_path = root .. "/" .. path
+      end
+
       components[name] = {
         name = name,
         type = "component",
-        path = path,
+        path = absolute_path,
         raw_line = line,
       }
-      log("Found component (quoted): " .. name .. " from " .. path)
+      log("Found component (quoted): " .. name .. " at " .. absolute_path)
     end
 
     -- Match: ComponentName: typeof import('path').default
     name, path = line:match("(%w+)%s*:%s*typeof%s+import%(['\"]([^'\"]+)['\"]%)%.default")
-    if name and not name:match("^_") and not components[name] then
+    if name and path and not name:match("^_") and not components[name] then
+      -- Resolve relative path from .nuxt directory
+      local absolute_path = path
+      if path:match("^%.%.") then
+        -- Path is relative to .nuxt directory, resolve it
+        absolute_path = vim.fn.simplify(root .. "/.nuxt/" .. path)
+      elseif not path:match("^/") then
+        -- Relative path without ../, assume it's from root
+        absolute_path = root .. "/" .. path
+      end
+
       components[name] = {
         name = name,
         type = "component",
-        path = path,
+        path = absolute_path,
         raw_line = line,
       }
-      log("Found component (unquoted): " .. name .. " from " .. path)
+      log("Found component (unquoted): " .. name .. " at " .. absolute_path)
     end
   end
 

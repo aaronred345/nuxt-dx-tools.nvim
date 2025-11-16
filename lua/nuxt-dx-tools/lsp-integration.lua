@@ -266,6 +266,9 @@ function M.setup_buffer(bufnr)
   vim.keymap.set("n", "gd", function()
     log("gd pressed in buffer " .. bufnr)
 
+    local word = vim.fn.expand("<cword>")
+    log("Word under cursor: " .. (word or "nil"))
+
     -- Use our enhanced goto_definition that handles components, routes, API endpoints
     require("nuxt-dx-tools").goto_definition()
   end, {
