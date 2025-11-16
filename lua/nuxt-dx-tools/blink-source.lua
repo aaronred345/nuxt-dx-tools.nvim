@@ -4,7 +4,6 @@ local M = {}
 -- Create a new source instance
 function M.new()
   local self = setmetatable({}, { __index = M })
-  vim.notify("[nuxt-dx-tools] Blink source initialized", vim.log.levels.INFO)
   return self
 end
 
@@ -197,18 +196,14 @@ end
 
 -- Main completion function
 function M:get_completions(ctx, callback)
-  vim.notify("[nuxt-dx-tools] get_completions called", vim.log.levels.INFO)
-
   -- Load path aliases module
   local ok, path_aliases = pcall(require, "nuxt-dx-tools.path-aliases")
   if not ok then
-    vim.notify("[nuxt-dx-tools] Failed to load path-aliases: " .. tostring(path_aliases), vim.log.levels.ERROR)
     call_callback(callback, { items = {} })
     return
   end
 
   local line = ctx.line or ctx.cursor_before_line or vim.api.nvim_get_current_line()
-  vim.notify("[nuxt-dx-tools] Line: " .. line, vim.log.levels.INFO)
 
   -- Only provide completions in import statements
   if not (line:match('from%s+["\']') or line:match('import%s+["\']') or line:match('import%(["\']')) then
@@ -217,10 +212,7 @@ function M:get_completions(ctx, callback)
   end
 
   local typed_path = get_import_path(line)
-  vim.notify("[nuxt-dx-tools] Typed path: " .. tostring(typed_path), vim.log.levels.INFO)
-
   if not typed_path then
-    vim.notify("[nuxt-dx-tools] No typed path found", vim.log.levels.WARN)
     call_callback(callback, { items = {} })
     return
   end
@@ -246,12 +238,7 @@ function M:get_completions(ctx, callback)
   local aliases = path_aliases.get_aliases()
   local root = path_aliases.get_nuxt_root()
 
-  local alias_count = 0
-  for _ in pairs(aliases) do alias_count = alias_count + 1 end
-  vim.notify(string.format("[nuxt-dx-tools] Found %d aliases, root: %s", alias_count, tostring(root)), vim.log.levels.INFO)
-
   if not root then
-    vim.notify("[nuxt-dx-tools] No Nuxt root found", vim.log.levels.WARN)
     call_callback(callback, { items = {} })
     return
   end
@@ -259,8 +246,6 @@ function M:get_completions(ctx, callback)
   -- Check if typed path starts with any alias
   for alias, target in pairs(aliases) do
     if typed_path:match("^" .. vim.pesc(alias)) then
-      vim.notify(string.format("[nuxt-dx-tools] Matched alias: %s -> %s", alias, target), vim.log.levels.INFO)
-
       -- Target is now an absolute path
       local base_dir = target
       local path_after_alias = typed_path:gsub("^" .. vim.pesc(alias) .. "/?", "")
@@ -277,25 +262,19 @@ function M:get_completions(ctx, callback)
         end
       end
 
-      vim.notify(string.format("[nuxt-dx-tools] Searching directory: %s", search_dir), vim.log.levels.INFO)
-
       local prefix = get_label_prefix(typed_path)
       local entries = get_directory_contents(search_dir)
-
-      vim.notify(string.format("[nuxt-dx-tools] Found %d entries in directory", #entries), vim.log.levels.INFO)
 
       for _, entry in ipairs(entries) do
         table.insert(items, make_completion_item(entry, prefix))
       end
 
-      vim.notify(string.format("[nuxt-dx-tools] Returning %d items for alias", #items), vim.log.levels.INFO)
       call_callback(callback, { items = items })
       return
     end
   end
 
   -- SCENARIO 3: User hasn't typed anything yet - show all options
-  vim.notify("[nuxt-dx-tools] No alias matched, showing all options", vim.log.levels.INFO)
 
   -- Show all available aliases
   for alias, target in pairs(aliases) do
@@ -340,7 +319,6 @@ function M:get_completions(ctx, callback)
     },
   })
 
-  vim.notify(string.format("[nuxt-dx-tools] Returning %d items", #items), vim.log.levels.INFO)
   call_callback(callback, { items = items })
 end
 
