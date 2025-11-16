@@ -168,11 +168,13 @@ local function calculate_text_edit_range(context, typed_path)
     end
   end
 
-  -- Calculate the range start (0-indexed LSP position)
-  local start_char
+  -- Calculate the range start and end (0-indexed LSP position)
+  local start_char, end_char
   if last_slash_pos then
     -- Position after the slash (Lua 1-indexed pos N -> LSP 0-indexed pos N)
     start_char = last_slash_pos
+    -- Use bounds for stable end position if available, otherwise use cursor
+    end_char = context.bounds and (context.bounds.start_col - 1) or context.cursor[2]
   elseif context.bounds then
     -- No slash in path, so we're replacing the trigger character (like ~, @, #)
     -- bounds.start_col is 1-indexed and points to AFTER the trigger character
@@ -180,7 +182,9 @@ local function calculate_text_edit_range(context, typed_path)
     -- Example: import "~" with cursor at 9, bounds.start_col=10
     --          Position 8 is '~', position 9 is after '~'
     --          start_char should be 8 to replace the '~'
+    --          end_char should be 9 (bounds.start_col - 1 in 0-indexed)
     start_char = context.bounds.start_col - 2
+    end_char = context.bounds.start_col - 1
   else
     -- Fallback: find the quote and start after it
     local quote_pos = nil
@@ -192,11 +196,12 @@ local function calculate_text_edit_range(context, typed_path)
       end
     end
     start_char = quote_pos or 0  -- Lua 1-indexed -> LSP 0-indexed happens to work out
+    end_char = context.cursor[2]
   end
 
   local range = {
     start = { line = (context.cursor and context.cursor[1] or 1) - 1, character = start_char },
-    ['end'] = { line = (context.cursor and context.cursor[1] or 1) - 1, character = context.cursor[2] }
+    ['end'] = { line = (context.cursor and context.cursor[1] or 1) - 1, character = end_char }
   }
 
   vim.notify(string.format("  range: start.char=%d, end.char=%d", range.start.character, range['end'].character), vim.log.levels.INFO)
