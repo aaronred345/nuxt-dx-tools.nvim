@@ -207,11 +207,6 @@ require('blink.cmp').setup({
 })
 ```
 
-**Note:** Make sure to set `vim.log.levels.DEBUG` if you want to see debug logs:
-```lua
-vim.lsp.set_log_level("debug")
-```
-
 ## Advanced Features
 
 ### Multi-Target Aliases
