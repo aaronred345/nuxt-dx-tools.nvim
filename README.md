@@ -6,7 +6,7 @@ Port of the [vscode-nuxt-dx-tools](https://github.com/alimozdemir/vscode-nuxt-dx
 
 ### Disclaimer
 
-In full disclosure, this plugin port was written entirely by the Sonnet 4.5 model. I am currently still testing it's functionality. I will do my best to maintain this as long as there's interest
+In full disclosure, this plugin was written entirely by the Sonnet 4.5 model. I am currently still testing it's functionality. I will do my best to maintain this as long as there's interest
 
 ## ✨ Features
 
