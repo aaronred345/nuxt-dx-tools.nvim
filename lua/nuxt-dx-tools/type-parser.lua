@@ -141,8 +141,9 @@ function M.parse_components()
       table.insert(sample_lines, line)
     end
 
-    -- Match: 'ComponentName': typeof import('path').default
-    local name, path = line:match("'([%w]+)'%s*:%s*typeof%s+import%(['\"]([^'\"]+)['\"]%)%.default")
+    -- Match: 'ComponentName': typeof import('path').default or ['default']
+    -- Handles both .default and ['default'] formats
+    local name, path = line:match("'([%w]+)'%s*:%s*typeof%s+import%(['\"]([^'\"]+)['\"]%)%[?['\"]?default['\"]?%]?")
     if name and path then
       -- Resolve relative path from .nuxt directory
       local absolute_path = path
@@ -163,8 +164,9 @@ function M.parse_components()
       log("Found component (quoted): " .. name .. " at " .. absolute_path)
     end
 
-    -- Match: ComponentName: typeof import('path').default
-    name, path = line:match("(%w+)%s*:%s*typeof%s+import%(['\"]([^'\"]+)['\"]%)%.default")
+    -- Match: ComponentName: typeof import('path').default or ['default']
+    -- Handles both .default and ['default'] formats
+    name, path = line:match("(%w+)%s*:%s*typeof%s+import%(['\"]([^'\"]+)['\"]%)%[?['\"]?default['\"]?%]?")
     if name and path and not name:match("^_") and not components[name] then
       -- Resolve relative path from .nuxt directory
       local absolute_path = path
