@@ -82,7 +82,19 @@ This enables intelligent autocompletion for:
 ## 📝 Requirements
 
 - Neovim >= 0.8.0
-- A Nuxt 3 project
+- A Nuxt 3 or Nuxt 4 project
+
+### Nuxt 4 Compatibility
+
+This plugin fully supports both Nuxt 3 and Nuxt 4, including:
+- ✅ Nuxt 3 (classic directory structure)
+- ✅ Nuxt 4 with classic structure (backwards compatibility mode)
+- ✅ Nuxt 4 with new `app/` directory structure
+
+The plugin automatically detects your project structure and adapts accordingly, supporting:
+- `app/components/`, `app/composables/`, `app/layouts/`, `app/middleware/`, and `app/plugins/` (Nuxt 4)
+- Root-level directories (Nuxt 3 / Nuxt 4 classic mode)
+- New Nuxt 4 path aliases: `~`, `~~`, `@`, `@@`, `#app`, `#build`, `#imports`
 
 ## 📜 License
 

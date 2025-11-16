@@ -19,14 +19,23 @@ function M.load_mappings()
   if not content then return {} end
 
   -- Match patterns like: 'MyComponent': typeof import('../components/MyComponent.vue')['default']
+  -- In Nuxt 4 with app/, this becomes: typeof import('../../app/components/MyComponent.vue')
   for name, path in content:gmatch("'([^']+)':%s*typeof%s+import%('([^']+)'%)") do
-    local full_path = vim.fn.resolve(root .. "/.nuxt/" .. path)
+    -- Resolve the path properly - the import path is relative to .nuxt/
+    -- In Nuxt 3: ../components/Foo.vue → resolve from .nuxt/
+    -- In Nuxt 4: ../../app/components/Foo.vue → resolve from .nuxt/
+    local nuxt_dir = root .. "/.nuxt"
+    local full_path = vim.fn.resolve(nuxt_dir .. "/" .. path)
+    -- Normalize the path to remove any .. or . segments
+    full_path = vim.fn.fnamemodify(full_path, ":p")
     mappings[name] = full_path
   end
 
   -- Also handle LazyComponent patterns
   for name, path in content:gmatch("'Lazy([^']+)':%s*typeof%s+import%('([^']+)'%)") do
-    local full_path = vim.fn.resolve(root .. "/.nuxt/" .. path)
+    local nuxt_dir = root .. "/.nuxt"
+    local full_path = vim.fn.resolve(nuxt_dir .. "/" .. path)
+    full_path = vim.fn.fnamemodify(full_path, ":p")
     mappings["Lazy" .. name] = full_path
   end
 
@@ -49,8 +58,12 @@ function M.load_composable_mappings()
   if not content then return {} end
 
   -- Match patterns like: export const useMyComposable: typeof import('../composables/useMyComposable')['default']
+  -- In Nuxt 4 with app/, this becomes: typeof import('../../app/composables/useMyComposable')
   for name, path in content:gmatch("const%s+([%w_]+):%s*typeof%s+import%('([^']+)'%)") do
-    local full_path = vim.fn.resolve(root .. "/.nuxt/" .. path)
+    local nuxt_dir = root .. "/.nuxt"
+    local full_path = vim.fn.resolve(nuxt_dir .. "/" .. path)
+    -- Normalize the path to remove any .. or . segments
+    full_path = vim.fn.fnamemodify(full_path, ":p")
     mappings[name] = full_path
   end
 

@@ -2,9 +2,52 @@
 local M = {}
 
 local config = {}
+local structure_cache = nil
 
 function M.set_config(cfg)
   config = cfg
+end
+
+-- Detect if project uses Nuxt 4 app/ directory structure
+function M.detect_structure()
+  if structure_cache then
+    return structure_cache
+  end
+
+  local root = M.find_nuxt_root()
+  if not root then
+    return { has_app_dir = false }
+  end
+
+  -- Check if app/ directory exists and contains typical Nuxt directories
+  local app_dir = root .. "/app"
+  local has_app_dir = vim.fn.isdirectory(app_dir) == 1
+
+  structure_cache = {
+    has_app_dir = has_app_dir,
+    root = root
+  }
+
+  return structure_cache
+end
+
+-- Get possible directory paths in priority order (Nuxt 4 app/ first, then root)
+function M.get_directory_paths(subdir)
+  local root = M.find_nuxt_root()
+  if not root then return {} end
+
+  local structure = M.detect_structure()
+  local paths = {}
+
+  -- If app/ directory exists, check there first
+  if structure.has_app_dir then
+    table.insert(paths, root .. "/app/" .. subdir)
+  end
+
+  -- Always check root directory as fallback
+  table.insert(paths, root .. "/" .. subdir)
+
+  return paths
 end
 
 -- Find Nuxt project root
@@ -66,11 +109,20 @@ function M.find_custom_plugin_definition(symbol)
   local root = M.find_nuxt_root()
   if not root then return nil end
 
-  local search_dirs = {
-    root .. "/types",
-    root .. "/plugins",
-    root .. "/.nuxt",
-  }
+  -- Build search directories list, checking app/ subdirectories first
+  local search_dirs = {}
+
+  -- Add app/types and app/plugins if app/ directory exists
+  local structure = M.detect_structure()
+  if structure.has_app_dir then
+    table.insert(search_dirs, root .. "/app/types")
+    table.insert(search_dirs, root .. "/app/plugins")
+  end
+
+  -- Add root-level directories
+  table.insert(search_dirs, root .. "/types")
+  table.insert(search_dirs, root .. "/plugins")
+  table.insert(search_dirs, root .. "/.nuxt")
 
   for _, dir in ipairs(search_dirs) do
     if vim.fn.isdirectory(dir) == 1 then
