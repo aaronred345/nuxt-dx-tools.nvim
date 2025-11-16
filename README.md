@@ -16,6 +16,7 @@ In full disclosure, this plugin port was written entirely by the Sonnet 4.5 mode
 - 🌐 **Server API Navigation** - Jump to Nitro API routes from `$fetch` and `useFetch` calls
 - 📄 **definePageMeta Support** - Navigate to layouts and middleware from page meta
 - 💡 **Hover Information** - Preview API route files on hover
+- 🔗 **Path Alias Autocompletion** - Intelligent path completion for Nuxt aliases (`~`, `@`, `#app`, etc.) in import statements (blink.cmp)
 - ⚡ **Fast & Cached** - Intelligent caching for better performance
 
 ## 📦 Installation
@@ -42,6 +43,34 @@ require("nuxt-dx-tools").setup({
   nuxt_root = nil,
 })
 ```
+
+### blink.cmp Integration
+
+To enable Nuxt path alias autocompletion in import statements, add the nuxt-dx-tools source to your blink.cmp configuration:
+
+```lua
+{
+  "saghen/blink.cmp",
+  opts = {
+    sources = {
+      default = { "lsp", "path", "snippets", "buffer", "nuxt" },
+      providers = {
+        nuxt = {
+          name = "nuxt-dx-tools",
+          module = "nuxt-dx-tools.blink-source",
+          score_offset = 10, -- Boost nuxt completions
+        },
+      },
+    },
+  },
+}
+```
+
+This enables intelligent autocompletion for:
+- Nuxt aliases: `~`, `~~`, `@`, `@@`
+- Built-in aliases: `#app`, `#build`, `#imports`, etc.
+- Custom aliases from your `tsconfig.json`
+- Relative paths: `./`, `../`
 
 ## 🚀 Usage
 
