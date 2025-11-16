@@ -12,15 +12,8 @@ function M.setup(plugin)
       local bufnr = ev.buf
 
       -- === Core Navigation ===
-      vim.keymap.set("n", "gd", plugin.goto_definition, {
-        buffer = bufnr,
-        desc = "Nuxt DX: Go to definition",
-      })
-
-      vim.keymap.set("n", "K", plugin.show_hover, {
-        buffer = bufnr,
-        desc = "Nuxt DX: Show hover",
-      })
+      -- Note: K (hover), <C-k> (signature), and <leader>ca (code actions) are handled by lsp-integration.lua
+      -- gd is enhanced by goto_definition but not overridden here (uses LSP by default)
 
       -- === Component & Info ===
       vim.keymap.set("n", "<leader>ni", plugin.show_component_info, {

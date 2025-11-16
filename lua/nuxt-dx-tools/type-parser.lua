@@ -3,6 +3,15 @@ local M = {}
 
 local utils = require("nuxt-dx-tools.utils")
 
+-- Debug flag
+local DEBUG = false
+
+local function log(msg)
+  if DEBUG then
+    vim.notify("[Nuxt Type Parser] " .. msg, vim.log.levels.INFO)
+  end
+end
+
 -- Cache for parsed type information
 M.cache = {
   imports = {},
@@ -33,16 +42,27 @@ end
 -- Parse .nuxt/imports.d.ts for all auto-imported symbols
 function M.parse_imports()
   local root = utils.find_nuxt_root()
-  if not root then return {} end
+  if not root then
+    log("No Nuxt root found")
+    return {}
+  end
 
   local imports_file = root .. "/.nuxt/imports.d.ts"
+  log("Parsing imports from: " .. imports_file)
+
   local content = utils.read_file(imports_file)
-  if not content then return {} end
+  if not content then
+    log("Could not read imports file")
+    return {}
+  end
 
   local imports = {}
+  local line_count = 0
 
   -- Parse each line
   for line in content:gmatch("[^\r\n]+") do
+    line_count = line_count + 1
+
     -- Match: export const useFoo: typeof import('...').useFoo
     local name, import_path = line:match("export%s+const%s+(%w+)%s*:%s*typeof%s+import%(['\"]([^'\"]+)['\"]%)%.(%w+)")
     if name then
@@ -52,6 +72,7 @@ function M.parse_imports()
         import_path = import_path,
         raw_line = line,
       }
+      log("Found composable: " .. name .. " from " .. import_path)
     end
 
     -- Match: export const Foo: typeof import('...').default
@@ -63,6 +84,7 @@ function M.parse_imports()
         import_path = import_path,
         raw_line = line,
       }
+      log("Found default import: " .. name .. " from " .. import_path)
     end
 
     -- Match simple exports
@@ -73,9 +95,11 @@ function M.parse_imports()
         type = "symbol",
         raw_line = line,
       }
+      log("Found symbol: " .. name)
     end
   end
 
+  log("Parsed " .. line_count .. " lines, found " .. vim.tbl_count(imports) .. " imports")
   return imports
 end
 
@@ -162,16 +186,21 @@ end
 function M.get_symbol_info(symbol)
   M.update_cache()
 
+  log("Looking up symbol: " .. symbol)
+
   -- Check imports
   if M.cache.imports[symbol] then
+    log("Found in imports cache")
     return M.cache.imports[symbol]
   end
 
   -- Check components
   if M.cache.components[symbol] then
+    log("Found in components cache")
     return M.cache.components[symbol]
   end
 
+  log("Symbol not found in cache")
   return nil
 end
 
@@ -192,12 +221,19 @@ end
 
 -- Get hover text for a symbol
 function M.get_hover_text(symbol)
+  log("Getting hover text for: " .. symbol)
+
   local info = M.get_symbol_info(symbol)
-  if not info then return nil end
+  if not info then
+    log("No info found for symbol")
+    return nil
+  end
+
+  log("Building hover text for type: " .. info.type)
 
   local lines = {}
 
-  if info.type == "composable" then
+  if info.type == "composable" or info.type == "symbol" then
     table.insert(lines, "```typescript")
     table.insert(lines, "// Nuxt Auto-import")
     table.insert(lines, info.raw_line or ("const " .. symbol))
@@ -219,6 +255,7 @@ function M.get_hover_text(symbol)
     end
   end
 
+  log("Generated " .. #lines .. " lines of hover text")
   return lines
 end
 
@@ -231,6 +268,12 @@ function M.clear_cache()
     last_update = 0,
     ttl = 5000,
   }
+end
+
+-- Enable debug mode
+function M.enable_debug()
+  DEBUG = true
+  vim.notify("Nuxt Type Parser debug mode enabled", vim.log.levels.INFO)
 end
 
 return M

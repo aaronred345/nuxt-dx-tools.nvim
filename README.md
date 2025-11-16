@@ -293,6 +293,9 @@ All commands are prefixed with `:Nuxt`:
 - `:NuxtVirtualModules` - Show virtual modules
 - `:NuxtRefresh` / `:NuxtDXRefresh` - Refresh cache
 
+#### Debug
+- `:NuxtDebug` - Enable debug logging for LSP integration and type parsing
+
 ## 📝 Requirements
 
 - Neovim >= 0.8.0
