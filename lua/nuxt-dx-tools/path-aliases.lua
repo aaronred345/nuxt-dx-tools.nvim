@@ -1,57 +1,58 @@
--- Path alias resolution and autocompletion for Nuxt projects
--- Handles ~, @, #app, #build, and other Nuxt/Vue path aliases
--- Auto-imports from tsconfig.json references
+-- Path alias resolution for Nuxt projects (Clean Rewrite)
+-- Handles TypeScript path mappings from tsconfig.json
 local M = {}
 
+-- Dependencies
 local utils = require("nuxt-dx-tools.utils")
 
--- Cache for resolved aliases
-local alias_cache = {
-  aliases = nil,
-  last_updated = 0,
-  ttl = 10, -- seconds
+-- Cache to avoid re-parsing tsconfig files constantly
+local cache = {
+  aliases = {},
+  timestamp = 0,
+  ttl = 10, -- Cache for 10 seconds
 }
 
--- Parse a single tsconfig file for path mappings
-local function parse_single_tsconfig(tsconfig_path)
-  if not utils.file_exists(tsconfig_path) then
+-- Parse a single tsconfig.json file and extract path mappings
+local function parse_tsconfig_file(filepath)
+  if not utils.file_exists(filepath) then
     return {}
   end
 
-  local content = utils.read_file(tsconfig_path)
-  if not content then return {} end
+  local content = utils.read_file(filepath)
+  if not content then
+    return {}
+  end
 
-  -- Remove comments (// and /* */)
+  -- Remove JSON comments (not standard but commonly used)
   content = content:gsub("//[^\n]*", "")
   content = content:gsub("/%*.-/%*/", "")
 
-  local aliases = {}
+  local paths = {}
 
-  -- Extract compilerOptions.paths object
-  local paths_block = content:match('"paths"%s*:%s*({.-})')
-  if not paths_block then
-    paths_block = content:match("'paths'%s*:%s*({.-})")
+  -- Find the "paths" section in compilerOptions
+  local paths_section = content:match('"paths"%s*:%s*(%b{})')
+  if not paths_section then
+    return {}
   end
 
-  if paths_block then
-    -- Match patterns like: "~/*": ["./src/*"], "@/*": ["./*"]
-    for alias, path_array in paths_block:gmatch('["\']([^"\']+)["\']+%s*:%s*%[%s*["\']([^"\']+)["\']') do
-      -- Remove /* from alias and path
-      local clean_alias = alias:gsub("/%*$", "")
-      local clean_path = path_array:gsub("^%./", ""):gsub("/%*$", "")
+  -- Extract each path mapping: "alias/*": ["target/*"]
+  for alias_pattern, target_pattern in paths_section:gmatch('"([^"]+)"%s*:%s*%[%s*"([^"]+)"') do
+    -- Remove the /* suffix from both alias and target
+    local alias = alias_pattern:gsub("/%*$", "")
+    local target = target_pattern:gsub("^%./", ""):gsub("/%*$", "")
 
-      -- Store the mapping
-      aliases[clean_alias] = clean_path
-    end
+    paths[alias] = target
   end
 
-  return aliases
+  return paths
 end
 
--- Parse tsconfig.json and all referenced configs
-local function parse_all_tsconfigs()
+-- Parse all tsconfig references and merge their path mappings
+local function load_all_path_mappings()
   local root = utils.find_nuxt_root()
-  if not root then return {} end
+  if not root then
+    return {}
+  end
 
   local main_tsconfig = root .. "/tsconfig.json"
   if not utils.file_exists(main_tsconfig) then
@@ -59,123 +60,140 @@ local function parse_all_tsconfigs()
   end
 
   local content = utils.read_file(main_tsconfig)
-  if not content then return {} end
+  if not content then
+    return {}
+  end
 
   -- Remove comments
   content = content:gsub("//[^\n]*", "")
   content = content:gsub("/%*.-/%*/", "")
 
-  local all_aliases = {}
+  local all_paths = {}
 
-  -- Extract referenced tsconfig files
-  local references_block = content:match('"references"%s*:%s*%[(.-)%]')
-  if not references_block then
-    references_block = content:match("'references'%s*:%s*%[(.-)%]")
-  end
+  -- Extract all referenced tsconfig files from "references" array
+  local references_section = content:match('"references"%s*:%s*(%b[])')
+  if references_section then
+    for ref_path in references_section:gmatch('"path"%s*:%s*"([^"]+)"') do
+      local full_path = root .. "/" .. ref_path
+      local paths = parse_tsconfig_file(full_path)
 
-  if references_block then
-    -- Extract all "path" values from references
-    for path in references_block:gmatch('["\']path["\']+%s*:%s*["\']([^"\']+)["\']') do
-      local tsconfig_path = root .. "/" .. path
-      local aliases = parse_single_tsconfig(tsconfig_path)
-
-      -- Merge aliases
-      for alias, target in pairs(aliases) do
-        all_aliases[alias] = target
+      -- Merge paths into all_paths
+      for alias, target in pairs(paths) do
+        all_paths[alias] = target
       end
     end
   end
 
-  -- Also parse the main tsconfig in case it has paths
-  local main_aliases = parse_single_tsconfig(main_tsconfig)
-  for alias, target in pairs(main_aliases) do
-    all_aliases[alias] = target
+  -- Also parse the main tsconfig itself
+  local main_paths = parse_tsconfig_file(main_tsconfig)
+  for alias, target in pairs(main_paths) do
+    all_paths[alias] = target
   end
 
-  return all_aliases
+  return all_paths
 end
 
--- Get all aliases with caching
+-- Get all path aliases (with caching)
 function M.get_aliases()
   local now = os.time()
 
-  if alias_cache.aliases and (now - alias_cache.last_updated) < alias_cache.ttl then
-    return alias_cache.aliases
+  -- Return cached data if still valid
+  if cache.aliases and (now - cache.timestamp) < cache.ttl then
+    return cache.aliases
   end
 
-  local aliases = parse_all_tsconfigs()
+  -- Load fresh data
+  local aliases = load_all_path_mappings()
 
-  alias_cache.aliases = aliases
-  alias_cache.last_updated = now
+  -- Update cache
+  cache.aliases = aliases
+  cache.timestamp = now
 
   return aliases
 end
 
--- Resolve a path with alias to absolute path
-function M.resolve_alias(import_path)
-  local aliases = M.get_aliases()
-  local root = utils.find_nuxt_root()
-  if not root then return nil end
+-- Get the Nuxt project root directory
+function M.get_nuxt_root()
+  return utils.find_nuxt_root()
+end
 
-  -- Check each alias
+-- Resolve an aliased path to an absolute filesystem path
+function M.resolve_alias_path(import_path)
+  local aliases = M.get_aliases()
+  local root = M.get_nuxt_root()
+
+  if not root then
+    return nil
+  end
+
+  -- Check each alias to see if it matches the import path
   for alias, target in pairs(aliases) do
     if import_path:match("^" .. vim.pesc(alias)) then
-      -- Replace alias with target path
+      -- Replace the alias with the target path
       local resolved = import_path:gsub("^" .. vim.pesc(alias), target)
-
-      -- Make it absolute
-      local absolute_path = root .. "/" .. resolved
-
-      return absolute_path
+      return root .. "/" .. resolved
     end
   end
 
   return nil
 end
 
--- Find file from import statement with alias support
-function M.find_import_file(import_path)
-  -- First try to resolve alias
-  local resolved = M.resolve_alias(import_path)
+-- Find a file by resolving its aliased import path
+function M.find_file_from_import(import_path)
+  local resolved_path = M.resolve_alias_path(import_path)
 
-  if resolved then
-    -- Try with various extensions
-    local result = utils.try_file_extensions(resolved, { ".vue", ".ts", ".js", ".mjs", ".tsx", ".jsx" })
-    if result then return result end
+  if not resolved_path then
+    return nil
+  end
 
-    -- Try as directory with index file
-    result = utils.try_file_extensions(resolved .. "/index", { ".vue", ".ts", ".js", ".mjs", ".tsx", ".jsx" })
-    if result then return result end
+  -- Try different file extensions
+  local extensions = { ".vue", ".ts", ".js", ".mjs", ".tsx", ".jsx" }
+
+  for _, ext in ipairs(extensions) do
+    if utils.file_exists(resolved_path .. ext) then
+      return resolved_path .. ext
+    end
+  end
+
+  -- Try index files
+  for _, ext in ipairs(extensions) do
+    if utils.file_exists(resolved_path .. "/index" .. ext) then
+      return resolved_path .. "/index" .. ext
+    end
   end
 
   return nil
 end
 
--- Extract import path from current line
-local function extract_import_path()
-  local line = vim.api.nvim_get_current_line()
-
-  -- Match various import patterns
+-- Extract import path from the current line
+local function extract_import_from_line(line)
   local patterns = {
-    'from%s+["\']([^"\']+)["\']',   -- from "path"
-    'import%s+["\']([^"\']+)["\']', -- import "path"
-    'import%(+["\']([^"\']+)["\']', -- import("path")
+    'from%s+["\']([^"\']+)["\']',
+    'import%s+["\']([^"\']+)["\']',
+    'import%(["\']([^"\']+)["\']',
   }
 
   for _, pattern in ipairs(patterns) do
     local path = line:match(pattern)
-    if path then return path end
+    if path then
+      return path
+    end
   end
 
   return nil
 end
 
--- Go to definition for aliased imports
+-- Navigate to an aliased import (for gd command)
 function M.goto_aliased_import()
-  local import_path = extract_import_path()
-  if not import_path then return false end
+  local line = vim.api.nvim_get_current_line()
+  local import_path = extract_import_from_line(line)
 
-  local file = M.find_import_file(import_path)
+  if not import_path then
+    return false
+  end
+
+  local file = M.find_file_from_import(import_path)
+
   if file then
     vim.cmd("edit " .. file)
     return true
@@ -184,80 +202,44 @@ function M.goto_aliased_import()
   return false
 end
 
--- Setup autocompletion for path aliases (supports both nvim-cmp and blink.cmp)
+-- Clear the cache
+function M.clear_cache()
+  cache.aliases = {}
+  cache.timestamp = 0
+end
+
+-- Refresh aliases (clear cache and reload)
+function M.refresh()
+  M.clear_cache()
+  M.get_aliases()
+  vim.notify("Path aliases refreshed", vim.log.levels.INFO)
+end
+
+-- Show all configured aliases
+function M.show_aliases()
+  local aliases = M.get_aliases()
+
+  if vim.tbl_isempty(aliases) then
+    vim.notify("No path aliases found in tsconfig.json", vim.log.levels.WARN)
+    return
+  end
+
+  local lines = { "Path Aliases:", "" }
+
+  for alias, target in pairs(aliases) do
+    table.insert(lines, string.format("  %s → %s", alias, target))
+  end
+
+  vim.notify(table.concat(lines, "\n"), vim.log.levels.INFO)
+end
+
+-- Setup completion (for nvim-cmp only, blink.cmp uses separate module)
 function M.setup_completion()
-  -- Try blink.cmp first
-  local blink_ok, blink = pcall(require, 'blink.cmp')
-  if blink_ok then
-    M.setup_blink_completion(blink)
-    return
-  end
-
-  -- Fall back to nvim-cmp
   local cmp = package.loaded['cmp']
-  if cmp then
-    M.setup_nvim_cmp_completion(cmp)
+  if not cmp then
     return
   end
-end
 
--- Blink.cmp completion source
-function M.setup_blink_completion(blink)
-  -- Blink.cmp source provider
-  local Source = {}
-
-  function Source.new()
-    local self = setmetatable({}, { __index = Source })
-    return self
-  end
-
-  function Source:get_trigger_characters()
-    return { '/', '"', "'", '~', '@', '#' }
-  end
-
-  function Source:get_completions(ctx, callback)
-    local line = ctx.line or ctx.cursor_before_line or vim.api.nvim_get_current_line()
-
-    -- Check if we're in an import statement
-    if not (line:match('from%s+["\']') or line:match('import%s+["\']') or line:match('import%(+["\']')) then
-      callback({ items = {} })
-      return
-    end
-
-    local aliases = M.get_aliases()
-    local items = {}
-
-    -- Add alias completions
-    for alias, target in pairs(aliases) do
-      table.insert(items, {
-        label = alias,
-        kind = 19, -- Folder kind
-        detail = "→ " .. target,
-        documentation = {
-          kind = 'markdown',
-          value = string.format("**Path Alias**\n\nResolves to: `%s`", target),
-        },
-        insertText = alias,
-      })
-    end
-
-    callback({ items = items })
-  end
-
-  function Source:resolve(item, callback)
-    callback(item)
-  end
-
-  function Source:execute(item, callback)
-    callback()
-  end
-
-  -- Store in global for blink.cmp to access
-  _G.nuxt_aliases_blink_source = Source
-end
-
--- nvim-cmp completion source
-function M.setup_nvim_cmp_completion(cmp)
   local source = {}
 
   source.new = function()
@@ -265,14 +247,14 @@ function M.setup_nvim_cmp_completion(cmp)
   end
 
   source.get_trigger_characters = function()
-    return { '/', '"', "'" }
+    return { '/', '"', "'", '~', '@', '#' }
   end
 
   source.complete = function(self, params, callback)
     local line = params.context.cursor_before_line
 
-    -- Check if we're in an import statement
-    if not (line:match('from%s+["\']') or line:match('import%s+["\']') or line:match('import%(+["\']')) then
+    -- Only complete in import statements
+    if not (line:match('from%s+["\']') or line:match('import%s+["\']') or line:match('import%(["\']')) then
       callback({ items = {}, isIncomplete = false })
       return
     end
@@ -280,7 +262,6 @@ function M.setup_nvim_cmp_completion(cmp)
     local aliases = M.get_aliases()
     local items = {}
 
-    -- Add alias completions
     for alias, target in pairs(aliases) do
       table.insert(items, {
         label = alias,
@@ -296,33 +277,7 @@ function M.setup_nvim_cmp_completion(cmp)
     callback({ items = items, isIncomplete = false })
   end
 
-  -- Register the source
   cmp.register_source('nuxt-aliases', source.new())
-end
-
--- Refresh alias cache
-function M.refresh()
-  alias_cache.aliases = nil
-  alias_cache.last_updated = 0
-  M.get_aliases()
-  vim.notify("Path aliases refreshed", vim.log.levels.INFO)
-end
-
--- Show all configured aliases
-function M.show_aliases()
-  local aliases = M.get_aliases()
-
-  if vim.tbl_isempty(aliases) then
-    vim.notify("No path aliases found in tsconfig", vim.log.levels.WARN)
-    return
-  end
-
-  local lines = { "**Configured Path Aliases:**", "" }
-  for alias, target in pairs(aliases) do
-    table.insert(lines, string.format("• `%s` → `%s`", alias, target))
-  end
-
-  vim.notify(table.concat(lines, "\n"), vim.log.levels.INFO)
 end
 
 return M
