@@ -4,6 +4,7 @@ local M = {}
 -- Create a new source instance
 function M.new()
   local self = setmetatable({}, { __index = M })
+  vim.notify("[nuxt-dx-tools] Blink source initialized", vim.log.levels.INFO)
   return self
 end
 
@@ -188,14 +189,18 @@ end
 
 -- Main completion function
 function M:get_completions(ctx, callback)
+  vim.notify("[nuxt-dx-tools] get_completions called", vim.log.levels.INFO)
+
   -- Load path aliases module
   local ok, path_aliases = pcall(require, "nuxt-dx-tools.path-aliases")
   if not ok then
+    vim.notify("[nuxt-dx-tools] Failed to load path-aliases: " .. tostring(path_aliases), vim.log.levels.ERROR)
     call_callback(callback, { items = {} })
     return
   end
 
   local line = ctx.line or ctx.cursor_before_line or vim.api.nvim_get_current_line()
+  vim.notify("[nuxt-dx-tools] Line: " .. line, vim.log.levels.INFO)
 
   -- Only provide completions in import statements
   if not (line:match('from%s+["\']') or line:match('import%s+["\']') or line:match('import%(["\']')) then
