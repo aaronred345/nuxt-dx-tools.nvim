@@ -73,7 +73,7 @@ local function parse_tsconfig_file(filepath)
 end
 
 -- Fallback regex-based parser for when JSON parsing fails
-function parse_tsconfig_regex(content)
+parse_tsconfig_regex = function(content)
   local paths = {}
 
   -- Find the "paths" section in compilerOptions
