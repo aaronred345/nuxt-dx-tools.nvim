@@ -152,9 +152,13 @@ local function calculate_text_edit_range(context, typed_path)
   local line = context.line
   local cursor_pos = context.cursor and context.cursor[2] or #line
 
-  -- Find the opening quote position
+  -- Debug: Log what we're working with
+  vim.notify(string.format("DEBUG calculate_text_edit_range:\n  line: %s\n  cursor_pos: %d\n  typed_path: %s",
+    line, cursor_pos, typed_path or "nil"), vim.log.levels.INFO)
+
+  -- Find the opening quote position (1-indexed Lua string position)
   local quote_pos = nil
-  for i = 1, cursor_pos do
+  for i = 1, #line do
     local char = line:sub(i, i)
     if char == '"' or char == "'" then
       quote_pos = i
@@ -166,29 +170,39 @@ local function calculate_text_edit_range(context, typed_path)
     quote_pos = 0
   end
 
+  vim.notify(string.format("  quote_pos: %d", quote_pos), vim.log.levels.INFO)
+
   -- Find where the current segment starts (after the last /)
-  local line_before_cursor = line:sub(1, cursor_pos)
   local last_slash_pos = nil
-  for i = cursor_pos, quote_pos, -1 do
+  for i = #line, quote_pos, -1 do
     if line:sub(i, i) == '/' then
       last_slash_pos = i
       break
     end
   end
 
+  vim.notify(string.format("  last_slash_pos: %s", last_slash_pos or "nil"), vim.log.levels.INFO)
+
   -- The segment starts after the last slash, or after the quote if no slash
-  local segment_start
+  -- Convert to 0-indexed LSP positions
+  local segment_start_lsp
   if last_slash_pos then
-    segment_start = last_slash_pos  -- Position after the /
+    segment_start_lsp = last_slash_pos  -- Lua 1-indexed pos of '/' becomes 0-indexed pos after '/'
   else
-    segment_start = quote_pos  -- Position after the quote
+    segment_start_lsp = quote_pos  -- Lua 1-indexed pos of quote becomes 0-indexed pos after quote
   end
 
-  -- Return the range (0-indexed for LSP)
-  return {
-    start = { line = (context.cursor and context.cursor[1] or 1) - 1, character = segment_start },
-    ['end'] = { line = (context.cursor and context.cursor[1] or 1) - 1, character = cursor_pos }
+  -- cursor_pos needs investigation - check if it's already 0-indexed or 1-indexed
+  local cursor_end_lsp = cursor_pos
+
+  local range = {
+    start = { line = (context.cursor and context.cursor[1] or 1) - 1, character = segment_start_lsp },
+    ['end'] = { line = (context.cursor and context.cursor[1] or 1) - 1, character = cursor_end_lsp }
   }
+
+  vim.notify(string.format("  range: start.char=%d, end.char=%d", range.start.character, range['end'].character), vim.log.levels.INFO)
+
+  return range
 end
 
 -- Create a completion item from a directory entry
