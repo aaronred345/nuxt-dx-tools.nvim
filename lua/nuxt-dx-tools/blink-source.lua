@@ -147,8 +147,52 @@ local function get_directory_contents(dir_path)
   return entries
 end
 
+-- Calculate the text edit range for completion replacement
+local function calculate_text_edit_range(context, typed_path)
+  local line = context.line
+  local cursor_pos = context.cursor and context.cursor[2] or #line
+
+  -- Find the opening quote position
+  local quote_pos = nil
+  for i = 1, cursor_pos do
+    local char = line:sub(i, i)
+    if char == '"' or char == "'" then
+      quote_pos = i
+      break
+    end
+  end
+
+  if not quote_pos then
+    quote_pos = 0
+  end
+
+  -- Find where the current segment starts (after the last /)
+  local line_before_cursor = line:sub(1, cursor_pos)
+  local last_slash_pos = nil
+  for i = cursor_pos, quote_pos, -1 do
+    if line:sub(i, i) == '/' then
+      last_slash_pos = i
+      break
+    end
+  end
+
+  -- The segment starts after the last slash, or after the quote if no slash
+  local segment_start
+  if last_slash_pos then
+    segment_start = last_slash_pos  -- Position after the /
+  else
+    segment_start = quote_pos  -- Position after the quote
+  end
+
+  -- Return the range (0-indexed for LSP)
+  return {
+    start = { line = (context.cursor and context.cursor[1] or 1) - 1, character = segment_start },
+    ['end'] = { line = (context.cursor and context.cursor[1] or 1) - 1, character = cursor_pos }
+  }
+end
+
 -- Create a completion item from a directory entry
-local function make_completion_item(entry, prefix, typed_path)
+local function make_completion_item(entry, prefix, typed_path, context)
   -- Build the complete path for label
   local complete_path = prefix .. entry.name
   if entry.is_dir then
@@ -164,15 +208,36 @@ local function make_completion_item(entry, prefix, typed_path)
     kind = CompletionItemKind.Module
   end
 
+  -- Calculate what text to insert (just the name + "/" if directory)
+  local insert_text = entry.name
+  if entry.is_dir then
+    insert_text = insert_text .. "/"
+  end
+
+  -- Calculate the range for text replacement
+  local range = calculate_text_edit_range(context, typed_path)
+
+  -- Check if next character is "/" and we're inserting a directory
+  -- If so, extend the range to replace the existing "/"
+  if entry.is_dir and context.line then
+    local cursor_pos = context.cursor and context.cursor[2] or #context.line
+    local next_char = context.line:sub(cursor_pos + 1, cursor_pos + 1)
+    if next_char == "/" then
+      range['end'].character = range['end'].character + 1
+    end
+  end
+
   return {
     label = complete_path,
     kind = kind,
     detail = entry.is_dir and "Directory" or "File",
-    insertText = complete_path,
-    -- word tells blink.cmp what to replace
-    word = typed_path or "",
+    insertText = insert_text,
+    textEdit = {
+      newText = insert_text,
+      range = range
+    },
     filterText = entry.name,
-    sortText = entry.name,
+    sortText = (entry.is_dir and "1" or "2") .. entry.name:lower(),
     documentation = {
       kind = "markdown",
       value = string.format("**%s**\n\n`%s`", entry.is_dir and "Directory" or "File", entry.path),
@@ -222,7 +287,7 @@ function M:get_completions(ctx, callback)
 
     local entries = get_directory_contents(target_dir)
     for _, entry in ipairs(entries) do
-      table.insert(items, make_completion_item(entry, prefix, typed_path))
+      table.insert(items, make_completion_item(entry, prefix, typed_path, ctx))
     end
 
     call_callback(callback, { items = items })
@@ -261,7 +326,7 @@ function M:get_completions(ctx, callback)
       local entries = get_directory_contents(search_dir)
 
       for _, entry in ipairs(entries) do
-        table.insert(items, make_completion_item(entry, prefix, typed_path))
+        table.insert(items, make_completion_item(entry, prefix, typed_path, ctx))
       end
 
       call_callback(callback, { items = items })
