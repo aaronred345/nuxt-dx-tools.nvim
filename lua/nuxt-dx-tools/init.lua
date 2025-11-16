@@ -15,6 +15,7 @@ local utils = require("nuxt-dx-tools.utils")
 local components = require("nuxt-dx-tools.components")
 local api_routes = require("nuxt-dx-tools.api-routes")
 local page_meta = require("nuxt-dx-tools.page-meta")
+local path_aliases = require("nuxt-dx-tools.path-aliases")
 
 -- Main go-to-definition handler
 function M.goto_definition()
@@ -24,6 +25,9 @@ function M.goto_definition()
   -- 1. Check for definePageMeta context
   local meta_result = page_meta.goto_definition(word, line)
   if meta_result then return end
+
+  local alias_result = path_aliases.goto_aliased_import()
+  if alias_result then return end
 
   -- 2. Check for API routes
   local api_result = api_routes.goto_definition()
@@ -90,6 +94,9 @@ function M.setup(opts)
   -- Setup keymaps
   require("nuxt-dx-tools.keymaps").setup(M)
 
+
+  path_aliases.setup_completion()
+
   -- Initial cache load
   vim.defer_fn(function()
     if utils.find_nuxt_root() then
@@ -97,5 +104,8 @@ function M.setup(opts)
     end
   end, 1000)
 end
+
+M.refresh_aliases = path_aliases.refresh
+M.show_aliases = path_aliases.show_aliases
 
 return M

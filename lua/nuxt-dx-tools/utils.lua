@@ -10,7 +10,7 @@ end
 -- Find Nuxt project root
 function M.find_nuxt_root(force)
   local cache = require("nuxt-dx-tools.cache")
-  
+
   if config.nuxt_root then
     return config.nuxt_root
   end
