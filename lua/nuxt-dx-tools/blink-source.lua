@@ -254,7 +254,7 @@ local function make_completion_item(entry, prefix, typed_path, context)
     label = complete_path,
     kind = kind,
     detail = entry.is_dir and "Directory" or "File",
-    insertText = insert_text,
+    -- Don't include insertText when using textEdit - let textEdit control everything
     textEdit = {
       newText = insert_text,
       range = range
@@ -267,8 +267,8 @@ local function make_completion_item(entry, prefix, typed_path, context)
     },
   }
 
-  vim.notify(string.format("DEBUG completion item:\n  label: %s\n  insertText: %s\n  textEdit.newText: %s\n  textEdit.range: [%d,%d] to [%d,%d]",
-    item.label, item.insertText, item.textEdit.newText,
+  vim.notify(string.format("DEBUG completion item:\n  label: %s\n  textEdit.newText: %s\n  textEdit.range: [%d,%d] to [%d,%d]",
+    item.label, item.textEdit.newText,
     item.textEdit.range.start.line, item.textEdit.range.start.character,
     item.textEdit.range['end'].line, item.textEdit.range['end'].character), vim.log.levels.INFO)
 
