@@ -396,7 +396,9 @@ function M.setup()
 
   -- Also set up for already-attached LSP clients
   vim.schedule(function()
-    for _, client in ipairs(vim.lsp.get_active_clients()) do
+    -- Use vim.lsp.get_clients() for Neovim 0.10+, fallback to get_active_clients() for older versions
+    local get_clients = vim.lsp.get_clients or vim.lsp.get_active_clients
+    for _, client in ipairs(get_clients()) do
       for _, bufnr in ipairs(vim.lsp.get_buffers_by_client_id(client.id)) do
         M.on_attach(client, bufnr)
       end
