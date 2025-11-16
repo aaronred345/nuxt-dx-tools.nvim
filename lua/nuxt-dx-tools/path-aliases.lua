@@ -203,18 +203,24 @@ end
 
 -- Blink.cmp completion source
 function M.setup_blink_completion(blink)
-  local source = {}
+  -- Blink.cmp source provider
+  local Source = {}
 
-  function source:new()
-    return setmetatable({}, { __index = self })
+  function Source.new()
+    local self = setmetatable({}, { __index = Source })
+    return self
   end
 
-  function source:get_completions(context, callback)
-    local line = context.line
+  function Source:get_trigger_characters()
+    return { '/', '"', "'", '~', '@', '#' }
+  end
+
+  function Source:get_completions(ctx, callback)
+    local line = ctx.line or ctx.cursor_before_line or vim.api.nvim_get_current_line()
 
     -- Check if we're in an import statement
     if not (line:match('from%s+["\']') or line:match('import%s+["\']') or line:match('import%(+["\']')) then
-      callback({ is_incomplete_forward = false, is_incomplete_backward = false, items = {} })
+      callback({ items = {} })
       return
     end
 
@@ -225,7 +231,7 @@ function M.setup_blink_completion(blink)
     for alias, target in pairs(aliases) do
       table.insert(items, {
         label = alias,
-        kind = require('blink.cmp.types').CompletionItemKind.Folder,
+        kind = 19, -- Folder kind
         detail = "→ " .. target,
         documentation = {
           kind = 'markdown',
@@ -235,23 +241,19 @@ function M.setup_blink_completion(blink)
       })
     end
 
-    callback({
-      is_incomplete_forward = false,
-      is_incomplete_backward = false,
-      items = items
-    })
+    callback({ items = items })
   end
 
-  function source:resolve(item, callback)
+  function Source:resolve(item, callback)
     callback(item)
   end
 
-  function source:execute(item, callback)
-    callback(item)
+  function Source:execute(item, callback)
+    callback()
   end
 
-  -- Register the source with blink.cmp
-  require('blink.cmp').add_source('nuxt-aliases', source:new())
+  -- Store in global for blink.cmp to access
+  _G.nuxt_aliases_blink_source = Source
 end
 
 -- nvim-cmp completion source
@@ -324,4 +326,3 @@ function M.show_aliases()
 end
 
 return M
-
