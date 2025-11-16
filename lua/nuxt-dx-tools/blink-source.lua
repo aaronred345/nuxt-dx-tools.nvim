@@ -253,7 +253,7 @@ local function make_completion_item(entry, prefix, typed_path, context)
     label = complete_path,
     kind = kind,
     detail = entry.is_dir and "Directory" or "File",
-    -- Don't include insertText when using textEdit - let textEdit control everything
+    insertText = insert_text,  -- Include both insertText and textEdit like official path source
     textEdit = {
       newText = insert_text,
       range = range
