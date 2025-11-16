@@ -134,16 +134,14 @@ local function get_directory_contents(dir_path)
         path = full_path,
       })
     else
-      -- Only show importable files
+      -- Show all files
       local ext = name:match("%.([^%.]+)$")
-      if ext and vim.tbl_contains({ "vue", "ts", "js", "mjs", "jsx", "tsx" }, ext) then
-        table.insert(entries, {
-          name = name,
-          is_dir = false,
-          path = full_path,
-          extension = ext,
-        })
-      end
+      table.insert(entries, {
+        name = name,
+        is_dir = false,
+        path = full_path,
+        extension = ext,
+      })
     end
   end
 
