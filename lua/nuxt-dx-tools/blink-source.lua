@@ -174,8 +174,13 @@ local function calculate_text_edit_range(context, typed_path)
     -- Position after the slash (Lua 1-indexed pos N -> LSP 0-indexed pos N)
     start_char = last_slash_pos
   elseif context.bounds then
-    -- Use bounds provided by blink.cmp (already 0-indexed)
-    start_char = context.bounds.start_col - 1
+    -- No slash in path, so we're replacing the trigger character (like ~, @, #)
+    -- bounds.start_col is 1-indexed and points to AFTER the trigger character
+    -- We need to go back 2 positions to include the trigger character in the replacement
+    -- Example: import "~" with cursor at 9, bounds.start_col=10
+    --          Position 8 is '~', position 9 is after '~'
+    --          start_char should be 8 to replace the '~'
+    start_char = context.bounds.start_col - 2
   else
     -- Fallback: find the quote and start after it
     local quote_pos = nil
