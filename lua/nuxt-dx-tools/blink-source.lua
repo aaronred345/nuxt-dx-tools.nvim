@@ -265,6 +265,11 @@ function M:get_completions(ctx, callback)
         end
       end
 
+      -- Normalize the path (resolve .. and . and fix separators)
+      search_dir = vim.fn.fnamemodify(search_dir, ":p")
+      -- Remove trailing slash if present
+      search_dir = search_dir:gsub("[/\\]$", "")
+
       vim.notify(string.format("[nuxt-dx-tools] Searching directory: %s", search_dir), vim.log.levels.INFO)
 
       local prefix = get_label_prefix(typed_path)
