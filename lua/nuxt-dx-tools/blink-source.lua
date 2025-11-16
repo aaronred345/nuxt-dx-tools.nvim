@@ -320,14 +320,20 @@ function M:get_completions(ctx, callback)
   -- Load path aliases module
   local ok, path_aliases = pcall(require, "nuxt-dx-tools.path-aliases")
   if not ok then
+    vim.notify("DEBUG: Failed to load path-aliases module", vim.log.levels.ERROR)
     call_callback(callback, ctx, {})
     return
   end
+  vim.notify("DEBUG: path-aliases module loaded successfully", vim.log.levels.INFO)
 
   local line = ctx.line or ctx.cursor_before_line or vim.api.nvim_get_current_line()
+  vim.notify(string.format("DEBUG: line = '%s'", line), vim.log.levels.INFO)
 
   -- Only provide completions in import statements
-  if not (line:match('from%s+["\']') or line:match('import%s+["\']') or line:match('import%(["\']')) then
+  local is_import = line:match('from%s+["\']') or line:match('import%s+["\']') or line:match('import%(["\']')
+  vim.notify(string.format("DEBUG: is_import = %s", is_import and "true" or "false"), vim.log.levels.INFO)
+  if not is_import then
+    vim.notify("DEBUG: Not an import statement, returning empty", vim.log.levels.WARN)
     call_callback(callback, ctx, {})
     return
   end
