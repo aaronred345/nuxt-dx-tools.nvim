@@ -7,23 +7,36 @@ local function find_layout(layout_name)
   local root = utils.find_nuxt_root()
   if not root then return nil end
 
-  local layouts_dir = root .. "/layouts"
-  return utils.try_file_extensions(layouts_dir .. "/" .. layout_name, { ".vue", ".ts", ".js" })
+  -- Try app/layouts first (Nuxt 4), then layouts (Nuxt 3)
+  local possible_dirs = utils.get_directory_paths("layouts")
+
+  for _, layouts_dir in ipairs(possible_dirs) do
+    local result = utils.try_file_extensions(layouts_dir .. "/" .. layout_name, { ".vue", ".ts", ".js" })
+    if result then
+      return result
+    end
+  end
+
+  return nil
 end
 
 local function find_middleware(middleware_name)
   local root = utils.find_nuxt_root()
   if not root then return nil end
 
-  local middleware_dir = root .. "/middleware"
-  local patterns = {
-    middleware_dir .. "/" .. middleware_name,
-    middleware_dir .. "/" .. middleware_name .. ".global",
-  }
+  -- Try app/middleware first (Nuxt 4), then middleware (Nuxt 3)
+  local possible_dirs = utils.get_directory_paths("middleware")
 
-  for _, pattern in ipairs(patterns) do
-    local result = utils.try_file_extensions(pattern, { ".ts", ".js" })
-    if result then return result end
+  for _, middleware_dir in ipairs(possible_dirs) do
+    local patterns = {
+      middleware_dir .. "/" .. middleware_name,
+      middleware_dir .. "/" .. middleware_name .. ".global",
+    }
+
+    for _, pattern in ipairs(patterns) do
+      local result = utils.try_file_extensions(pattern, { ".ts", ".js" })
+      if result then return result end
+    end
   end
 
   return nil

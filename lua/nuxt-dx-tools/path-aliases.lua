@@ -123,20 +123,22 @@ local function load_all_path_mappings()
     return {}
   end
 
+  -- Start with empty paths - we'll populate from tsconfig files
+  local all_paths = {}
+
   local main_tsconfig = root .. "/tsconfig.json"
   if not utils.file_exists(main_tsconfig) then
-    return {}
+    return all_paths
   end
 
   local content = utils.read_file(main_tsconfig)
   if not content then
-    return {}
+    return all_paths
   end
 
   -- Clean and parse the main tsconfig
   content = clean_json(content)
 
-  local all_paths = {}
   local ref_paths = {}
 
   -- Try to parse JSON first
@@ -155,6 +157,22 @@ local function load_all_path_mappings()
       for ref_path in references_section:gmatch('"path"%s*:%s*"([^"]+)"') do
         table.insert(ref_paths, ref_path)
       end
+    end
+  end
+
+  -- Add Nuxt 4 specific tsconfig files if they're not already in references
+  -- These are typically auto-generated and contain the path aliases
+  local nuxt_tsconfigs = {
+    ".nuxt/tsconfig.json",
+    ".nuxt/tsconfig.app.json",
+    ".nuxt/tsconfig.server.json",
+    ".nuxt/tsconfig.shared.json",
+    ".nuxt/tsconfig.node.json",
+  }
+
+  for _, config_path in ipairs(nuxt_tsconfigs) do
+    if not vim.tbl_contains(ref_paths, config_path) then
+      table.insert(ref_paths, config_path)
     end
   end
 
