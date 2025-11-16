@@ -296,12 +296,20 @@ end
 
 -- Resolve additional information for a completion item
 function M:resolve(item, callback)
-  callback(item)
+  if type(callback) == "function" then
+    callback(item)
+  elseif type(callback) == "table" and callback.resolve then
+    callback:resolve(item)
+  end
 end
 
 -- Execute action when completion item is selected
 function M:execute(item, callback)
-  callback()
+  -- In newer blink.cmp versions, execute might not need to do anything for simple sources
+  -- Just return without error
+  if type(callback) == "function" then
+    callback()
+  end
 end
 
 return M
