@@ -254,11 +254,15 @@ local function make_completion_item(entry, prefix, typed_path, context)
     end
   end
 
+  -- Determine word to replace (from quote to cursor)
+  local word = typed_path or ""
+
   local item = {
     label = complete_path,
     kind = kind,
     detail = entry.is_dir and "Directory" or "File",
     insertText = complete_path,  -- Use full path for insertion
+    word = word,  -- Tell blink what text to replace
     filterText = entry.name,
     sortText = (entry.is_dir and "1" or "2") .. entry.name:lower(),
     documentation = {
@@ -267,8 +271,8 @@ local function make_completion_item(entry, prefix, typed_path, context)
     },
   }
 
-  vim.notify(string.format("DEBUG completion item:\n  label: %s\n  insertText: %s",
-    item.label, item.insertText), vim.log.levels.INFO)
+  vim.notify(string.format("DEBUG completion item:\n  label: %s\n  insertText: %s\n  word: %s",
+    item.label, item.insertText, item.word or "nil"), vim.log.levels.INFO)
 
   return item
 end
