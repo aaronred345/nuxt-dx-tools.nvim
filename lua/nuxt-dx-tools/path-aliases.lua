@@ -116,37 +116,6 @@ parse_tsconfig_regex = function(content, filepath)
   return paths
 end
 
--- Get default Nuxt 4 aliases
-local function get_nuxt4_default_aliases(root)
-  local aliases = {}
-  local structure = utils.detect_structure()
-
-  -- These aliases are common in Nuxt 4
-  if structure.has_app_dir then
-    -- Nuxt 4 with app/ directory
-    aliases["~"] = root .. "/app"
-    aliases["@"] = root .. "/app"
-    aliases["~~"] = root
-    aliases["@@"] = root
-  else
-    -- Nuxt 3 or Nuxt 4 classic mode
-    aliases["~"] = root
-    aliases["@"] = root
-    aliases["~~"] = root
-    aliases["@@"] = root
-  end
-
-  -- Check for .nuxt directory and add internal aliases
-  local nuxt_dir = root .. "/.nuxt"
-  if vim.fn.isdirectory(nuxt_dir) == 1 then
-    aliases["#app"] = nuxt_dir
-    aliases["#build"] = nuxt_dir
-    aliases["#imports"] = nuxt_dir .. "/imports"
-  end
-
-  return aliases
-end
-
 -- Parse all tsconfig references and merge their path mappings
 local function load_all_path_mappings()
   local root = utils.find_nuxt_root()
@@ -154,8 +123,8 @@ local function load_all_path_mappings()
     return {}
   end
 
-  -- Start with default Nuxt aliases
-  local all_paths = get_nuxt4_default_aliases(root)
+  -- Start with empty paths - we'll populate from tsconfig files
+  local all_paths = {}
 
   local main_tsconfig = root .. "/tsconfig.json"
   if not utils.file_exists(main_tsconfig) then
@@ -191,11 +160,14 @@ local function load_all_path_mappings()
     end
   end
 
-  -- Add Nuxt 4 specific tsconfig files
+  -- Add Nuxt 4 specific tsconfig files if they're not already in references
+  -- These are typically auto-generated and contain the path aliases
   local nuxt_tsconfigs = {
     ".nuxt/tsconfig.json",
     ".nuxt/tsconfig.app.json",
     ".nuxt/tsconfig.server.json",
+    ".nuxt/tsconfig.shared.json",
+    ".nuxt/tsconfig.node.json",
   }
 
   for _, config_path in ipairs(nuxt_tsconfigs) do
