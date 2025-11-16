@@ -39,6 +39,10 @@ function M.setup(plugin)
     desc = "Refresh path alias cache"
   })
 
+  api.nvim_create_user_command("NuxtDXDebugAliases", plugin.debug_aliases, {
+    desc = "Show detailed debug info about path aliases"
+  })
+
   api.nvim_create_user_command("NuxtDXRefresh", plugin.refresh_cache, {
     desc = "Refresh Nuxt DX Tools cache"
   })

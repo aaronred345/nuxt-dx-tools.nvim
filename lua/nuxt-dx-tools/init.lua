@@ -107,5 +107,6 @@ end
 
 M.refresh_aliases = path_aliases.refresh
 M.show_aliases = path_aliases.show_aliases
+M.debug_aliases = path_aliases.debug_info
 
 return M
