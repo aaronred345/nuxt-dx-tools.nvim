@@ -5,6 +5,9 @@ local M = {}
 -- Dependencies
 local utils = require("nuxt-dx-tools.utils")
 
+-- Forward declaration
+local parse_tsconfig_regex
+
 -- Cache to avoid re-parsing tsconfig files constantly
 local cache = {
   aliases = {},
@@ -70,7 +73,7 @@ local function parse_tsconfig_file(filepath)
 end
 
 -- Fallback regex-based parser for when JSON parsing fails
-local function parse_tsconfig_regex(content)
+function parse_tsconfig_regex(content)
   local paths = {}
 
   -- Find the "paths" section in compilerOptions
