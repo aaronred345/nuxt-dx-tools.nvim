@@ -79,17 +79,17 @@ end
 -- Setup function
 function M.setup(opts)
   M.config = vim.tbl_deep_extend("force", M.config, opts or {})
-  
+
   -- Pass config to modules
   utils.set_config(M.config)
   api_routes.set_config(M.config)
-  
+
   -- Setup autocommands
   require("nuxt-dx-tools.autocmds").setup(M)
-  
+
   -- Setup keymaps
   require("nuxt-dx-tools.keymaps").setup(M)
-  
+
   -- Initial cache load
   vim.defer_fn(function()
     if utils.find_nuxt_root() then

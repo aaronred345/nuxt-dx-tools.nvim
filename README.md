@@ -4,6 +4,10 @@ A Neovim plugin that enhances the developer experience for Nuxt projects by prov
 
 Port of the [vscode-nuxt-dx-tools](https://github.com/alimozdemir/vscode-nuxt-dx-tools) extension.
 
+### Disclaimer
+
+In full disclosure, this plugin port was written entirely by the Sonnet 4.5 model. I am currently still testing it's functionality. I will do my best to maintain this as long as there's interest
+
 ## ✨ Features
 
 - 🎯 **Auto-locate Components** - Navigate to actual component files instead of `.nuxt/components.d.ts`
@@ -20,7 +24,7 @@ Port of the [vscode-nuxt-dx-tools](https://github.com/alimozdemir/vscode-nuxt-dx
 
 ```lua
 {
-  "yourusername/nuxt-dx-tools.nvim",
+  "aaronred345/nuxt-dx-tools.nvim",
   ft = { "vue", "typescript", "javascript" },
   config = function()
     require("nuxt-dx-tools").setup()
