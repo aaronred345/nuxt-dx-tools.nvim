@@ -281,6 +281,23 @@ end
 
 -- Helper to safely call completion callback
 local function call_callback(callback, result)
+  -- Log what we're returning
+  local log_msg = string.format("DEBUG call_callback returning %d items", #(result.items or {}))
+  if result.items and #result.items > 0 then
+    local first = result.items[1]
+    log_msg = log_msg .. string.format("\n  First item: label='%s'", first.label or "nil")
+    if first.textEdit then
+      log_msg = log_msg .. string.format("\n    textEdit.newText='%s'\n    textEdit.range=[%d,%d]->[%d,%d]",
+        first.textEdit.newText or "nil",
+        first.textEdit.range.start.line, first.textEdit.range.start.character,
+        first.textEdit.range['end'].line, first.textEdit.range['end'].character)
+    end
+    if first.insertText then
+      log_msg = log_msg .. string.format("\n    insertText='%s'", first.insertText)
+    end
+  end
+  vim.notify(log_msg, vim.log.levels.INFO)
+
   if type(callback) == "function" then
     callback(result)
   elseif type(callback) == "table" and callback.callback then
@@ -290,10 +307,22 @@ end
 
 -- Main completion function
 function M:get_completions(ctx, callback)
-  -- Debug context
-  vim.notify(string.format("DEBUG get_completions context:\n  cursor: %s\n  line: %s",
-    ctx.cursor and string.format("[%d, %d]", ctx.cursor[1], ctx.cursor[2]) or "nil",
-    ctx.line or "nil"), vim.log.levels.INFO)
+  -- Debug context - show ALL context fields
+  local ctx_debug = "DEBUG get_completions - FULL CONTEXT:\n"
+  for k, v in pairs(ctx) do
+    if type(v) == "table" then
+      if k == "cursor" then
+        ctx_debug = ctx_debug .. string.format("  %s: [%s, %s]\n", k, v[1] or "nil", v[2] or "nil")
+      elseif k == "bounds" then
+        ctx_debug = ctx_debug .. string.format("  %s: {start_col=%s, length=%s}\n", k, v.start_col or "nil", v.length or "nil")
+      else
+        ctx_debug = ctx_debug .. string.format("  %s: <table>\n", k)
+      end
+    else
+      ctx_debug = ctx_debug .. string.format("  %s: %s\n", k, tostring(v))
+    end
+  end
+  vim.notify(ctx_debug, vim.log.levels.INFO)
   -- Load path aliases module
   local ok, path_aliases = pcall(require, "nuxt-dx-tools.path-aliases")
   if not ok then
@@ -422,6 +451,13 @@ end
 
 -- Resolve additional information for a completion item
 function M:resolve(item, callback)
+  vim.notify(string.format("DEBUG resolve called for item:\n  label: %s\n  textEdit: %s",
+    item.label or "nil",
+    item.textEdit and string.format("{newText='%s', range=[%d,%d]->[%d,%d]}",
+      item.textEdit.newText or "nil",
+      item.textEdit.range.start.line, item.textEdit.range.start.character,
+      item.textEdit.range['end'].line, item.textEdit.range['end'].character) or "nil"), vim.log.levels.INFO)
+
   if type(callback) == "function" then
     callback(item)
   elseif type(callback) == "table" and callback.resolve then
@@ -431,6 +467,13 @@ end
 
 -- Execute action when completion item is selected
 function M:execute(item, callback)
+  vim.notify(string.format("DEBUG execute called for item:\n  label: %s\n  textEdit: %s",
+    item.label or "nil",
+    item.textEdit and string.format("{newText='%s', range=[%d,%d]->[%d,%d]}",
+      item.textEdit.newText or "nil",
+      item.textEdit.range.start.line, item.textEdit.range.start.character,
+      item.textEdit.range['end'].line, item.textEdit.range['end'].character) or "nil"), vim.log.levels.INFO)
+
   -- In newer blink.cmp versions, execute might not need to do anything for simple sources
   -- Just return without error
   if type(callback) == "function" then
