@@ -153,21 +153,38 @@ To enable Nuxt path alias autocompletion:
 
 ### LSP Integration
 
-This plugin seamlessly enhances standard LSP commands with Nuxt-specific features. **You can use your normal LSP workflow** and automatically get Nuxt enhancements:
+This plugin seamlessly enhances standard LSP commands with Nuxt-specific features. **You can use your normal LSP workflow** and automatically get Nuxt enhancements.
+
+#### Dynamic Type Information
+
+The plugin **automatically reads and parses** your Nuxt project's type definitions:
+
+- **`.nuxt/imports.d.ts`** - All auto-imported composables and utilities
+- **`.nuxt/components.d.ts`** - All auto-imported components
+- **`package.json`** - Installed Nuxt modules
+
+This means:
+- ✅ **Real type information** from your actual project (not hardcoded)
+- ✅ **Custom composables** you create are automatically recognized
+- ✅ **Module-provided utilities** from installed packages work
+- ✅ **Auto-refresh** when `.nuxt` directory changes
+- ✅ Works with **vue_ls**, **vtsls**, **volar**, and **tsserver**
 
 #### Standard LSP Commands (Enhanced)
 
 - **`vim.lsp.buf.hover()` / `K`** - Shows Nuxt-specific hover info:
+  - **ALL auto-imported symbols** (composables, components, utilities)
   - Virtual module documentation (`#imports`, `#app`, etc.)
   - Data fetching patterns (cache keys, SSR warnings)
   - API route signatures and return types
-  - Then falls back to standard LSP hover
+  - Combines with standard LSP hover when both available
 
 - **`vim.lsp.buf.signature_help()` / `<C-k>`** - Shows signatures for:
-  - `useAsyncData`, `useFetch`, `useState`
-  - `definePageMeta`, `defineEventHandler`
-  - `navigateTo`, `useRouter`, `useRoute`
-  - And all other Nuxt composables
+  - **ALL auto-imported functions** from your project
+  - Built-in Nuxt composables (`useAsyncData`, `useFetch`, `useState`, etc.)
+  - Custom composables from your `composables/` directory
+  - Functions from installed Nuxt modules
+  - Shows actual TypeScript signatures from `.nuxt/imports.d.ts`
 
 - **`vim.lsp.buf.code_action()` / `<leader>ca`** - Provides actions like:
   - Replace deprecated APIs (e.g., `useAsync` → `useAsyncData`)
