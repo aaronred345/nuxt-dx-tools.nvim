@@ -23,15 +23,24 @@ import { CompletionProvider } from './providers/completion-provider';
 import { CodeActionProvider } from './providers/code-action-provider';
 import { DiagnosticProvider } from './providers/diagnostic-provider';
 import { Logger } from './utils/logger';
+import * as fs from 'fs';
+import * as path from 'path';
+
+// Write startup log BEFORE anything else to ensure we capture startup
+const startupLogPath = path.join(__dirname, '../server-startup.log');
+fs.writeFileSync(startupLogPath, `[${new Date().toISOString()}] Server script started\n`);
 
 // Create a connection for the server using Node's IPC as a transport
 const connection = createConnection(ProposedFeatures.all);
+fs.appendFileSync(startupLogPath, `[${new Date().toISOString()}] Connection created\n`);
 
 // Create a text document manager
 const documents = new TextDocuments(TextDocument);
+fs.appendFileSync(startupLogPath, `[${new Date().toISOString()}] TextDocuments created\n`);
 
 // Initialize logger
 const logger = new Logger(connection);
+fs.appendFileSync(startupLogPath, `[${new Date().toISOString()}] Logger created\n`);
 
 // Project manager - handles all Nuxt-specific logic
 let projectManager: NuxtProjectManager;
@@ -109,17 +118,22 @@ connection.onInitialized(() => {
 
 // Handle goto definition requests
 connection.onDefinition(async (params: DefinitionParams) => {
+  logger.info(`[Definition] REQUEST RECEIVED for ${params.textDocument.uri} at ${params.position.line}:${params.position.character}`);
   try {
     const document = documents.get(params.textDocument.uri);
     if (!document) {
+      logger.info(`[Definition] No document found for URI: ${params.textDocument.uri}`);
       return null;
     }
 
+    logger.info(`[Definition] Document found, calling definitionProvider.provideDefinition()`);
     const result = await definitionProvider.provideDefinition(document, params.position);
 
     // Only log when we actually provide something (not null)
     if (result) {
-      logger.debug(`[Definition] Provided Nuxt-specific result`);
+      logger.info(`[Definition] Provided Nuxt-specific result`);
+    } else {
+      logger.info(`[Definition] No result (returning null)`);
     }
 
     return result;
@@ -131,17 +145,22 @@ connection.onDefinition(async (params: DefinitionParams) => {
 
 // Handle hover requests
 connection.onHover(async (params: HoverParams) => {
+  logger.info(`[Hover] REQUEST RECEIVED for ${params.textDocument.uri} at ${params.position.line}:${params.position.character}`);
   try {
     const document = documents.get(params.textDocument.uri);
     if (!document) {
+      logger.info(`[Hover] No document found for URI: ${params.textDocument.uri}`);
       return null;
     }
 
+    logger.info(`[Hover] Document found, calling hoverProvider.provideHover()`);
     const result = await hoverProvider.provideHover(document, params.position);
 
     // Only log when we actually provide something (not null)
     if (result) {
-      logger.debug(`[Hover] Provided Nuxt-specific result`);
+      logger.info(`[Hover] Provided Nuxt-specific result`);
+    } else {
+      logger.info(`[Hover] No result (returning null)`);
     }
 
     return result;
@@ -193,8 +212,11 @@ documents.onDidSave(async (event) => {
 
 // Make the text document manager listen on the connection
 documents.listen(connection);
+logger.info('TextDocuments now listening on connection');
 
 // Listen on the connection
 connection.listen();
-
 logger.info('Nuxt DX Tools LSP Server is now listening for connections');
+
+// Also write to startup log
+fs.appendFileSync(startupLogPath, `[${new Date().toISOString()}] Server listening and ready\n`);
