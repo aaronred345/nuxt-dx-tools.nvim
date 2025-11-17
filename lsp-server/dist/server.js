@@ -44,10 +44,10 @@ connection.onInitialize((params) => {
     diagnosticProvider = new diagnostic_provider_1.DiagnosticProvider(projectManager, logger, connection);
     const result = {
         capabilities: {
-            // Only sync document open/close/save, not every change
+            // Sync document changes for up-to-date content
             textDocumentSync: {
                 openClose: true,
-                change: node_1.TextDocumentSyncKind.None,
+                change: node_1.TextDocumentSyncKind.Incremental,
                 save: true,
             },
             // ONLY provide capabilities for Nuxt-specific features

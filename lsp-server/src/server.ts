@@ -68,10 +68,10 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
 
   const result: InitializeResult = {
     capabilities: {
-      // Only sync document open/close/save, not every change
+      // Sync document changes for up-to-date content
       textDocumentSync: {
         openClose: true,
-        change: TextDocumentSyncKind.None,
+        change: TextDocumentSyncKind.Incremental,
         save: true,
       },
       // ONLY provide capabilities for Nuxt-specific features
