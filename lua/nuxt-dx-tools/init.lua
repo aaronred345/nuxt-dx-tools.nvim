@@ -99,7 +99,26 @@ function M.goto_definition()
     end
   end
 
-  -- 7. Fall back to LSP definition
+  -- 7. Check for CSS/style imports (before LSP fallback to avoid client.d.ts)
+  if line:match('from%s+["\']') or line:match('import%s+["\']') then
+    log("Checking for CSS/style imports...")
+    local import_path = line:match('from%s+["\']([^"\']+)["\']') or line:match('import%s+["\']([^"\']+)["\']')
+    if import_path and (import_path:match("%.css$") or import_path:match("%.pcss$") or
+                         import_path:match("%.scss$") or import_path:match("%.sass$") or
+                         import_path:match("%.less$") or import_path:match("%.styl$")) then
+      log("Found CSS import: " .. import_path)
+      local path_aliases = require("nuxt-dx-tools.path-aliases")
+      local resolved_file = path_aliases.find_file_from_import(import_path)
+      if resolved_file then
+        log("Resolved CSS file: " .. resolved_file)
+        vim.cmd("edit " .. vim.fn.fnameescape(resolved_file))
+        return
+      end
+      log("Could not resolve CSS import: " .. import_path)
+    end
+  end
+
+  -- 8. Fall back to LSP definition
   log("Falling back to LSP definition")
   vim.lsp.buf.definition()
 end

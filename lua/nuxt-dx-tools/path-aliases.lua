@@ -238,14 +238,32 @@ end
 
 -- Find a file by resolving its aliased import path
 function M.find_file_from_import(import_path)
+  -- Check if the import already has an extension
+  local has_extension = import_path:match("%.[^/\\]+$")
+
   local resolved_path = M.resolve_alias_path(import_path)
 
   if not resolved_path then
-    return nil
+    -- Try stripping common Nuxt aliases and resolving from root
+    local root = M.get_nuxt_root()
+    if root then
+      local stripped = import_path:gsub("^~+/", ""):gsub("^@/", "")
+      resolved_path = root .. "/" .. stripped
+    else
+      return nil
+    end
   end
 
-  -- Try different file extensions
-  local extensions = { ".vue", ".ts", ".js", ".mjs", ".tsx", ".jsx" }
+  -- If the import has an extension, try it directly first
+  if has_extension and utils.file_exists(resolved_path) then
+    return resolved_path
+  end
+
+  -- Try different file extensions (code and styles)
+  local extensions = {
+    ".vue", ".ts", ".js", ".mjs", ".tsx", ".jsx",
+    ".css", ".pcss", ".scss", ".sass", ".less", ".styl"
+  }
 
   for _, ext in ipairs(extensions) do
     if utils.file_exists(resolved_path .. ext) then
