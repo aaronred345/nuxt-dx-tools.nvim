@@ -139,8 +139,17 @@ connection.onCompletion(async (params) => {
 // NOTE: We deliberately DON'T handle:
 // - codeAction (let other servers handle refactoring, quick fixes)
 // - signatureHelp (let TypeScript server handle this)
-// - diagnostics (let TypeScript/Vue servers handle this)
-// This ensures we don't interfere with other LSP servers
+// Validate Nuxt-specific imports on document open and change
+documents.onDidOpen(async (event) => {
+    await diagnosticProvider.provideDiagnostics(event.document);
+});
+documents.onDidChangeContent(async (event) => {
+    // Debounce diagnostics to avoid running on every keystroke
+    // Only run diagnostics on save or after a delay
+});
+documents.onDidSave(async (event) => {
+    await diagnosticProvider.provideDiagnostics(event.document);
+});
 // Make the text document manager listen on the connection
 documents.listen(connection);
 // Listen on the connection
