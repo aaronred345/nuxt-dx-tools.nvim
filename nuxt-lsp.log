@@ -12659,3 +12659,13 @@
 [WARN][2025-11-17 17:05:43] .../lua/vim/lsp.lua:1023	"buf_attach_client called on unloaded buffer (id: 11): "
 [WARN][2025-11-17 17:05:43] .../lua/vim/lsp.lua:1023	"buf_attach_client called on unloaded buffer (id: 11): "
 [WARN][2025-11-17 17:05:43] .../lua/vim/lsp.lua:1023	"buf_attach_client called on unloaded buffer (id: 11): "
+[START][2025-11-17 17:13:51] LSP logging initiated
+[WARN][2025-11-17 17:13:51] ...lsp/handlers.lua:564	"The config c:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/assets/modal.pcss requires a preprocessor and is not supported by Tailwind CSS v4.0."
+[WARN][2025-11-17 17:13:51] ...lsp/handlers.lua:564	"The config c:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/assets/navbar.pcss requires a preprocessor and is not supported by Tailwind CSS v4.0."
+[WARN][2025-11-17 17:13:51] ...lsp/handlers.lua:564	"The config c:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/assets/admin/new_item.pcss requires a preprocessor and is not supported by Tailwind CSS v4.0."
+[WARN][2025-11-17 17:13:51] ...lsp/handlers.lua:564	"The config c:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/assets/new_run.pcss requires a preprocessor and is not supported by Tailwind CSS v4.0."
+[WARN][2025-11-17 17:13:51] ...lsp/handlers.lua:564	"The config c:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/assets/main.pcss requires a preprocessor and is not supported by Tailwind CSS v4.0."
+[WARN][2025-11-17 17:13:51] ...lsp/handlers.lua:564	"The config c:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/assets/profile.pcss requires a preprocessor and is not supported by Tailwind CSS v4.0."
+[WARN][2025-11-17 17:13:51] ...lsp/handlers.lua:564	"The config c:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/assets/main-plate.pcss requires a preprocessor and is not supported by Tailwind CSS v4.0."
+[WARN][2025-11-17 17:13:51] ...m/lsp/client.lua:874	"The language server eslint triggers a registerCapability handler for workspace/didChangeWorkspaceFolders despite dynamicRegistration set to false. Report upstream, this warning is harmless"
+[WARN][2025-11-17 17:13:52] ...m/lsp/client.lua:874	"The language server tailwindcss triggers a registerCapability handler for textDocument/documentColor despite dynamicRegistration set to false. Report upstream, this warning is harmless"
