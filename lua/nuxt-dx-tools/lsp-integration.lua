@@ -262,107 +262,94 @@ function M.setup_buffer(bufnr)
 
   log("Setting up buffer " .. bufnr)
 
-  -- Override go to definition with our custom implementation
-  vim.keymap.set("n", "gd", function()
-    log("gd pressed in buffer " .. bufnr)
+  -- NOTE: Keybindings are NOT set automatically to avoid conflicts with user configurations.
+  -- Users should manually set up keybindings in their config if desired.
+  --
+  -- Example keybindings:
+  -- vim.keymap.set("n", "gd", function() require("nuxt-dx-tools").goto_definition() end, { buffer = bufnr })
+  -- vim.keymap.set("n", "K", function() require("nuxt-dx-tools.lsp-integration").show_hover() end, { buffer = bufnr })
+  -- vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr })
+end
 
-    local word = vim.fn.expand("<cword>")
-    log("Word under cursor: " .. (word or "nil"))
+-- Ensure tsconfig.json extends .nuxt/tsconfig.json
+local function ensure_tsconfig_extends_nuxt()
+  local nuxt_root = utils.find_nuxt_root()
+  if not nuxt_root then
+    return false
+  end
 
-    -- Use our enhanced goto_definition that handles components, routes, API endpoints
-    require("nuxt-dx-tools").goto_definition()
-  end, {
-    buffer = bufnr,
-    desc = "Nuxt DX: Enhanced go to definition",
-  })
+  local tsconfig_path = nuxt_root .. "/tsconfig.json"
+  local nuxt_tsconfig = nuxt_root .. "/.nuxt/tsconfig.json"
 
-  -- Override hover with our custom implementation
-  vim.keymap.set("n", "K", function()
-    log("K pressed in buffer " .. bufnr)
+  -- Check if .nuxt/tsconfig.json exists
+  if vim.fn.filereadable(nuxt_tsconfig) == 0 then
+    log(".nuxt/tsconfig.json not found - Nuxt may not be running")
+    return false
+  end
 
-    -- Try Nuxt hover first
-    if show_nuxt_hover() then
-      return
+  -- Read existing tsconfig.json
+  local tsconfig_content = ""
+  if vim.fn.filereadable(tsconfig_path) == 1 then
+    local file = io.open(tsconfig_path, "r")
+    if file then
+      tsconfig_content = file:read("*a")
+      file:close()
     end
+  end
 
-    -- Fall back to LSP hover
-    log("Falling back to LSP hover")
-    vim.lsp.buf.hover()
-  end, {
-    buffer = bufnr,
-    desc = "Nuxt DX: Enhanced hover",
-  })
+  -- Check if it already extends .nuxt/tsconfig.json
+  if tsconfig_content:match('"extends".*%.nuxt/tsconfig%.json') then
+    log("tsconfig.json already extends .nuxt/tsconfig.json")
+    return true
+  end
 
-  -- Override signature help
-  vim.keymap.set("i", "<C-k>", function()
-    log("<C-k> pressed in buffer " .. bufnr)
+  -- Ask user if they want to update tsconfig.json
+  vim.schedule(function()
+    local choice = vim.fn.confirm(
+      "Your tsconfig.json doesn't extend .nuxt/tsconfig.json.\n" ..
+      "This causes path alias errors in diagnostics.\n\n" ..
+      "Would you like to update it?",
+      "&Yes\n&No",
+      1
+    )
 
-    -- Try Nuxt signature first
-    if show_nuxt_signature() then
-      return
-    end
-
-    -- Fall back to LSP signature help
-    log("Falling back to LSP signature help")
-    vim.lsp.buf.signature_help()
-  end, {
-    buffer = bufnr,
-    desc = "Nuxt DX: Enhanced signature help",
-  })
-
-  -- Augment code actions
-  local original_code_action = vim.lsp.buf.code_action
-  vim.keymap.set("n", "<leader>ca", function()
-    log("Code action triggered in buffer " .. bufnr)
-
-    -- Get Nuxt actions
-    local nuxt_actions = get_nuxt_code_actions()
-
-    -- If we have Nuxt actions, show them with vim.ui.select
-    -- and let the user also trigger LSP actions
-    if #nuxt_actions > 0 then
-      -- Get LSP actions too
-      local params = vim.lsp.util.make_range_params()
-      params.context = {
-        diagnostics = vim.lsp.diagnostic.get_line_diagnostics(),
+    if choice == 1 then
+      -- Create or update tsconfig.json
+      local new_config = {
+        ["extends"] = "./.nuxt/tsconfig.json"
       }
 
-      vim.lsp.buf_request_all(bufnr, "textDocument/codeAction", params, function(results)
-        local all_actions = vim.deepcopy(nuxt_actions)
-
-        -- Merge LSP actions
-        for client_id, result in pairs(results or {}) do
-          if result.result then
-            vim.list_extend(all_actions, result.result)
-          end
+      -- If there's existing content, try to merge
+      if tsconfig_content ~= "" then
+        -- Parse existing config (simple approach)
+        local has_extends = tsconfig_content:match('"extends"')
+        if has_extends then
+          vim.notify(
+            "Your tsconfig.json already has an 'extends' field.\n" ..
+            "Please manually update it to extend './.nuxt/tsconfig.json'",
+            vim.log.levels.WARN
+          )
+          return
         end
+      end
 
-        -- Show all actions
-        vim.ui.select(all_actions, {
-          prompt = "Code actions:",
-          format_item = function(item)
-            return item.title
-          end,
-        }, function(choice)
-          if choice and choice.edit then
-            vim.lsp.util.apply_workspace_edit(choice.edit, "utf-8")
-          elseif choice and choice.command then
-            if choice.command.command:match("^lua ") then
-              vim.cmd(choice.command.command)
-            else
-              vim.lsp.buf.execute_command(choice.command)
-            end
-          end
-        end)
-      end)
-    else
-      -- No Nuxt actions, just use LSP
-      original_code_action()
+      -- Write new tsconfig.json
+      local file = io.open(tsconfig_path, "w")
+      if file then
+        file:write(vim.fn.json_encode(new_config))
+        file:close()
+        vim.notify(
+          "Updated tsconfig.json to extend .nuxt/tsconfig.json.\n" ..
+          "Please restart your LSP server (LspRestart).",
+          vim.log.levels.INFO
+        )
+      else
+        vim.notify("Failed to write tsconfig.json", vim.log.levels.ERROR)
+      end
     end
-  end, {
-    buffer = bufnr,
-    desc = "Nuxt DX: Enhanced code actions",
-  })
+  end)
+
+  return false
 end
 
 -- Setup LSP enhancements on attach
@@ -390,6 +377,12 @@ function M.on_attach(client, bufnr)
   end
 
   log("Setting up Nuxt DX for " .. client.name)
+
+  -- Check and fix tsconfig.json if needed (only for TypeScript LSP servers)
+  if client.name == "vtsls" or client.name == "tsserver" or client.name == "typescript-language-server" then
+    ensure_tsconfig_extends_nuxt()
+  end
+
   M.setup_buffer(bufnr)
 end
 
@@ -435,5 +428,10 @@ function M.enable_debug()
   DEBUG = true
   vim.notify("Nuxt DX debug mode enabled", vim.log.levels.INFO)
 end
+
+-- Export helper functions for manual keybinding setup
+M.show_nuxt_hover = show_nuxt_hover
+M.show_nuxt_signature = show_nuxt_signature
+M.get_nuxt_code_actions = get_nuxt_code_actions
 
 return M
