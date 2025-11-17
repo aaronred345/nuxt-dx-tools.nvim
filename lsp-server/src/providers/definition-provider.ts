@@ -86,7 +86,7 @@ export class DefinitionProvider {
     }
 
     // 5. Check for page routes (specific patterns)
-    if (line.includes('navigateTo') || line.includes('router.push') || /to=['"]/.test(line) || /href=['"]/.test(line)) {
+    if (line.includes('navigateTo') || line.includes('router.push') || /to\s*=\s*['"]/.test(line) || /href\s*=\s*['"]/.test(line)) {
       this.logger.info(`[Definition] Checking page routes...`);
       const routeDef = await this.handlePageRoutes(line, stringAtCursor);
       if (routeDef) {
@@ -391,8 +391,8 @@ export class DefinitionProvider {
     const routePatterns = [
       /navigateTo\(['"]([^'"]+)['"]/,
       /router\.push\(['"]([^'"]+)['"]/,
-      /to=['"]([^'"]+)['"]/,
-      /href=['"]([^'"]+)['"]/,
+      /to\s*=\s*['"]([^'"]+)['"]/,  // Allow spaces around =
+      /href\s*=\s*['"]([^'"]+)['"]/,  // Allow spaces around =
     ];
 
     for (const pattern of routePatterns) {

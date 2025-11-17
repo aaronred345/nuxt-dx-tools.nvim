@@ -52,7 +52,7 @@ export class HoverProvider {
     }
 
     // 4. Check for page routes (specific patterns)
-    if (line.includes('navigateTo') || line.includes('router.push') || /to=['"]/.test(line) || /href=['"]/.test(line)) {
+    if (line.includes('navigateTo') || line.includes('router.push') || /to\s*=\s*['"]/.test(line) || /href\s*=\s*['"]/.test(line)) {
       const pageRouteHover = await this.handlePageRoutes(line, stringAtCursor);
       if (pageRouteHover) {
         this.logger.debug(`[Hover] Provided page route info`);
@@ -70,9 +70,15 @@ export class HoverProvider {
     }
 
     // 5. Check for auto-imported symbols (only if we actually have info for it)
-    // This is the key change - we only check the type parser if we have actual symbol info
+    // Skip if we're hovering over NuxtLink - let the page route handler deal with it
     const typeParser = this.projectManager.getTypeParser();
     const symbolInfo = typeParser.getSymbolInfo(word);
+
+    // Don't show hover for NuxtLink component - the page route hover is more useful
+    if (word === 'NuxtLink' || word === 'NuxtPage') {
+      this.logger.debug(`[Hover] Skipping built-in Nuxt component: ${word}`);
+      return null;
+    }
 
     if (symbolInfo) {
       // We have actual info for this symbol, so provide hover
@@ -319,8 +325,8 @@ export class HoverProvider {
       const routePatterns = [
         /navigateTo\(['"]([^'"]+)['"]/,
         /router\.push\(['"]([^'"]+)['"]/,
-        /to=['"]([^'"]+)['"]/,
-        /href=['"]([^'"]+)['"]/,
+        /to\s*=\s*['"]([^'"]+)['"]/,  // Fixed: allow spaces around =
+        /href\s*=\s*['"]([^'"]+)['"]/,  // Fixed: allow spaces around =
       ];
 
       for (const pattern of routePatterns) {
@@ -336,10 +342,19 @@ export class HoverProvider {
       return null;
     }
 
+    // Only handle actual page routes (starting with /)
+    if (!routePath.startsWith('/')) {
+      return null;
+    }
+
     const pageFile = await this.resolvePageRoute(routePath);
     if (!pageFile) {
       return null;
     }
+
+    // Read first 20 lines of the page for preview
+    const pagePreview = this.readFirstLines(pageFile, 20);
+    const fileExt = path.extname(pageFile).slice(1) || 'vue';
 
     const content: MarkupContent = {
       kind: MarkupKind.Markdown,
@@ -349,6 +364,11 @@ export class HoverProvider {
         '```',
         '',
         `**Page:** \`${path.basename(pageFile)}\``,
+        '',
+        '**Preview:**',
+        '```' + fileExt,
+        pagePreview,
+        '```',
         '',
         '*Press `gd` to open the page file*',
       ].join('\n'),
