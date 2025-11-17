@@ -37,6 +37,14 @@ local function start_lsp_server()
     return
   end
 
+  -- Create a log file for our LSP server
+  local log_file = plugin_path .. '/lsp-server/nuxt-lsp-server.log'
+  local log_handle = io.open(log_file, 'a')
+  if log_handle then
+    log_handle:write(string.format('[%s] Starting LSP server attach attempt\n', os.date('%Y-%m-%d %H:%M:%S')))
+    log_handle:close()
+  end
+
   -- Start or attach the LSP server to this buffer
   local client_id = vim.lsp.start({
     name = 'nuxt-dx-tools-lsp',
@@ -48,10 +56,25 @@ local function start_lsp_server()
       enableDefinition = true,
       enableCompletion = true,
     },
+    on_attach = function(client, bufnr)
+      local msg = string.format('[Nuxt DX Tools] LSP attached! client_id=%s bufnr=%s\nLogs: %s', client.id, bufnr, log_file)
+      vim.notify(msg, vim.log.levels.INFO)
+    end,
+    handlers = {
+      ['textDocument/hover'] = function(err, result, ctx, config)
+        local log_h = io.open(log_file, 'a')
+        if log_h then
+          log_h:write(string.format('[%s] HOVER request received! err=%s result=%s\n',
+            os.date('%H:%M:%S'), err or 'nil', result and 'yes' or 'nil'))
+          log_h:close()
+        end
+        return vim.lsp.handlers['textDocument/hover'](err, result, ctx, config)
+      end,
+    },
   })
 
   if client_id then
-    vim.notify('[Nuxt DX Tools] LSP server attached to buffer ' .. buf, vim.log.levels.DEBUG)
+    vim.notify('[Nuxt DX Tools] LSP started with client_id: ' .. client_id, vim.log.levels.DEBUG)
   end
 end
 
