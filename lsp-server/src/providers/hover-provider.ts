@@ -24,8 +24,20 @@ export class HoverProvider {
     const word = this.getWordAtPosition(text, offset);
     const stringAtCursor = this.getStringAtPosition(text, offset);
 
+    // SPECIAL CASE: Hovering over NuxtLink word when line has to/href - show page preview
+    if (word === 'NuxtLink' && (/to\s*=\s*['"]/.test(line) || /href\s*=\s*['"]/.test(line))) {
+      this.logger.info(`[Hover] SPECIAL: NuxtLink with to/href detected on line: ${line.trim()}`);
+      const pageRouteHover = await this.handlePageRoutes(line, stringAtCursor);
+      if (pageRouteHover) {
+        this.logger.info(`[Hover] ✓ Provided page route info for NuxtLink`);
+        return pageRouteHover;
+      } else {
+        this.logger.info(`[Hover] ✗ handlePageRoutes returned null for NuxtLink line`);
+      }
+    }
+
     // PRIORITY 1: Check for page routes FIRST (before checking word)
-    // This handles NuxtLink with to="/path" - show page preview instead of component info
+    // This handles navigateTo and router.push
     if (line.includes('navigateTo') || line.includes('router.push') || /to\s*=\s*['"]/.test(line) || /href\s*=\s*['"]/.test(line)) {
       const pageRouteHover = await this.handlePageRoutes(line, stringAtCursor);
       if (pageRouteHover) {
@@ -35,12 +47,15 @@ export class HoverProvider {
     }
 
     // PRIORITY 2: Check for import statements (show file preview)
-    // Handle both string cursor position AND hovering over import statement
+    // IMPORTANT: Check this before checking the word to prevent "module '*.pcss'" from TypeScript LSP
     if (line.includes('import') && (line.includes('from') || line.includes("'"))) {
+      this.logger.info(`[Hover] Import detected on line: ${line.trim()}`);
       const importHover = await this.handleImportStatement(line, stringAtCursor);
       if (importHover) {
-        this.logger.debug(`[Hover] Provided import file preview`);
+        this.logger.info(`[Hover] ✓ Provided import file preview`);
         return importHover;
+      } else {
+        this.logger.info(`[Hover] ✗ handleImportStatement returned null`);
       }
     }
 
@@ -347,24 +362,30 @@ export class HoverProvider {
         const match = line.match(pattern);
         if (match) {
           routePath = match[1];
+          this.logger.info(`[Hover:PageRoutes] Extracted route path from line: "${routePath}"`);
           break;
         }
       }
     }
 
     if (!routePath) {
+      this.logger.info(`[Hover:PageRoutes] No route path found on line`);
       return null;
     }
 
     // Only handle actual page routes (starting with /)
     if (!routePath.startsWith('/')) {
+      this.logger.info(`[Hover:PageRoutes] Route path doesn't start with /: "${routePath}"`);
       return null;
     }
 
+    this.logger.info(`[Hover:PageRoutes] Attempting to resolve route: "${routePath}"`);
     const pageFile = await this.resolvePageRoute(routePath);
     if (!pageFile) {
+      this.logger.info(`[Hover:PageRoutes] Could not resolve route to page file`);
       return null;
     }
+    this.logger.info(`[Hover:PageRoutes] Resolved to file: ${pageFile}`);
 
     // Read first 20 lines of the page for preview
     const pagePreview = this.readFirstLines(pageFile, 20);
