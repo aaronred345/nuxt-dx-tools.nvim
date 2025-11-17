@@ -34,7 +34,23 @@ export class DefinitionProvider {
     this.logger.info(`[Definition] Full line: "${line.trim()}"`);
     this.logger.info(`[Definition] =======================================================`);
 
-    // 1. Check for virtual module imports (very specific)
+    // 1. PRIORITY: Check for CSS/style imports first (respond before vtsls/tsserver)
+    // This prevents other LSP servers from responding with client.d.ts for CSS imports
+    if (line.includes('import') && (line.includes('from') || line.includes("'"))) {
+      // Quick check for CSS extensions to avoid unnecessary processing
+      if (line.includes('.css') || line.includes('.pcss') || line.includes('.scss') ||
+          line.includes('.sass') || line.includes('.less') || line.includes('.styl')) {
+        this.logger.info(`[Definition] PRIORITY: Checking CSS/style import...`);
+        const importDef = await this.handleImportStatement(line, word);
+        if (importDef) {
+          this.logger.info(`[Definition] ✓ Provided CSS import definition (PRIORITY)`);
+          return importDef;
+        }
+        this.logger.info(`[Definition] ✗ No CSS import definition found`);
+      }
+    }
+
+    // 2. Check for virtual module imports (very specific)
     if (line.includes('#imports') || line.includes('#app') || line.includes('#build') || line.includes('#components')) {
       this.logger.info(`[Definition] Checking virtual modules...`);
       const virtualModuleDef = this.handleVirtualModules(line);
@@ -45,7 +61,7 @@ export class DefinitionProvider {
       this.logger.info(`[Definition] ✗ No virtual module definition found`);
     }
 
-    // 2. Check for import statements with path aliases
+    // 3. Check for other import statements with path aliases
     if (line.includes('import') && (line.includes('from') || line.includes("'"))) {
       this.logger.info(`[Definition] Checking import statement...`);
       const importDef = await this.handleImportStatement(line, word);
