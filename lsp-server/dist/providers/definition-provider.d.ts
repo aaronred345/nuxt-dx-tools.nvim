@@ -63,5 +63,10 @@ export declare class DefinitionProvider {
      * Get the word at the given position
      */
     private getWordAtPosition;
+    /**
+     * Get the string literal at the given position
+     * Handles both single and double quoted strings
+     */
+    private getStringAtPosition;
 }
 //# sourceMappingURL=definition-provider.d.ts.map

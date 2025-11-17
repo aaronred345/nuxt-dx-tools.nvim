@@ -56,10 +56,12 @@ class DefinitionProvider {
         const offset = document.offsetAt(position);
         const line = this.getLine(text, offset);
         const word = this.getWordAtPosition(text, offset);
+        const stringAtCursor = this.getStringAtPosition(text, offset);
         this.logger.info(`[Definition] ==================== NEW REQUEST ====================`);
         this.logger.info(`[Definition] File: ${document.uri}`);
         this.logger.info(`[Definition] Position: line ${position.line}, char ${position.character}`);
         this.logger.info(`[Definition] Word under cursor: "${word}"`);
+        this.logger.info(`[Definition] String at cursor: "${stringAtCursor}"`);
         this.logger.info(`[Definition] Full line: "${line.trim()}"`);
         this.logger.info(`[Definition] =======================================================`);
         // 1. PRIORITY: Check for CSS/style imports first (respond before vtsls/tsserver)
@@ -69,7 +71,7 @@ class DefinitionProvider {
             if (line.includes('.css') || line.includes('.pcss') || line.includes('.scss') ||
                 line.includes('.sass') || line.includes('.less') || line.includes('.styl')) {
                 this.logger.info(`[Definition] PRIORITY: Checking CSS/style import...`);
-                const importDef = await this.handleImportStatement(line, word);
+                const importDef = await this.handleImportStatement(line, word, stringAtCursor);
                 if (importDef) {
                     this.logger.info(`[Definition] ✓ Provided CSS import definition (PRIORITY)`);
                     return importDef;
@@ -90,37 +92,37 @@ class DefinitionProvider {
         // 3. Check for other import statements with path aliases
         if (line.includes('import') && (line.includes('from') || line.includes("'"))) {
             this.logger.info(`[Definition] Checking import statement...`);
-            const importDef = await this.handleImportStatement(line, word);
+            const importDef = await this.handleImportStatement(line, word, stringAtCursor);
             if (importDef) {
                 this.logger.info(`[Definition] ✓ Provided import definition`);
                 return importDef;
             }
             this.logger.info(`[Definition] ✗ No import definition found`);
         }
-        // 3. Check for definePageMeta context (layout, middleware)
+        // 4. Check for definePageMeta context (layout, middleware)
         if (line.includes('layout:') || line.includes('middleware:')) {
             this.logger.info(`[Definition] Checking definePageMeta...`);
-            const pageMetaDef = await this.handleDefinePageMeta(word, line);
+            const pageMetaDef = await this.handleDefinePageMeta(word, line, stringAtCursor);
             if (pageMetaDef) {
                 this.logger.info(`[Definition] ✓ Provided definePageMeta definition for: ${word}`);
                 return pageMetaDef;
             }
             this.logger.info(`[Definition] ✗ No definePageMeta definition found`);
         }
-        // 4. Check for page routes (specific patterns)
-        if (line.includes('navigateTo') || line.includes('router.push') || /to=['"]/.test(line)) {
+        // 5. Check for page routes (specific patterns)
+        if (line.includes('navigateTo') || line.includes('router.push') || /to=['"]/.test(line) || /href=['"]/.test(line)) {
             this.logger.info(`[Definition] Checking page routes...`);
-            const routeDef = await this.handlePageRoutes(line);
+            const routeDef = await this.handlePageRoutes(line, stringAtCursor);
             if (routeDef) {
                 this.logger.info(`[Definition] ✓ Provided page route definition`);
                 return routeDef;
             }
             this.logger.info(`[Definition] ✗ No page route definition found`);
         }
-        // 5. Check for API routes (specific patterns)
+        // 6. Check for API routes (specific patterns)
         if (line.includes('$fetch') || line.includes('useFetch') || line.includes('useAsyncData')) {
             this.logger.info(`[Definition] Checking API routes...`);
-            const apiRouteDef = await this.handleApiRoutes(line);
+            const apiRouteDef = await this.handleApiRoutes(line, stringAtCursor);
             if (apiRouteDef) {
                 this.logger.info(`[Definition] ✓ Provided API route definition`);
                 return apiRouteDef;
@@ -171,13 +173,17 @@ class DefinitionProvider {
      * import { helper } from '@/utils/helpers'
      * import './styles.css'
      */
-    async handleImportStatement(line, word) {
-        // Match: import ... from 'path' or import 'path'
-        const importMatch = line.match(/from\s+['"]([^'"]+)['"]|import\s+['"]([^'"]+)['"]/);
-        if (!importMatch) {
-            return null;
+    async handleImportStatement(line, word, stringAtCursor) {
+        // If cursor is on a string, use that as the import path
+        let importPath = stringAtCursor;
+        // Otherwise, extract from the line
+        if (!importPath) {
+            const importMatch = line.match(/from\s+['"]([^'"]+)['"]|import\s+['"]([^'"]+)['"]/);
+            if (!importMatch) {
+                return null;
+            }
+            importPath = importMatch[1] || importMatch[2];
         }
-        const importPath = importMatch[1] || importMatch[2];
         this.logger.info(`[Definition] Found import path: ${importPath}`);
         // Check if the import already has an extension (has a dot after the last slash)
         const hasExtension = /\.[^/\\]+$/.test(importPath);
@@ -301,10 +307,30 @@ class DefinitionProvider {
     /**
      * Handle definePageMeta context (layout, middleware)
      */
-    async handleDefinePageMeta(word, line) {
+    async handleDefinePageMeta(word, line, stringAtCursor) {
         // Check if we're in a definePageMeta context
         if (!line.includes('layout') && !line.includes('middleware')) {
             return null;
+        }
+        // If cursor is on a string, try to resolve it
+        if (stringAtCursor) {
+            // Try as layout first
+            if (line.includes('layout')) {
+                const layoutFile = this.projectManager.findFile('layouts', `${stringAtCursor}.vue`);
+                if (layoutFile) {
+                    return node_1.Location.create(vscode_uri_1.URI.file(layoutFile).toString(), node_1.Range.create(0, 0, 0, 0));
+                }
+            }
+            // Try as middleware
+            if (line.includes('middleware')) {
+                const middlewareFile = this.projectManager.findFile('middleware', `${stringAtCursor}.ts`) ||
+                    this.projectManager.findFile('middleware', `${stringAtCursor}.js`) ||
+                    this.projectManager.findFile('server', 'middleware', `${stringAtCursor}.ts`) ||
+                    this.projectManager.findFile('server', 'middleware', `${stringAtCursor}.js`);
+                if (middlewareFile) {
+                    return node_1.Location.create(vscode_uri_1.URI.file(middlewareFile).toString(), node_1.Range.create(0, 0, 0, 0));
+                }
+            }
         }
         // Extract layout name: layout: 'default' or layout: "custom"
         const layoutMatch = line.match(/layout:\s*['"]([^'"]+)['"]/);
@@ -336,12 +362,20 @@ class DefinitionProvider {
     /**
      * Handle page routes (navigateTo, NuxtLink, router.push)
      */
-    async handlePageRoutes(line) {
-        // Match navigateTo('/path'), router.push('/path'), <NuxtLink to="/path">
+    async handlePageRoutes(line, stringAtCursor) {
+        // If cursor is on a string and it looks like a route path, try to resolve it
+        if (stringAtCursor && stringAtCursor.startsWith('/')) {
+            const pageFile = await this.resolvePageRoute(stringAtCursor);
+            if (pageFile) {
+                return node_1.Location.create(vscode_uri_1.URI.file(pageFile).toString(), node_1.Range.create(0, 0, 0, 0));
+            }
+        }
+        // Match navigateTo('/path'), router.push('/path'), <NuxtLink to="/path">, <NuxtLink href="/path">
         const routePatterns = [
             /navigateTo\(['"]([^'"]+)['"]/,
             /router\.push\(['"]([^'"]+)['"]/,
             /to=['"]([^'"]+)['"]/,
+            /href=['"]([^'"]+)['"]/,
         ];
         for (const pattern of routePatterns) {
             const match = line.match(pattern);
@@ -382,7 +416,14 @@ class DefinitionProvider {
     /**
      * Handle API routes ($fetch, useFetch, useAsyncData)
      */
-    async handleApiRoutes(line) {
+    async handleApiRoutes(line, stringAtCursor) {
+        // If cursor is on a string and it looks like an API path, try to resolve it
+        if (stringAtCursor && stringAtCursor.startsWith('/api/')) {
+            const apiFile = await this.resolveApiRoute(stringAtCursor);
+            if (apiFile) {
+                return node_1.Location.create(vscode_uri_1.URI.file(apiFile).toString(), node_1.Range.create(0, 0, 0, 0));
+            }
+        }
         // Match $fetch('/api/...'), useFetch('/api/...'), etc.
         const apiPatterns = [
             /\$fetch\(['"]([^'"]+)['"]/,
@@ -533,6 +574,43 @@ class DefinitionProvider {
         while ((match = wordPattern.exec(line)) !== null) {
             if (match.index <= lineOffset && lineOffset <= match.index + match[0].length) {
                 return match[0];
+            }
+        }
+        return '';
+    }
+    /**
+     * Get the string literal at the given position
+     * Handles both single and double quoted strings
+     */
+    getStringAtPosition(text, offset) {
+        const line = this.getLine(text, offset);
+        const lineOffset = offset - (text.lastIndexOf('\n', offset - 1) + 1);
+        // Match single quoted strings
+        const singleQuotePattern = /'([^']*)'/g;
+        let match;
+        while ((match = singleQuotePattern.exec(line)) !== null) {
+            const stringStart = match.index + 1;
+            const stringEnd = match.index + match[0].length - 1;
+            if (stringStart <= lineOffset && lineOffset <= stringEnd) {
+                return match[1];
+            }
+        }
+        // Match double quoted strings
+        const doubleQuotePattern = /"([^"]*)"/g;
+        while ((match = doubleQuotePattern.exec(line)) !== null) {
+            const stringStart = match.index + 1;
+            const stringEnd = match.index + match[0].length - 1;
+            if (stringStart <= lineOffset && lineOffset <= stringEnd) {
+                return match[1];
+            }
+        }
+        // Match template literal strings
+        const templatePattern = /`([^`]*)`/g;
+        while ((match = templatePattern.exec(line)) !== null) {
+            const stringStart = match.index + 1;
+            const stringEnd = match.index + match[0].length - 1;
+            if (stringStart <= lineOffset && lineOffset <= stringEnd) {
+                return match[1];
             }
         }
         return '';

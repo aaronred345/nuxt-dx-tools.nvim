@@ -14,6 +14,10 @@ export declare class HoverProvider {
      */
     provideHover(document: TextDocument, position: Position): Promise<Hover | null>;
     /**
+     * Handle import statement hover (show file preview)
+     */
+    private handleImportStatement;
+    /**
      * Handle virtual module hover
      */
     private handleVirtualModules;
@@ -53,5 +57,10 @@ export declare class HoverProvider {
      * Get the word at the given position
      */
     private getWordAtPosition;
+    /**
+     * Get the string literal at the given position
+     * Handles both single and double quoted strings
+     */
+    private getStringAtPosition;
 }
 //# sourceMappingURL=hover-provider.d.ts.map

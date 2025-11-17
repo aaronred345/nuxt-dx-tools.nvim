@@ -22,8 +22,18 @@ export class HoverProvider {
     const offset = document.offsetAt(position);
     const line = this.getLine(text, offset);
     const word = this.getWordAtPosition(text, offset);
+    const stringAtCursor = this.getStringAtPosition(text, offset);
 
-    // 1. Check for virtual module imports (very specific, unlikely to false positive)
+    // 1. Check for import statements (show file preview)
+    if (stringAtCursor && line.includes('import') && (line.includes('from') || line.includes("'"))) {
+      const importHover = await this.handleImportStatement(line, stringAtCursor);
+      if (importHover) {
+        this.logger.debug(`[Hover] Provided import file preview`);
+        return importHover;
+      }
+    }
+
+    // 2. Check for virtual module imports (very specific, unlikely to false positive)
     if (line.includes('#imports') || line.includes('#app') || line.includes('#build') || line.includes('#components')) {
       const virtualModuleHover = this.handleVirtualModules(line);
       if (virtualModuleHover) {
@@ -32,18 +42,18 @@ export class HoverProvider {
       }
     }
 
-    // 2. Check for API routes (specific patterns)
+    // 3. Check for API routes (specific patterns)
     if (line.includes('$fetch') || line.includes('useFetch') || line.includes('useAsyncData')) {
-      const apiRouteHover = await this.handleApiRoutes(line);
+      const apiRouteHover = await this.handleApiRoutes(line, stringAtCursor);
       if (apiRouteHover) {
         this.logger.debug(`[Hover] Provided API route info`);
         return apiRouteHover;
       }
     }
 
-    // 3. Check for page routes (specific patterns)
-    if (line.includes('navigateTo') || line.includes('router.push') || /to=['"]/.test(line)) {
-      const pageRouteHover = await this.handlePageRoutes(line);
+    // 4. Check for page routes (specific patterns)
+    if (line.includes('navigateTo') || line.includes('router.push') || /to=['"]/.test(line) || /href=['"]/.test(line)) {
+      const pageRouteHover = await this.handlePageRoutes(line, stringAtCursor);
       if (pageRouteHover) {
         this.logger.debug(`[Hover] Provided page route info`);
         return pageRouteHover;
@@ -75,6 +85,110 @@ export class HoverProvider {
 
     // Return null to let other LSP servers handle it (no log to avoid noise)
     return null;
+  }
+
+  /**
+   * Handle import statement hover (show file preview)
+   */
+  private async handleImportStatement(line: string, importPath: string): Promise<Hover | null> {
+    if (!importPath) {
+      return null;
+    }
+
+    this.logger.debug(`[Hover] Checking import path: ${importPath}`);
+
+    const rootPath = this.projectManager.getRootPath();
+    const tsConfigParser = this.projectManager.getTsConfigParser();
+
+    // Check if the import already has an extension
+    const hasExtension = /\.[^/\\]+$/.test(importPath);
+    const importExtension = hasExtension ? path.extname(importPath) : null;
+
+    let resolvedPath: string | null = null;
+
+    // Try with alias resolution first
+    if (hasExtension) {
+      const aliasResolved = tsConfigParser.resolveAliasPath(importPath);
+      if (aliasResolved && fs.existsSync(aliasResolved)) {
+        const resolvedExt = path.extname(aliasResolved);
+        if (resolvedExt === importExtension) {
+          resolvedPath = aliasResolved;
+        }
+      }
+
+      // Try direct path
+      if (!resolvedPath) {
+        const directPath = path.join(rootPath, importPath);
+        if (fs.existsSync(directPath)) {
+          resolvedPath = directPath;
+        }
+      }
+
+      // Try without tilde
+      if (!resolvedPath && importPath.startsWith('~')) {
+        const withoutTilde = importPath.replace(/^~+\//, '');
+        const tildeStrippedPath = path.join(rootPath, withoutTilde);
+        if (fs.existsSync(tildeStrippedPath)) {
+          resolvedPath = tildeStrippedPath;
+        }
+      }
+
+      // Try without @
+      if (!resolvedPath && importPath.startsWith('@')) {
+        const withoutAt = importPath.replace(/^@\//, '');
+        const atStrippedPath = path.join(rootPath, withoutAt);
+        if (fs.existsSync(atStrippedPath)) {
+          resolvedPath = atStrippedPath;
+        }
+      }
+    } else {
+      // Try alias resolution
+      const aliasResolved = tsConfigParser.resolveAliasPath(importPath);
+      if (aliasResolved && fs.existsSync(aliasResolved) && !aliasResolved.endsWith('.d.ts')) {
+        resolvedPath = aliasResolved;
+      }
+
+      // Try with various extensions
+      if (!resolvedPath) {
+        const extensions = ['.vue', '.ts', '.js', '.tsx', '.jsx', '.mjs', '.css', '.pcss', '.scss'];
+        for (const ext of extensions) {
+          const fullPath = path.join(rootPath, importPath + ext);
+          if (fs.existsSync(fullPath)) {
+            resolvedPath = fullPath;
+            break;
+          }
+        }
+      }
+    }
+
+    if (!resolvedPath) {
+      return null;
+    }
+
+    // Read file preview
+    const filePreview = this.readFirstLines(resolvedPath, 20);
+    const fileName = path.basename(resolvedPath);
+    const fileExt = path.extname(resolvedPath).slice(1);
+
+    const content: MarkupContent = {
+      kind: MarkupKind.Markdown,
+      value: [
+        '```typescript',
+        `// Import: ${importPath}`,
+        '```',
+        '',
+        `**File:** \`${fileName}\``,
+        '',
+        '**Preview:**',
+        '```' + fileExt,
+        filePreview,
+        '```',
+        '',
+        '*Press `gd` to open the file*',
+      ].join('\n'),
+    };
+
+    return { contents: content };
   }
 
   /**
@@ -138,93 +252,109 @@ export class HoverProvider {
   /**
    * Handle API route hover
    */
-  private async handleApiRoutes(line: string): Promise<Hover | null> {
-    const apiPatterns = [
-      /\$fetch\(['"]([^'"]+)['"]/,
-      /useFetch\(['"]([^'"]+)['"]/,
-      /useAsyncData\([^,]*,\s*\(\)\s*=>\s*\$fetch\(['"]([^'"]+)['"]/,
-    ];
+  private async handleApiRoutes(line: string, stringAtCursor: string): Promise<Hover | null> {
+    // If cursor is on a string and it looks like an API path, use that
+    let apiPath = stringAtCursor && stringAtCursor.startsWith('/api/') ? stringAtCursor : null;
 
-    for (const pattern of apiPatterns) {
-      const match = line.match(pattern);
-      if (match) {
-        const apiPath = match[1];
+    // Otherwise, extract from the line
+    if (!apiPath) {
+      const apiPatterns = [
+        /\$fetch\(['"]([^'"]+)['"]/,
+        /useFetch\(['"]([^'"]+)['"]/,
+        /useAsyncData\([^,]*,\s*\(\)\s*=>\s*\$fetch\(['"]([^'"]+)['"]/,
+      ];
 
-        if (!apiPath.startsWith('/api/')) {
-          continue;
+      for (const pattern of apiPatterns) {
+        const match = line.match(pattern);
+        if (match) {
+          apiPath = match[1];
+          break;
         }
-
-        const apiFile = await this.resolveApiRoute(apiPath);
-        if (!apiFile) {
-          continue;
-        }
-
-        // Read the first few lines of the API handler
-        const handlerCode = this.readFirstLines(apiFile, 10);
-
-        const content: MarkupContent = {
-          kind: MarkupKind.Markdown,
-          value: [
-            '```typescript',
-            `// API Route: ${apiPath}`,
-            '```',
-            '',
-            '**Handler:**',
-            '```typescript',
-            handlerCode,
-            '```',
-            '',
-            `**File:** \`${path.basename(apiFile)}\``,
-            '',
-            '*Press `gd` to open the handler file*',
-          ].join('\n'),
-        };
-
-        return { contents: content };
       }
     }
 
-    return null;
+    if (!apiPath || !apiPath.startsWith('/api/')) {
+      return null;
+    }
+
+    const apiFile = await this.resolveApiRoute(apiPath);
+    if (!apiFile) {
+      return null;
+    }
+
+    // Read more lines of the API handler for better preview
+    const handlerCode = this.readFirstLines(apiFile, 20);
+    const fileExt = path.extname(apiFile).slice(1) || 'typescript';
+
+    const content: MarkupContent = {
+      kind: MarkupKind.Markdown,
+      value: [
+        '```typescript',
+        `// API Route: ${apiPath}`,
+        '```',
+        '',
+        `**File:** \`${path.basename(apiFile)}\``,
+        '',
+        '**Preview:**',
+        '```' + fileExt,
+        handlerCode,
+        '```',
+        '',
+        '*Press `gd` to open the handler file*',
+      ].join('\n'),
+    };
+
+    return { contents: content };
   }
 
   /**
    * Handle page route hover
    */
-  private async handlePageRoutes(line: string): Promise<Hover | null> {
-    const routePatterns = [
-      /navigateTo\(['"]([^'"]+)['"]/,
-      /router\.push\(['"]([^'"]+)['"]/,
-      /to=['"]([^'"]+)['"]/,
-    ];
+  private async handlePageRoutes(line: string, stringAtCursor: string): Promise<Hover | null> {
+    // If cursor is on a string and it looks like a route path, use that
+    let routePath = stringAtCursor && stringAtCursor.startsWith('/') ? stringAtCursor : null;
 
-    for (const pattern of routePatterns) {
-      const match = line.match(pattern);
-      if (match) {
-        const routePath = match[1];
-        const pageFile = await this.resolvePageRoute(routePath);
+    // Otherwise, extract from the line
+    if (!routePath) {
+      const routePatterns = [
+        /navigateTo\(['"]([^'"]+)['"]/,
+        /router\.push\(['"]([^'"]+)['"]/,
+        /to=['"]([^'"]+)['"]/,
+        /href=['"]([^'"]+)['"]/,
+      ];
 
-        if (!pageFile) {
-          continue;
+      for (const pattern of routePatterns) {
+        const match = line.match(pattern);
+        if (match) {
+          routePath = match[1];
+          break;
         }
-
-        const content: MarkupContent = {
-          kind: MarkupKind.Markdown,
-          value: [
-            '```typescript',
-            `// Page Route: ${routePath}`,
-            '```',
-            '',
-            `**Page:** \`${path.basename(pageFile)}\``,
-            '',
-            '*Press `gd` to open the page file*',
-          ].join('\n'),
-        };
-
-        return { contents: content };
       }
     }
 
-    return null;
+    if (!routePath) {
+      return null;
+    }
+
+    const pageFile = await this.resolvePageRoute(routePath);
+    if (!pageFile) {
+      return null;
+    }
+
+    const content: MarkupContent = {
+      kind: MarkupKind.Markdown,
+      value: [
+        '```typescript',
+        `// Page Route: ${routePath}`,
+        '```',
+        '',
+        `**Page:** \`${path.basename(pageFile)}\``,
+        '',
+        '*Press `gd` to open the page file*',
+      ].join('\n'),
+    };
+
+    return { contents: content };
   }
 
   /**
@@ -436,6 +566,48 @@ export class HoverProvider {
     while ((match = wordPattern.exec(line)) !== null) {
       if (match.index <= lineOffset && lineOffset <= match.index + match[0].length) {
         return match[0];
+      }
+    }
+
+    return '';
+  }
+
+  /**
+   * Get the string literal at the given position
+   * Handles both single and double quoted strings
+   */
+  private getStringAtPosition(text: string, offset: number): string {
+    const line = this.getLine(text, offset);
+    const lineOffset = offset - (text.lastIndexOf('\n', offset - 1) + 1);
+
+    // Match single quoted strings
+    const singleQuotePattern = /'([^']*)'/g;
+    let match;
+    while ((match = singleQuotePattern.exec(line)) !== null) {
+      const stringStart = match.index + 1;
+      const stringEnd = match.index + match[0].length - 1;
+      if (stringStart <= lineOffset && lineOffset <= stringEnd) {
+        return match[1];
+      }
+    }
+
+    // Match double quoted strings
+    const doubleQuotePattern = /"([^"]*)"/g;
+    while ((match = doubleQuotePattern.exec(line)) !== null) {
+      const stringStart = match.index + 1;
+      const stringEnd = match.index + match[0].length - 1;
+      if (stringStart <= lineOffset && lineOffset <= stringEnd) {
+        return match[1];
+      }
+    }
+
+    // Match template literal strings
+    const templatePattern = /`([^`]*)`/g;
+    while ((match = templatePattern.exec(line)) !== null) {
+      const stringStart = match.index + 1;
+      const stringEnd = match.index + match[0].length - 1;
+      if (stringStart <= lineOffset && lineOffset <= stringEnd) {
+        return match[1];
       }
     }
 
