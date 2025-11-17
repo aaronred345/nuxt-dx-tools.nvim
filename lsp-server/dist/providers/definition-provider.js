@@ -161,20 +161,39 @@ class DefinitionProvider {
         this.logger.info(`[Definition] Found import path: ${importPath}`);
         // Check if the import already has an extension (has a dot after the last slash)
         const hasExtension = /\.[^/\\]+$/.test(importPath);
-        // Resolve the import path using tsconfig aliases
-        const tsConfigParser = this.projectManager.getTsConfigParser();
-        const resolvedPath = tsConfigParser.resolveAliasPath(importPath);
-        this.logger.info(`[Definition] Resolved import path: ${resolvedPath || 'null'}, hasExtension: ${hasExtension}`);
-        if (resolvedPath && fs.existsSync(resolvedPath)) {
-            return node_1.Location.create(vscode_uri_1.URI.file(resolvedPath).toString(), node_1.Range.create(0, 0, 0, 0));
-        }
+        // Extract the extension from the import path
+        const importExtension = hasExtension ? path.extname(importPath) : null;
+        this.logger.info(`[Definition] Import extension: ${importExtension || 'none'}`);
         const rootPath = this.projectManager.getRootPath();
-        // If the import already has an extension, try it directly first
+        const tsConfigParser = this.projectManager.getTsConfigParser();
+        // If the import already has an extension, try it directly first (highest priority)
         if (hasExtension) {
+            // Try with alias resolution first
+            const resolvedPath = tsConfigParser.resolveAliasPath(importPath);
+            if (resolvedPath && fs.existsSync(resolvedPath)) {
+                // Only accept if the extension matches (avoid .d.ts files for .css imports)
+                if (path.extname(resolvedPath) === importExtension) {
+                    this.logger.info(`[Definition] Found file with alias resolution: ${resolvedPath}`);
+                    return node_1.Location.create(vscode_uri_1.URI.file(resolvedPath).toString(), node_1.Range.create(0, 0, 0, 0));
+                }
+                else {
+                    this.logger.info(`[Definition] Skipping ${resolvedPath} - extension mismatch (expected ${importExtension})`);
+                }
+            }
+            // Try direct relative path
             const directPath = path.join(rootPath, importPath);
             if (fs.existsSync(directPath)) {
                 this.logger.info(`[Definition] Found file with existing extension: ${directPath}`);
                 return node_1.Location.create(vscode_uri_1.URI.file(directPath).toString(), node_1.Range.create(0, 0, 0, 0));
+            }
+        }
+        // For imports without extensions, try alias resolution
+        const resolvedPath = tsConfigParser.resolveAliasPath(importPath);
+        this.logger.info(`[Definition] Resolved import path: ${resolvedPath || 'null'}, hasExtension: ${hasExtension}`);
+        if (resolvedPath && fs.existsSync(resolvedPath)) {
+            // Skip .d.ts files unless that's what we're looking for
+            if (!resolvedPath.endsWith('.d.ts')) {
+                return node_1.Location.create(vscode_uri_1.URI.file(resolvedPath).toString(), node_1.Range.create(0, 0, 0, 0));
             }
         }
         // Try to resolve as a relative path with various extensions
