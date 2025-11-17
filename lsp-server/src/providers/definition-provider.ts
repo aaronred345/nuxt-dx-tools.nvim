@@ -27,7 +27,12 @@ export class DefinitionProvider {
     const line = this.getLine(text, offset);
     const word = this.getWordAtPosition(text, offset);
 
-    this.logger.info(`[Definition] Request for word="${word}" in line="${line.trim()}"`);
+    this.logger.info(`[Definition] ==================== NEW REQUEST ====================`);
+    this.logger.info(`[Definition] File: ${document.uri}`);
+    this.logger.info(`[Definition] Position: line ${position.line}, char ${position.character}`);
+    this.logger.info(`[Definition] Word under cursor: "${word}"`);
+    this.logger.info(`[Definition] Full line: "${line.trim()}"`);
+    this.logger.info(`[Definition] =======================================================`);
 
     // 1. Check for virtual module imports (very specific)
     if (line.includes('#imports') || line.includes('#app') || line.includes('#build') || line.includes('#components')) {
@@ -153,23 +158,60 @@ export class DefinitionProvider {
 
     // If the import already has an extension, try it directly first (highest priority)
     if (hasExtension) {
+      this.logger.info(`[Definition] Import has extension: ${importExtension}, trying resolution...`);
+
       // Try with alias resolution first
       const resolvedPath = tsConfigParser.resolveAliasPath(importPath);
-      if (resolvedPath && fs.existsSync(resolvedPath)) {
-        // Only accept if the extension matches (avoid .d.ts files for .css imports)
-        if (path.extname(resolvedPath) === importExtension) {
-          this.logger.info(`[Definition] Found file with alias resolution: ${resolvedPath}`);
-          return Location.create(URI.file(resolvedPath).toString(), Range.create(0, 0, 0, 0));
+      this.logger.info(`[Definition] Alias resolved to: ${resolvedPath || 'null'}`);
+
+      if (resolvedPath) {
+        if (fs.existsSync(resolvedPath)) {
+          // Only accept if the extension matches (avoid .d.ts files for .css imports)
+          const resolvedExt = path.extname(resolvedPath);
+          this.logger.info(`[Definition] File exists at ${resolvedPath}, extension: ${resolvedExt}`);
+
+          if (resolvedExt === importExtension) {
+            this.logger.info(`[Definition] ✓ Extension matches, returning: ${resolvedPath}`);
+            return Location.create(URI.file(resolvedPath).toString(), Range.create(0, 0, 0, 0));
+          } else {
+            this.logger.info(`[Definition] ✗ Extension mismatch (expected ${importExtension}, got ${resolvedExt})`);
+          }
         } else {
-          this.logger.info(`[Definition] Skipping ${resolvedPath} - extension mismatch (expected ${importExtension})`);
+          this.logger.info(`[Definition] File does not exist at resolved path: ${resolvedPath}`);
         }
       }
 
-      // Try direct relative path
+      // Try direct relative path (from project root)
       const directPath = path.join(rootPath, importPath);
+      this.logger.info(`[Definition] Trying direct path: ${directPath}`);
       if (fs.existsSync(directPath)) {
-        this.logger.info(`[Definition] Found file with existing extension: ${directPath}`);
+        this.logger.info(`[Definition] ✓ Found file with existing extension: ${directPath}`);
         return Location.create(URI.file(directPath).toString(), Range.create(0, 0, 0, 0));
+      } else {
+        this.logger.info(`[Definition] ✗ File does not exist at direct path`);
+      }
+
+      // For aliased paths, try stripping the alias and treating as relative from root
+      // e.g., ~/assets/main.css -> assets/main.css
+      if (importPath.startsWith('~')) {
+        const withoutTilde = importPath.replace(/^~+\//, '');
+        const tildeStrippedPath = path.join(rootPath, withoutTilde);
+        this.logger.info(`[Definition] Trying without tilde: ${tildeStrippedPath}`);
+        if (fs.existsSync(tildeStrippedPath)) {
+          this.logger.info(`[Definition] ✓ Found file without tilde: ${tildeStrippedPath}`);
+          return Location.create(URI.file(tildeStrippedPath).toString(), Range.create(0, 0, 0, 0));
+        }
+      }
+
+      // Try @/ prefix
+      if (importPath.startsWith('@')) {
+        const withoutAt = importPath.replace(/^@\//, '');
+        const atStrippedPath = path.join(rootPath, withoutAt);
+        this.logger.info(`[Definition] Trying without @: ${atStrippedPath}`);
+        if (fs.existsSync(atStrippedPath)) {
+          this.logger.info(`[Definition] ✓ Found file without @: ${atStrippedPath}`);
+          return Location.create(URI.file(atStrippedPath).toString(), Range.create(0, 0, 0, 0));
+        }
       }
     }
 
