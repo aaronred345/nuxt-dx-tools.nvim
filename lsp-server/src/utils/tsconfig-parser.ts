@@ -265,8 +265,19 @@ export class TsConfigParser {
       return null;
     }
 
-    // Try different file extensions
-    const extensions = ['.vue', '.ts', '.js', '.mjs', '.tsx', '.jsx'];
+    // Check if the path already has an extension
+    const hasExtension = /\.[^/\\]+$/.test(importPath);
+
+    // If it has an extension, try it directly first
+    if (hasExtension && fs.existsSync(resolvedPath)) {
+      return resolvedPath;
+    }
+
+    // Try different file extensions (code, styles, and assets)
+    const extensions = [
+      '.vue', '.ts', '.js', '.mjs', '.tsx', '.jsx',
+      '.css', '.pcss', '.scss', '.sass', '.less', '.styl'
+    ];
 
     for (const ext of extensions) {
       const fullPath = resolvedPath + ext;
@@ -275,7 +286,7 @@ export class TsConfigParser {
       }
     }
 
-    // Try index files
+    // Try index files for directories
     for (const ext of extensions) {
       const indexPath = path.join(resolvedPath, `index${ext}`);
       if (fs.existsSync(indexPath)) {

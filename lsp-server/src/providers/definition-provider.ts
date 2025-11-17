@@ -129,6 +129,7 @@ export class DefinitionProvider {
    * Handle import statements with path aliases
    * import MyComponent from '~/components/MyComponent.vue'
    * import { helper } from '@/utils/helpers'
+   * import './styles.css'
    */
   private async handleImportStatement(line: string, word: string): Promise<Location | null> {
     // Match: import ... from 'path' or import 'path'
@@ -140,19 +141,36 @@ export class DefinitionProvider {
     const importPath = importMatch[1] || importMatch[2];
     this.logger.info(`[Definition] Found import path: ${importPath}`);
 
+    // Check if the import already has an extension (has a dot after the last slash)
+    const hasExtension = /\.[^/\\]+$/.test(importPath);
+
     // Resolve the import path using tsconfig aliases
     const tsConfigParser = this.projectManager.getTsConfigParser();
     const resolvedPath = tsConfigParser.resolveAliasPath(importPath);
 
-    this.logger.info(`[Definition] Resolved import path: ${resolvedPath || 'null'}`);
+    this.logger.info(`[Definition] Resolved import path: ${resolvedPath || 'null'}, hasExtension: ${hasExtension}`);
 
     if (resolvedPath && fs.existsSync(resolvedPath)) {
       return Location.create(URI.file(resolvedPath).toString(), Range.create(0, 0, 0, 0));
     }
 
-    // Try to resolve as a relative path from project root
     const rootPath = this.projectManager.getRootPath();
-    const extensions = ['.vue', '.ts', '.js', '.tsx', '.jsx', '.mjs'];
+
+    // If the import already has an extension, try it directly first
+    if (hasExtension) {
+      const directPath = path.join(rootPath, importPath);
+      if (fs.existsSync(directPath)) {
+        this.logger.info(`[Definition] Found file with existing extension: ${directPath}`);
+        return Location.create(URI.file(directPath).toString(), Range.create(0, 0, 0, 0));
+      }
+    }
+
+    // Try to resolve as a relative path with various extensions
+    // Include all common file types: JS/TS, Vue, CSS, etc.
+    const extensions = [
+      '.vue', '.ts', '.js', '.tsx', '.jsx', '.mjs',
+      '.css', '.pcss', '.scss', '.sass', '.less', '.styl'
+    ];
 
     for (const ext of extensions) {
       const fullPath = path.join(rootPath, importPath + ext);
@@ -162,11 +180,13 @@ export class DefinitionProvider {
       }
     }
 
-    // Try without extension (might already have it)
-    const directPath = path.join(rootPath, importPath);
-    if (fs.existsSync(directPath)) {
-      this.logger.info(`[Definition] Found file directly: ${directPath}`);
-      return Location.create(URI.file(directPath).toString(), Range.create(0, 0, 0, 0));
+    // Try without extension as a fallback
+    if (!hasExtension) {
+      const directPath = path.join(rootPath, importPath);
+      if (fs.existsSync(directPath)) {
+        this.logger.info(`[Definition] Found file directly: ${directPath}`);
+        return Location.create(URI.file(directPath).toString(), Range.create(0, 0, 0, 0));
+      }
     }
 
     this.logger.info(`[Definition] Import path not found: ${importPath}`);

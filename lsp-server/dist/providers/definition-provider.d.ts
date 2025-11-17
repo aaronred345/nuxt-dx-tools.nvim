@@ -17,6 +17,7 @@ export declare class DefinitionProvider {
      * Handle import statements with path aliases
      * import MyComponent from '~/components/MyComponent.vue'
      * import { helper } from '@/utils/helpers'
+     * import './styles.css'
      */
     private handleImportStatement;
     /**
