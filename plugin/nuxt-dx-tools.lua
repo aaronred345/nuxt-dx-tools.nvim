@@ -45,6 +45,9 @@ local function start_lsp_server()
     log_handle:close()
   end
 
+  -- Create error log file
+  local error_log_file = plugin_path .. '/lsp-server/server-error.log'
+
   -- Start or attach the LSP server to this buffer
   local client_id = vim.lsp.start({
     name = 'nuxt-dx-tools-lsp',
@@ -59,6 +62,17 @@ local function start_lsp_server()
     on_attach = function(client, bufnr)
       local msg = string.format('[Nuxt DX Tools] LSP attached! client_id=%s bufnr=%s\nLogs: %s', client.id, bufnr, log_file)
       vim.notify(msg, vim.log.levels.INFO)
+    end,
+    on_exit = function(code, signal, client_id)
+      local err_log = io.open(error_log_file, 'a')
+      if err_log then
+        err_log:write(string.format('[%s] Server exited! code=%s signal=%s client_id=%s\n',
+          os.date('%Y-%m-%d %H:%M:%S'), code or 'nil', signal or 'nil', client_id or 'nil'))
+        err_log:close()
+      end
+      if code ~= 0 then
+        vim.notify(string.format('[Nuxt DX Tools] LSP server crashed! Exit code: %s. Check: %s', code, error_log_file), vim.log.levels.ERROR)
+      end
     end,
     handlers = {
       ['textDocument/hover'] = function(err, result, ctx, config)
