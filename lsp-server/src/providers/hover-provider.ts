@@ -24,8 +24,19 @@ export class HoverProvider {
     const word = this.getWordAtPosition(text, offset);
     const stringAtCursor = this.getStringAtPosition(text, offset);
 
-    // 1. Check for import statements (show file preview)
-    if (stringAtCursor && line.includes('import') && (line.includes('from') || line.includes("'"))) {
+    // PRIORITY 1: Check for page routes FIRST (before checking word)
+    // This handles NuxtLink with to="/path" - show page preview instead of component info
+    if (line.includes('navigateTo') || line.includes('router.push') || /to\s*=\s*['"]/.test(line) || /href\s*=\s*['"]/.test(line)) {
+      const pageRouteHover = await this.handlePageRoutes(line, stringAtCursor);
+      if (pageRouteHover) {
+        this.logger.debug(`[Hover] Provided page route info`);
+        return pageRouteHover;
+      }
+    }
+
+    // PRIORITY 2: Check for import statements (show file preview)
+    // Handle both string cursor position AND hovering over import statement
+    if (line.includes('import') && (line.includes('from') || line.includes("'"))) {
       const importHover = await this.handleImportStatement(line, stringAtCursor);
       if (importHover) {
         this.logger.debug(`[Hover] Provided import file preview`);
@@ -33,16 +44,7 @@ export class HoverProvider {
       }
     }
 
-    // 2. Check for virtual module imports (very specific, unlikely to false positive)
-    if (line.includes('#imports') || line.includes('#app') || line.includes('#build') || line.includes('#components')) {
-      const virtualModuleHover = this.handleVirtualModules(line);
-      if (virtualModuleHover) {
-        this.logger.debug(`[Hover] Provided virtual module info for: ${word}`);
-        return virtualModuleHover;
-      }
-    }
-
-    // 3. Check for API routes (specific patterns)
+    // PRIORITY 3: Check for API routes
     if (line.includes('$fetch') || line.includes('useFetch') || line.includes('useAsyncData')) {
       const apiRouteHover = await this.handleApiRoutes(line, stringAtCursor);
       if (apiRouteHover) {
@@ -51,12 +53,12 @@ export class HoverProvider {
       }
     }
 
-    // 4. Check for page routes (specific patterns)
-    if (line.includes('navigateTo') || line.includes('router.push') || /to\s*=\s*['"]/.test(line) || /href\s*=\s*['"]/.test(line)) {
-      const pageRouteHover = await this.handlePageRoutes(line, stringAtCursor);
-      if (pageRouteHover) {
-        this.logger.debug(`[Hover] Provided page route info`);
-        return pageRouteHover;
+    // 4. Check for virtual module imports (very specific, unlikely to false positive)
+    if (line.includes('#imports') || line.includes('#app') || line.includes('#build') || line.includes('#components')) {
+      const virtualModuleHover = this.handleVirtualModules(line);
+      if (virtualModuleHover) {
+        this.logger.debug(`[Hover] Provided virtual module info for: ${word}`);
+        return virtualModuleHover;
       }
     }
 
@@ -96,7 +98,19 @@ export class HoverProvider {
   /**
    * Handle import statement hover (show file preview)
    */
-  private async handleImportStatement(line: string, importPath: string): Promise<Hover | null> {
+  private async handleImportStatement(line: string, stringAtCursor: string): Promise<Hover | null> {
+    // If cursor is on a string, use that as the import path
+    let importPath = stringAtCursor;
+
+    // Otherwise, extract from the line
+    if (!importPath) {
+      const importMatch = line.match(/from\s+['"]([^'"]+)['"]|import\s+['"]([^'"]+)['"]/);
+      if (!importMatch) {
+        return null;
+      }
+      importPath = importMatch[1] || importMatch[2];
+    }
+
     if (!importPath) {
       return null;
     }
@@ -604,9 +618,10 @@ export class HoverProvider {
     const singleQuotePattern = /'([^']*)'/g;
     let match;
     while ((match = singleQuotePattern.exec(line)) !== null) {
-      const stringStart = match.index + 1;
-      const stringEnd = match.index + match[0].length - 1;
-      if (stringStart <= lineOffset && lineOffset <= stringEnd) {
+      const stringStart = match.index + 1; // Position after opening quote
+      const stringEnd = match.index + match[0].length - 1; // Position of closing quote
+      // Cursor must be between quotes (inclusive of content, exclusive of quotes)
+      if (stringStart <= lineOffset && lineOffset < stringEnd) {
         return match[1];
       }
     }
@@ -616,7 +631,7 @@ export class HoverProvider {
     while ((match = doubleQuotePattern.exec(line)) !== null) {
       const stringStart = match.index + 1;
       const stringEnd = match.index + match[0].length - 1;
-      if (stringStart <= lineOffset && lineOffset <= stringEnd) {
+      if (stringStart <= lineOffset && lineOffset < stringEnd) {
         return match[1];
       }
     }
@@ -626,7 +641,7 @@ export class HoverProvider {
     while ((match = templatePattern.exec(line)) !== null) {
       const stringStart = match.index + 1;
       const stringEnd = match.index + match[0].length - 1;
-      if (stringStart <= lineOffset && lineOffset <= stringEnd) {
+      if (stringStart <= lineOffset && lineOffset < stringEnd) {
         return match[1];
       }
     }

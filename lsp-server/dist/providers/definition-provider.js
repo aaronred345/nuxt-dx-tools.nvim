@@ -589,9 +589,10 @@ class DefinitionProvider {
         const singleQuotePattern = /'([^']*)'/g;
         let match;
         while ((match = singleQuotePattern.exec(line)) !== null) {
-            const stringStart = match.index + 1;
-            const stringEnd = match.index + match[0].length - 1;
-            if (stringStart <= lineOffset && lineOffset <= stringEnd) {
+            const stringStart = match.index + 1; // Position after opening quote
+            const stringEnd = match.index + match[0].length - 1; // Position of closing quote
+            // Cursor must be between quotes (inclusive of content, exclusive of quotes)
+            if (stringStart <= lineOffset && lineOffset < stringEnd) {
                 return match[1];
             }
         }
@@ -600,7 +601,7 @@ class DefinitionProvider {
         while ((match = doubleQuotePattern.exec(line)) !== null) {
             const stringStart = match.index + 1;
             const stringEnd = match.index + match[0].length - 1;
-            if (stringStart <= lineOffset && lineOffset <= stringEnd) {
+            if (stringStart <= lineOffset && lineOffset < stringEnd) {
                 return match[1];
             }
         }
@@ -609,7 +610,7 @@ class DefinitionProvider {
         while ((match = templatePattern.exec(line)) !== null) {
             const stringStart = match.index + 1;
             const stringEnd = match.index + match[0].length - 1;
-            if (stringStart <= lineOffset && lineOffset <= stringEnd) {
+            if (stringStart <= lineOffset && lineOffset < stringEnd) {
                 return match[1];
             }
         }
