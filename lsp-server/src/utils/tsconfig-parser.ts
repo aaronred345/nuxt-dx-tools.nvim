@@ -126,16 +126,30 @@ export class TsConfigParser {
     // In Nuxt, paths use ../ to navigate back to project root
     const baseDir = this.rootPath;
 
-    // Find the "paths" section in compilerOptions
-    const pathsMatch = content.match(/"paths"\s*:\s*(\{[^}]*\})/);
-    if (!pathsMatch) {
+    // Find the start of the "paths" section
+    const pathsStartMatch = content.match(/"paths"\s*:\s*\{/);
+    if (!pathsStartMatch) {
       return {};
     }
 
-    const pathsSection = pathsMatch[1];
+    // Find the entire paths object by counting braces
+    const startIndex = pathsStartMatch.index! + pathsStartMatch[0].length - 1; // Position of opening {
+    let braceCount = 0;
+    let endIndex = startIndex;
+
+    for (let i = startIndex; i < content.length; i++) {
+      if (content[i] === '{') braceCount++;
+      if (content[i] === '}') braceCount--;
+      if (braceCount === 0) {
+        endIndex = i;
+        break;
+      }
+    }
+
+    const pathsSection = content.substring(startIndex, endIndex + 1);
 
     // Extract each path mapping: "alias/*": ["target/*", ...]
-    const aliasPattern = /"([^"]+)"\s*:\s*(\[[^\]]*\])/g;
+    const aliasPattern = /"([^"]+)"\s*:\s*\[([^\]]*)\]/g;
     let match;
 
     while ((match = aliasPattern.exec(pathsSection)) !== null) {
@@ -143,7 +157,7 @@ export class TsConfigParser {
       const targetsArray = match[2];
 
       // Extract the first target from the array
-      const targetMatch = targetsArray.match(/\[\s*"([^"]+)"/);
+      const targetMatch = targetsArray.match(/"([^"]+)"/);
       if (targetMatch) {
         const targetPattern = targetMatch[1];
 
