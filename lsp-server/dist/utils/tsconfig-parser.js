@@ -63,23 +63,29 @@ class TsConfigParser {
      */
     parseTsConfigFile(filepath) {
         if (!fs.existsSync(filepath)) {
+            this.logger.info(`[TsConfig:Parse] File does not exist: ${filepath}`);
             return {};
         }
+        this.logger.info(`[TsConfig:Parse] Reading file: ${filepath}`);
         try {
             const content = fs.readFileSync(filepath, 'utf-8');
             const cleanedContent = this.cleanJson(content);
             try {
                 const tsconfig = JSON.parse(cleanedContent);
-                return this.extractPathsFromTsConfig(tsconfig, filepath);
+                const paths = this.extractPathsFromTsConfig(tsconfig, filepath);
+                this.logger.info(`[TsConfig:Parse] Extracted ${Object.keys(paths).length} aliases from ${filepath}`);
+                return paths;
             }
             catch (jsonError) {
                 // If JSON parsing fails, fall back to regex parsing
-                this.logger.debug(`JSON parsing failed for ${filepath}, using regex fallback`);
-                return this.parseTsConfigRegex(cleanedContent, filepath);
+                this.logger.info(`[TsConfig:Parse] JSON parsing failed for ${filepath}, using regex fallback`);
+                const paths = this.parseTsConfigRegex(cleanedContent, filepath);
+                this.logger.info(`[TsConfig:Parse] Regex extracted ${Object.keys(paths).length} aliases from ${filepath}`);
+                return paths;
             }
         }
         catch (error) {
-            this.logger.error(`Failed to read tsconfig file ${filepath}: ${error}`);
+            this.logger.error(`[TsConfig:Parse] Failed to read tsconfig file ${filepath}: ${error}`);
             return {};
         }
     }
@@ -88,17 +94,26 @@ class TsConfigParser {
      */
     extractPathsFromTsConfig(tsconfig, filepath) {
         const paths = {};
-        const tsconfigDir = path.dirname(filepath);
+        // In Nuxt, paths in .nuxt/tsconfig.*.json use ../ to navigate back to project root
+        // We strip the ../ prefix and resolve from project root
+        const baseDir = this.rootPath;
         if (tsconfig.compilerOptions?.paths) {
             for (const [aliasPattern, targets] of Object.entries(tsconfig.compilerOptions.paths)) {
                 if (Array.isArray(targets) && targets.length > 0) {
                     // Use the first target if multiple are specified
                     const targetPattern = targets[0];
-                    // Remove the /* suffix from both alias and target
+                    // Remove the /* suffix from alias and target
+                    // Also remove leading ./ and ../ from target
                     const alias = aliasPattern.replace(/\/\*$/, '');
-                    const target = targetPattern.replace(/^\.\//, '').replace(/\/\*$/, '');
-                    // Resolve target path relative to tsconfig directory
-                    const absoluteTarget = path.resolve(tsconfigDir, target);
+                    let target = targetPattern.replace(/\/\*$/, '');
+                    // Strip leading ../ or ./ to resolve from project root
+                    target = target.replace(/^(?:\.\.\/)+/, '').replace(/^\.\//, '');
+                    // Handle special case of ".." which becomes empty string
+                    if (targetPattern === '..' || targetPattern === '../') {
+                        target = '';
+                    }
+                    // Resolve target path relative to project root
+                    const absoluteTarget = path.resolve(baseDir, target);
                     paths[alias] = absoluteTarget;
                 }
             }
@@ -110,7 +125,8 @@ class TsConfigParser {
      */
     parseTsConfigRegex(content, filepath) {
         const paths = {};
-        const tsconfigDir = path.dirname(filepath);
+        // In Nuxt, paths use ../ to navigate back to project root
+        const baseDir = this.rootPath;
         // Find the "paths" section in compilerOptions
         const pathsMatch = content.match(/"paths"\s*:\s*(\{[^}]*\})/);
         if (!pathsMatch) {
@@ -129,9 +145,15 @@ class TsConfigParser {
                 const targetPattern = targetMatch[1];
                 // Remove the /* suffix from both alias and target
                 const cleanAlias = alias.replace(/\/\*$/, '');
-                const cleanTarget = targetPattern.replace(/^\.\//, '').replace(/\/\*$/, '');
-                // Resolve target path relative to tsconfig directory
-                const absoluteTarget = path.resolve(tsconfigDir, cleanTarget);
+                let cleanTarget = targetPattern.replace(/\/\*$/, '');
+                // Strip leading ../ or ./ to resolve from project root
+                cleanTarget = cleanTarget.replace(/^(?:\.\.\/)+/, '').replace(/^\.\//, '');
+                // Handle special case of ".." which becomes empty string
+                if (targetPattern === '..' || targetPattern === '../') {
+                    cleanTarget = '';
+                }
+                // Resolve target path relative to project root
+                const absoluteTarget = path.resolve(baseDir, cleanTarget);
                 paths[cleanAlias] = absoluteTarget;
             }
         }
