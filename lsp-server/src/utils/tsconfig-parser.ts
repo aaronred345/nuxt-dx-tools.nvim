@@ -32,8 +32,27 @@ export class TsConfigParser {
    * Remove JSON comments and trailing commas to make it valid JSON
    */
   private cleanJson(content: string): string {
-    // Remove single-line comments (but not inside strings)
-    content = content.replace(/\/\/[^\n]*/g, '');
+    // Use a library like strip-json-comments would be ideal, but we'll do a simple approach
+    // Split into lines and remove comment lines
+    const lines = content.split('\n');
+    const cleanedLines = lines.map(line => {
+      // Remove single-line comments, but only if they're not inside a string
+      // Simple heuristic: if the line has an opening quote before //, keep it
+      const commentIndex = line.indexOf('//');
+      if (commentIndex !== -1) {
+        // Count quotes before the comment
+        const beforeComment = line.substring(0, commentIndex);
+        const quoteCount = (beforeComment.match(/"/g) || []).length;
+        // If odd number of quotes, the // is inside a string
+        if (quoteCount % 2 === 0) {
+          // Even quotes or no quotes: the // is a comment
+          line = line.substring(0, commentIndex);
+        }
+      }
+      return line;
+    });
+
+    content = cleanedLines.join('\n');
 
     // Remove multi-line comments
     content = content.replace(/\/\*[\s\S]*?\*\//g, '');
