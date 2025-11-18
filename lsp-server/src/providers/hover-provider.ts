@@ -24,6 +24,8 @@ export class HoverProvider {
     const word = this.getWordAtPosition(text, offset);
     const stringAtCursor = this.getStringAtPosition(text, offset);
 
+    this.logger.info(`[Hover] Analyzing: line="${line.trim()}", word="${word}", stringAtCursor="${stringAtCursor}"`);
+
     // SPECIAL CASE: Hovering over NuxtLink word when line has to/href - show page preview
     if (word === 'NuxtLink' && (/to\s*=\s*['"]/.test(line) || /href\s*=\s*['"]/.test(line))) {
       this.logger.info(`[Hover] SPECIAL: NuxtLink with to/href detected on line: ${line.trim()}`);
@@ -106,7 +108,8 @@ export class HoverProvider {
       }
     }
 
-    // Return null to let other LSP servers handle it (no log to avoid noise)
+    // Return null to let other LSP servers handle it
+    this.logger.info(`[Hover] No Nuxt-specific match found, returning null`);
     return null;
   }
 
