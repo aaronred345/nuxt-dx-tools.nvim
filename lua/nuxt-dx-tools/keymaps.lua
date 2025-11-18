@@ -11,9 +11,9 @@ function M.setup(plugin)
     callback = function(ev)
       local bufnr = ev.buf
 
-      -- === Core Navigation ===
-      -- Note: K (hover), <C-k> (signature), and <leader>ca (code actions) are handled by lsp-integration.lua
-      -- gd is enhanced by goto_definition but not overridden here (uses LSP by default)
+      -- === Custom Commands ===
+      -- Note: LSP features (gd, K, hover, completions) are now handled exclusively
+      -- by the Nuxt DX LSP server. This plugin only provides custom commands.
 
       -- === Component & Info ===
       vim.keymap.set("n", "<leader>ni", plugin.show_component_info, {

@@ -4,8 +4,6 @@ local M = {}
 -- Default configuration
 M.config = {
   api_functions = { "$fetch", "useFetch", "$fetch.raw" },
-  hover_enabled = true,
-  goto_definition_enabled = true,
   diagnostics_enabled = true,
   nuxt_root = nil,
 }
@@ -31,110 +29,9 @@ local function log(msg)
   end
 end
 
--- Main go-to-definition handler
-function M.goto_definition()
-  local word = vim.fn.expand("<cword>")
-  local line = vim.api.nvim_get_current_line()
-
-  log("goto_definition called, word: '" .. (word or "nil") .. "'")
-
-  -- 1. Check for virtual module imports
-  if not virtual_modules then
-    virtual_modules = require("nuxt-dx-tools.virtual-modules")
-  end
-  log("Checking virtual modules...")
-  local virtual_result = virtual_modules.goto_definition()
-  if virtual_result then
-    log("Virtual modules handled it")
-    return
-  end
-
-  -- 2. Check for definePageMeta context
-  log("Checking page meta...")
-  local meta_result = page_meta.goto_definition(word, line)
-  if meta_result then
-    log("Page meta handled it")
-    return
-  end
-
-  -- 3. Check for page routes (navigateTo, NuxtLink)
-  if not route_resolver then
-    route_resolver = require("nuxt-dx-tools.route-resolver")
-  end
-  log("Checking page routes...")
-  local route_result = route_resolver.goto_route_file()
-  if route_result then
-    log("Route resolver handled it")
-    return
-  end
-
-  -- 4. Check for API routes
-  log("Checking API routes...")
-  local api_result = api_routes.goto_definition()
-  if api_result then
-    log("API routes handled it")
-    return
-  end
-
-  -- 5. Check for components
-  log("Checking components for word: '" .. word .. "'")
-  local comp_result = components.goto_definition(word)
-  if comp_result then
-    log("Components handled it")
-    return
-  end
-
-  -- 6. Check for custom plugin definitions (e.g., $dialog)
-  if word:match("^%$") then
-    log("Checking custom plugins...")
-    local plugin_name = word:gsub("^%$", "")
-    local def_file = utils.find_custom_plugin_definition(plugin_name)
-    if def_file then
-      log("Found plugin definition: " .. def_file)
-      vim.cmd("edit " .. def_file)
-      vim.defer_fn(function()
-        vim.fn.search("%$" .. plugin_name)
-      end, 100)
-      return
-    end
-  end
-
-  -- 7. Fall back to LSP definition
-  log("Falling back to LSP definition")
-  vim.lsp.buf.definition()
-end
-
--- Enhanced hover handler
-function M.show_hover()
-  if not M.config.hover_enabled then
-    vim.lsp.buf.hover()
-    return
-  end
-
-  -- Try virtual modules first
-  if not virtual_modules then
-    virtual_modules = require("nuxt-dx-tools.virtual-modules")
-  end
-  if virtual_modules.show_hover() then return end
-
-  -- Try data fetching info
-  if not data_fetching then
-    data_fetching = require("nuxt-dx-tools.data-fetching")
-  end
-  if data_fetching.show_hover() then return end
-
-  -- Try page routes
-  if not route_resolver then
-    route_resolver = require("nuxt-dx-tools.route-resolver")
-  end
-  if route_resolver.show_hover() then return end
-
-  -- Try API routes
-  local result = api_routes.show_hover()
-  if not result then
-    vim.lsp.buf.hover()
-  end
-end
+-- NOTE: LSP features (goto definition, hover, completions) are now handled
+-- exclusively by the Nuxt DX LSP server. This plugin only provides custom
+-- commands and UI features.
 
 -- Refresh cache command
 function M.refresh_cache()
@@ -258,10 +155,6 @@ function M.setup(opts)
   utils.set_config(M.config)
   api_routes.set_config(M.config)
 
-  -- Setup LSP integration (enhances standard LSP commands)
-  local lsp_integration = require("nuxt-dx-tools.lsp-integration")
-  lsp_integration.setup()
-
   -- Setup diagnostics if enabled
   if M.config.diagnostics_enabled then
     if not diagnostics then diagnostics = require("nuxt-dx-tools.diagnostics") end
@@ -274,7 +167,7 @@ function M.setup(opts)
   -- Setup autocommands
   require("nuxt-dx-tools.autocmds").setup(M)
 
-  -- Setup keymaps
+  -- Setup keymaps for custom commands
   require("nuxt-dx-tools.keymaps").setup(M)
 
   -- Setup commands
