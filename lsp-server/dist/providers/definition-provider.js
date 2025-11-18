@@ -66,7 +66,7 @@ class DefinitionProvider {
         this.logger.info(`[Definition] =======================================================`);
         // 1. PRIORITY: Check for CSS/style imports first (respond before vtsls/tsserver)
         // This prevents other LSP servers from responding with client.d.ts for CSS imports
-        if (line.includes('import') && (line.includes('from') || line.includes("'"))) {
+        if (line.includes('import') && (line.includes('from') || line.includes("'") || line.includes('"'))) {
             // Quick check for CSS extensions to avoid unnecessary processing
             if (line.includes('.css') || line.includes('.pcss') || line.includes('.scss') ||
                 line.includes('.sass') || line.includes('.less') || line.includes('.styl')) {
@@ -90,7 +90,7 @@ class DefinitionProvider {
             this.logger.info(`[Definition] ✗ No virtual module definition found`);
         }
         // 3. Check for other import statements with path aliases
-        if (line.includes('import') && (line.includes('from') || line.includes("'"))) {
+        if (line.includes('import') && (line.includes('from') || line.includes("'") || line.includes('"'))) {
             this.logger.info(`[Definition] Checking import statement...`);
             const importDef = await this.handleImportStatement(line, word, stringAtCursor);
             if (importDef) {
@@ -225,24 +225,36 @@ class DefinitionProvider {
             else {
                 this.logger.info(`[Definition] ✗ File does not exist at direct path`);
             }
-            // For aliased paths, try stripping the alias and treating as relative from root
-            // e.g., ~/assets/main.css -> assets/main.css
-            if (importPath.startsWith('~')) {
-                const withoutTilde = importPath.replace(/^~+\//, '');
-                const tildeStrippedPath = path.join(rootPath, withoutTilde);
-                this.logger.info(`[Definition] Trying without tilde: ${tildeStrippedPath}`);
-                if (fs.existsSync(tildeStrippedPath)) {
-                    this.logger.info(`[Definition] ✓ Found file without tilde: ${tildeStrippedPath}`);
-                    return node_1.Location.create(vscode_uri_1.URI.file(tildeStrippedPath).toString(), node_1.Range.create(0, 0, 0, 0));
+            // Try Nuxt-specific aliases: ~~ (rootDir) and ~ (srcDir/app)
+            if (importPath.startsWith('~~')) {
+                // ~~ = rootDir (project root)
+                const withoutTilde = importPath.replace(/^~~\//, '');
+                const rootDirPath = path.join(rootPath, withoutTilde);
+                this.logger.info(`[Definition] Trying ~~ (rootDir): ${rootDirPath}`);
+                if (fs.existsSync(rootDirPath)) {
+                    this.logger.info(`[Definition] ✓ Found file with ~~ alias`);
+                    return node_1.Location.create(vscode_uri_1.URI.file(rootDirPath).toString(), node_1.Range.create(0, 0, 0, 0));
                 }
             }
-            // Try @/ prefix
+            // Try ~ = srcDir (app directory in Nuxt 4)
+            if (importPath.startsWith('~') && !importPath.startsWith('~~')) {
+                const withoutTilde = importPath.replace(/^~\//, '');
+                const appPath = this.projectManager.getAppPath();
+                const srcDirPath = path.join(appPath, withoutTilde);
+                this.logger.info(`[Definition] Trying ~ (srcDir): ${srcDirPath}`);
+                if (fs.existsSync(srcDirPath)) {
+                    this.logger.info(`[Definition] ✓ Found file with ~ alias (srcDir)`);
+                    return node_1.Location.create(vscode_uri_1.URI.file(srcDirPath).toString(), node_1.Range.create(0, 0, 0, 0));
+                }
+            }
+            // Try @/ prefix (srcDir/app)
             if (importPath.startsWith('@')) {
                 const withoutAt = importPath.replace(/^@\//, '');
-                const atStrippedPath = path.join(rootPath, withoutAt);
-                this.logger.info(`[Definition] Trying without @: ${atStrippedPath}`);
+                const appPath = this.projectManager.getAppPath();
+                const atStrippedPath = path.join(appPath, withoutAt);
+                this.logger.info(`[Definition] Trying @ (srcDir): ${atStrippedPath}`);
                 if (fs.existsSync(atStrippedPath)) {
-                    this.logger.info(`[Definition] ✓ Found file without @: ${atStrippedPath}`);
+                    this.logger.info(`[Definition] ✓ Found file with @ alias`);
                     return node_1.Location.create(vscode_uri_1.URI.file(atStrippedPath).toString(), node_1.Range.create(0, 0, 0, 0));
                 }
             }

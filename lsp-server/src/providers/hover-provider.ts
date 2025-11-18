@@ -50,7 +50,7 @@ export class HoverProvider {
 
     // PRIORITY 2: Check for import statements (show file preview)
     // IMPORTANT: Check this before checking the word to prevent "module '*.pcss'" from TypeScript LSP
-    if (line.includes('import') && (line.includes('from') || line.includes("'"))) {
+    if (line.includes('import') && (line.includes('from') || line.includes("'") || line.includes('"'))) {
       this.logger.info(`[Hover] Import detected on line: ${line.trim()}`);
       const importHover = await this.handleImportStatement(line, stringAtCursor);
       if (importHover) {
@@ -124,16 +124,18 @@ export class HoverProvider {
     if (!importPath) {
       const importMatch = line.match(/from\s+['"]([^'"]+)['"]|import\s+['"]([^'"]+)['"]/);
       if (!importMatch) {
+        this.logger.info(`[Hover:Import] No import path pattern match in line`);
         return null;
       }
       importPath = importMatch[1] || importMatch[2];
     }
 
     if (!importPath) {
+      this.logger.info(`[Hover:Import] No import path extracted`);
       return null;
     }
 
-    this.logger.debug(`[Hover] Checking import path: ${importPath}`);
+    this.logger.info(`[Hover:Import] Checking import path: "${importPath}"`);
 
     const rootPath = this.projectManager.getRootPath();
     const tsConfigParser = this.projectManager.getTsConfigParser();
@@ -146,62 +148,123 @@ export class HoverProvider {
 
     // Try with alias resolution first
     if (hasExtension) {
+      this.logger.info(`[Hover:Import] Has extension: ${importExtension}`);
+
       const aliasResolved = tsConfigParser.resolveAliasPath(importPath);
-      if (aliasResolved && fs.existsSync(aliasResolved)) {
-        const resolvedExt = path.extname(aliasResolved);
-        if (resolvedExt === importExtension) {
-          resolvedPath = aliasResolved;
+      if (aliasResolved) {
+        this.logger.info(`[Hover:Import] Alias resolved to: ${aliasResolved}`);
+        if (fs.existsSync(aliasResolved)) {
+          const resolvedExt = path.extname(aliasResolved);
+          if (resolvedExt === importExtension) {
+            resolvedPath = aliasResolved;
+            this.logger.info(`[Hover:Import] ✓ Using alias resolved path`);
+          }
+        } else {
+          this.logger.info(`[Hover:Import] ✗ Alias resolved path doesn't exist`);
         }
       }
 
-      // Try direct path
-      if (!resolvedPath) {
-        const directPath = path.join(rootPath, importPath);
-        if (fs.existsSync(directPath)) {
-          resolvedPath = directPath;
+      // Try Nuxt-specific aliases: ~~ (rootDir) and ~ (srcDir/app)
+      if (!resolvedPath && importPath.startsWith('~~')) {
+        // ~~ = rootDir (project root)
+        const withoutTilde = importPath.replace(/^~~\//, '');
+        const rootDirPath = path.join(rootPath, withoutTilde);
+        this.logger.info(`[Hover:Import] Trying ~~ (rootDir): ${rootDirPath}`);
+        if (fs.existsSync(rootDirPath)) {
+          resolvedPath = rootDirPath;
+          this.logger.info(`[Hover:Import] ✓ Found with ~~ alias`);
         }
       }
 
-      // Try without tilde
+      // Try ~ = srcDir (app directory in Nuxt 4)
       if (!resolvedPath && importPath.startsWith('~')) {
-        const withoutTilde = importPath.replace(/^~+\//, '');
-        const tildeStrippedPath = path.join(rootPath, withoutTilde);
-        if (fs.existsSync(tildeStrippedPath)) {
-          resolvedPath = tildeStrippedPath;
+        const withoutTilde = importPath.replace(/^~\//, '');
+        const appPath = this.projectManager.getAppPath();
+        const srcDirPath = path.join(appPath, withoutTilde);
+        this.logger.info(`[Hover:Import] Trying ~ (srcDir): ${srcDirPath}`);
+        if (fs.existsSync(srcDirPath)) {
+          resolvedPath = srcDirPath;
+          this.logger.info(`[Hover:Import] ✓ Found with ~ alias (srcDir)`);
         }
       }
 
       // Try without @
       if (!resolvedPath && importPath.startsWith('@')) {
         const withoutAt = importPath.replace(/^@\//, '');
-        const atStrippedPath = path.join(rootPath, withoutAt);
+        const appPath = this.projectManager.getAppPath();
+        const atStrippedPath = path.join(appPath, withoutAt);
+        this.logger.info(`[Hover:Import] Trying @ (srcDir): ${atStrippedPath}`);
         if (fs.existsSync(atStrippedPath)) {
           resolvedPath = atStrippedPath;
+          this.logger.info(`[Hover:Import] ✓ Found with @ alias`);
         }
       }
     } else {
+      this.logger.info(`[Hover:Import] No extension, will try with various extensions`);
+
       // Try alias resolution
       const aliasResolved = tsConfigParser.resolveAliasPath(importPath);
-      if (aliasResolved && fs.existsSync(aliasResolved) && !aliasResolved.endsWith('.d.ts')) {
-        resolvedPath = aliasResolved;
+      if (aliasResolved) {
+        this.logger.info(`[Hover:Import] Alias resolved to: ${aliasResolved}`);
+        if (fs.existsSync(aliasResolved) && !aliasResolved.endsWith('.d.ts')) {
+          resolvedPath = aliasResolved;
+          this.logger.info(`[Hover:Import] ✓ Using alias resolved path`);
+        }
       }
 
-      // Try with various extensions
+      // Try Nuxt-specific aliases with various extensions
       if (!resolvedPath) {
         const extensions = ['.vue', '.ts', '.js', '.tsx', '.jsx', '.mjs', '.css', '.pcss', '.scss'];
-        for (const ext of extensions) {
-          const fullPath = path.join(rootPath, importPath + ext);
-          if (fs.existsSync(fullPath)) {
-            resolvedPath = fullPath;
-            break;
+
+        // Try ~~ (rootDir)
+        if (importPath.startsWith('~~')) {
+          const withoutTilde = importPath.replace(/^~~\//, '');
+          for (const ext of extensions) {
+            const fullPath = path.join(rootPath, withoutTilde + ext);
+            if (fs.existsSync(fullPath)) {
+              resolvedPath = fullPath;
+              this.logger.info(`[Hover:Import] ✓ Found with ~~ alias: ${fullPath}`);
+              break;
+            }
+          }
+        }
+
+        // Try ~ (srcDir/app)
+        if (!resolvedPath && importPath.startsWith('~')) {
+          const withoutTilde = importPath.replace(/^~\//, '');
+          const appPath = this.projectManager.getAppPath();
+          for (const ext of extensions) {
+            const fullPath = path.join(appPath, withoutTilde + ext);
+            if (fs.existsSync(fullPath)) {
+              resolvedPath = fullPath;
+              this.logger.info(`[Hover:Import] ✓ Found with ~ alias: ${fullPath}`);
+              break;
+            }
+          }
+        }
+
+        // Try @ (srcDir/app)
+        if (!resolvedPath && importPath.startsWith('@')) {
+          const withoutAt = importPath.replace(/^@\//, '');
+          const appPath = this.projectManager.getAppPath();
+          for (const ext of extensions) {
+            const fullPath = path.join(appPath, withoutAt + ext);
+            if (fs.existsSync(fullPath)) {
+              resolvedPath = fullPath;
+              this.logger.info(`[Hover:Import] ✓ Found with @ alias: ${fullPath}`);
+              break;
+            }
           }
         }
       }
     }
 
     if (!resolvedPath) {
+      this.logger.info(`[Hover:Import] ✗ Could not resolve import path`);
       return null;
     }
+
+    this.logger.info(`[Hover:Import] ✓ Final resolved path: ${resolvedPath}`);
 
     // Read file preview
     const filePreview = this.readFirstLines(resolvedPath, 20);
