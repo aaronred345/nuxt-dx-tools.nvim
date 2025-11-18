@@ -1,0 +1,25 @@
+[2025-11-17T23:27:39.132Z] Logger initialized
+[2025-11-17T23:27:39.134Z] [INFO] TextDocuments now listening on connection
+[2025-11-17T23:27:39.134Z] [INFO] Nuxt DX Tools LSP Server is now listening for connections
+[2025-11-17T23:27:39.138Z] [INFO] Initializing Nuxt DX Tools LSP Server for workspace: file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web
+[2025-11-17T23:27:39.139Z] [INFO] Capabilities: hover=true, definition=true, completion=true
+[2025-11-17T23:27:39.172Z] [INFO] Nuxt DX Tools LSP Server initialized successfully
+[2025-11-17T23:27:39.172Z] [INFO] Initializing Nuxt project at: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web
+[2025-11-17T23:27:39.173Z] [INFO] Detected Nuxt 4 structure
+[2025-11-17T23:27:39.173Z] [INFO] App directory: app/
+[2025-11-17T23:27:39.186Z] [INFO] Nuxt project initialized successfully
+[2025-11-17T23:27:43.659Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/components/NavBar.vue at 1:12
+[2025-11-17T23:27:43.660Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-17T23:27:43.661Z] [INFO] [Hover] No result (returning null)
+[2025-11-17T23:27:47.156Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/components/NavBar.vue at 1:12
+[2025-11-17T23:27:47.157Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-17T23:27:47.160Z] [INFO] [Hover] No result (returning null)
+[2025-11-17T23:27:50.212Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/components/NavBar.vue at 1:12
+[2025-11-17T23:27:50.212Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-17T23:27:50.213Z] [INFO] [Hover] No result (returning null)
+[2025-11-17T23:27:54.915Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/components/NavBar.vue at 74:7
+[2025-11-17T23:27:54.916Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-17T23:27:54.919Z] [INFO] [Hover] No result (returning null)
+[2025-11-17T23:28:07.264Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/components/NavBar.vue at 17:45
+[2025-11-17T23:28:07.265Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-17T23:28:07.266Z] [INFO] [Hover] Provided Nuxt-specific result
