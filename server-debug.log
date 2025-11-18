@@ -1,844 +1,564 @@
-[2025-11-18T02:39:59.177Z] Logger initialized
-[2025-11-18T02:39:59.179Z] [INFO] TextDocuments now listening on connection
-[2025-11-18T02:39:59.179Z] [INFO] Nuxt DX Tools LSP Server is now listening for connections
-[2025-11-18T02:39:59.184Z] [INFO] Initializing Nuxt DX Tools LSP Server for workspace: file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web
-[2025-11-18T02:39:59.184Z] [INFO] Capabilities: hover=true, definition=true, completion=true
-[2025-11-18T02:39:59.217Z] [INFO] Nuxt DX Tools LSP Server initialized successfully
-[2025-11-18T02:39:59.218Z] [INFO] Initializing Nuxt project at: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web
-[2025-11-18T02:39:59.218Z] [INFO] Detected Nuxt 4 structure
-[2025-11-18T02:39:59.218Z] [INFO] App directory: app/
-[2025-11-18T02:39:59.220Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T02:39:59.220Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T02:39:59.221Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - paths section contains "~~": false
-[2025-11-18T02:39:59.222Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack/types", targetsArray: "
+[2025-11-18T02:48:07.792Z] Logger initialized
+[2025-11-18T02:48:07.793Z] [INFO] TextDocuments now listening on connection
+[2025-11-18T02:48:07.794Z] [INFO] Nuxt DX Tools LSP Server is now listening for connections
+[2025-11-18T02:48:07.798Z] [INFO] Initializing Nuxt DX Tools LSP Server for workspace: file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web
+[2025-11-18T02:48:07.799Z] [INFO] Capabilities: hover=true, definition=true, completion=true
+[2025-11-18T02:48:07.824Z] [INFO] Nuxt DX Tools LSP Server initialized successfully
+[2025-11-18T02:48:07.825Z] [INFO] Initializing Nuxt project at: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web
+[2025-11-18T02:48:07.825Z] [INFO] Detected Nuxt 4 structure
+[2025-11-18T02:48:07.825Z] [INFO] App directory: app/
+[2025-11-18T02:48:07.826Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T02:48:07.827Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json: SyntaxError: Expected ':' after property name in JSON at position 1083 (line 49 column 11)
+[2025-11-18T02:48:07.827Z] [INFO] [TsConfig:Parse] First 500 chars of cleaned content: {
+  "compilerOptions": {
+    "paths": {
+      "nitropack/types": [
+        "../node_modules/nitropack/types"
+      ],
+      "nitropack/runtime": [
+        "../node_modules/nitropack/runtime"
+      ],
+      "nitropack": [
+        "../node_modules/nitropack"
+      ],
+      "defu": [
+        "../node_modules/defu"
+      ],
+      "h3": [
+        "../node_modules/h3"
+      ],
+      "consola": [
+        "../node_modules/consola"
+      ],
+      "ofetch": [
+        "../node_modules/ofetch"
+      ],
+    
+[2025-11-18T02:48:07.828Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - paths section contains "~~": false
+[2025-11-18T02:48:07.828Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack/types", targetsArray: "
         "../node_modules/nitropack/types"
       "
-[2025-11-18T02:39:59.222Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T02:39:59.222Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack/runtime", targetsArray: "
+[2025-11-18T02:48:07.829Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T02:48:07.829Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack/runtime", targetsArray: "
         "../node_modules/nitropack/runtime"
       "
-[2025-11-18T02:39:59.223Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T02:39:59.223Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack", targetsArray: "
+[2025-11-18T02:48:07.829Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T02:48:07.829Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack", targetsArray: "
         "../node_modules/nitropack"
       "
-[2025-11-18T02:39:59.223Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T02:39:59.223Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "defu", targetsArray: "
+[2025-11-18T02:48:07.830Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T02:48:07.830Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "defu", targetsArray: "
         "../node_modules/defu"
       "
-[2025-11-18T02:39:59.224Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T02:39:59.224Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "h3", targetsArray: "
+[2025-11-18T02:48:07.830Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T02:48:07.830Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "h3", targetsArray: "
         "../node_modules/h3"
       "
-[2025-11-18T02:39:59.224Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T02:39:59.224Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "consola", targetsArray: "
+[2025-11-18T02:48:07.830Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T02:48:07.831Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "consola", targetsArray: "
         "../node_modules/consola"
       "
-[2025-11-18T02:39:59.225Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T02:39:59.225Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "ofetch", targetsArray: "
+[2025-11-18T02:48:07.831Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T02:48:07.831Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "ofetch", targetsArray: "
         "../node_modules/ofetch"
       "
-[2025-11-18T02:39:59.225Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T02:39:59.225Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@nuxt/devtools", targetsArray: "
+[2025-11-18T02:48:07.831Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T02:48:07.832Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@nuxt/devtools", targetsArray: "
         "../node_modules/@nuxt/devtools"
       "
-[2025-11-18T02:39:59.226Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T02:39:59.226Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@vue/runtime-core", targetsArray: "
+[2025-11-18T02:48:07.832Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T02:48:07.832Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@vue/runtime-core", targetsArray: "
         "../node_modules/@vue/runtime-core"
       "
-[2025-11-18T02:39:59.226Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T02:39:59.226Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
+[2025-11-18T02:48:07.832Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T02:48:07.833Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
         "../node_modules/@vue/compiler-sfc"
       "
-[2025-11-18T02:39:59.227Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T02:39:59.227Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
+[2025-11-18T02:48:07.833Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T02:48:07.833Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
         "../node_modules/unplugin-vue-router/client"
       "
-[2025-11-18T02:39:59.227Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T02:39:59.227Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@nuxt/schema", targetsArray: "
+[2025-11-18T02:48:07.833Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T02:48:07.833Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@nuxt/schema", targetsArray: "
         "../node_modules/@nuxt/schema"
       "
-[2025-11-18T02:39:59.228Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T02:39:59.228Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nuxt", targetsArray: "
+[2025-11-18T02:48:07.834Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T02:48:07.834Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nuxt", targetsArray: "
         "../node_modules/nuxt"
       "
-[2025-11-18T02:39:59.228Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T02:39:59.228Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "vite/client", targetsArray: "
+[2025-11-18T02:48:07.834Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T02:48:07.835Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "vite/client", targetsArray: "
         "../node_modules/vite/client"
       "
-[2025-11-18T02:39:59.228Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T02:39:59.229Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "~", targetsArray: "
+[2025-11-18T02:48:07.835Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T02:48:07.835Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "~", targetsArray: "
         "../app"
       "
-[2025-11-18T02:39:59.229Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T02:39:59.229Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "exclude", targetsArray: "
+[2025-11-18T02:48:07.836Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T02:48:07.836Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "exclude", targetsArray: "
     "../node_modules",
     "../node_modules/nuxt/node_modules",
     "../node_modules/@nuxt/eslint/n"
-[2025-11-18T02:39:59.229Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T02:39:59.229Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T02:39:59.230Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T02:39:59.230Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T02:39:59.231Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - paths section contains "~~": false
-[2025-11-18T02:39:59.231Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - Match found - alias: "#imports", targetsArray: "
+[2025-11-18T02:48:07.836Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T02:48:07.836Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T02:48:07.837Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T02:48:07.837Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json: SyntaxError: Expected ':' after property name in JSON at position 489 (line 20 column 16)
+[2025-11-18T02:48:07.838Z] [INFO] [TsConfig:Parse] First 500 chars of cleaned content: {
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "paths": {
+      "#imports": [
+        "./types/nitro-imports"
+      ],
+      "~*.d.ts",
+    "./ty
+[2025-11-18T02:48:07.838Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - paths section contains "~~": false
+[2025-11-18T02:48:07.838Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - Match found - alias: "#imports", targetsArray: "
         "./types/nitro-imports"
       "
-[2025-11-18T02:39:59.231Z] [INFO] [TsConfig:Regex] Extracted alias: "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T02:39:59.231Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - Match found - alias: "exclude", targetsArray: "
+[2025-11-18T02:48:07.839Z] [INFO] [TsConfig:Regex] Extracted alias: "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
+[2025-11-18T02:48:07.839Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - Match found - alias: "exclude", targetsArray: "
     "../node_modules",
     "../node_modules/nuxt/node_modules",
     "../node_modules/@nuxt/eslint/n"
-[2025-11-18T02:39:59.232Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T02:39:59.232Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T02:39:59.232Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T02:39:59.233Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T02:39:59.233Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - paths section contains "~~": false
-[2025-11-18T02:39:59.233Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack/types", targetsArray: "
+[2025-11-18T02:48:07.839Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T02:48:07.840Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T02:48:07.840Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T02:48:07.841Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json: SyntaxError: Expected ':' after property name in JSON at position 1083 (line 49 column 11)
+[2025-11-18T02:48:07.841Z] [INFO] [TsConfig:Parse] First 500 chars of cleaned content: {
+  "compilerOptions": {
+    "paths": {
+      "nitropack/types": [
+        "../node_modules/nitropack/types"
+      ],
+      "nitropack/runtime": [
+        "../node_modules/nitropack/runtime"
+      ],
+      "nitropack": [
+        "../node_modules/nitropack"
+      ],
+      "defu": [
+        "../node_modules/defu"
+      ],
+      "h3": [
+        "../node_modules/h3"
+      ],
+      "consola": [
+        "../node_modules/consola"
+      ],
+      "ofetch": [
+        "../node_modules/ofetch"
+      ],
+    
+[2025-11-18T02:48:07.841Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - paths section contains "~~": false
+[2025-11-18T02:48:07.841Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack/types", targetsArray: "
         "../node_modules/nitropack/types"
       "
-[2025-11-18T02:39:59.233Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T02:39:59.234Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack/runtime", targetsArray: "
+[2025-11-18T02:48:07.842Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T02:48:07.842Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack/runtime", targetsArray: "
         "../node_modules/nitropack/runtime"
       "
-[2025-11-18T02:39:59.234Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T02:39:59.234Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack", targetsArray: "
+[2025-11-18T02:48:07.842Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T02:48:07.842Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack", targetsArray: "
         "../node_modules/nitropack"
       "
-[2025-11-18T02:39:59.234Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T02:39:59.234Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "defu", targetsArray: "
+[2025-11-18T02:48:07.843Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T02:48:07.843Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "defu", targetsArray: "
         "../node_modules/defu"
       "
-[2025-11-18T02:39:59.234Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T02:39:59.235Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "h3", targetsArray: "
+[2025-11-18T02:48:07.843Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T02:48:07.843Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "h3", targetsArray: "
         "../node_modules/h3"
       "
-[2025-11-18T02:39:59.235Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T02:39:59.235Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "consola", targetsArray: "
+[2025-11-18T02:48:07.844Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T02:48:07.844Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "consola", targetsArray: "
         "../node_modules/consola"
       "
-[2025-11-18T02:39:59.236Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T02:39:59.236Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "ofetch", targetsArray: "
+[2025-11-18T02:48:07.844Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T02:48:07.844Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "ofetch", targetsArray: "
         "../node_modules/ofetch"
       "
-[2025-11-18T02:39:59.236Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T02:39:59.236Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@nuxt/devtools", targetsArray: "
+[2025-11-18T02:48:07.845Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T02:48:07.845Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@nuxt/devtools", targetsArray: "
         "../node_modules/@nuxt/devtools"
       "
-[2025-11-18T02:39:59.237Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T02:39:59.237Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@vue/runtime-core", targetsArray: "
+[2025-11-18T02:48:07.845Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T02:48:07.846Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@vue/runtime-core", targetsArray: "
         "../node_modules/@vue/runtime-core"
       "
-[2025-11-18T02:39:59.237Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T02:39:59.237Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
+[2025-11-18T02:48:07.846Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T02:48:07.846Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
         "../node_modules/@vue/compiler-sfc"
       "
-[2025-11-18T02:39:59.238Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T02:39:59.238Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
+[2025-11-18T02:48:07.846Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T02:48:07.847Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
         "../node_modules/unplugin-vue-router/client"
       "
-[2025-11-18T02:39:59.238Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T02:39:59.238Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@nuxt/schema", targetsArray: "
+[2025-11-18T02:48:07.847Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T02:48:07.847Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@nuxt/schema", targetsArray: "
         "../node_modules/@nuxt/schema"
       "
-[2025-11-18T02:39:59.239Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T02:39:59.239Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nuxt", targetsArray: "
+[2025-11-18T02:48:07.847Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T02:48:07.848Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nuxt", targetsArray: "
         "../node_modules/nuxt"
       "
-[2025-11-18T02:39:59.239Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T02:39:59.239Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "vite/client", targetsArray: "
+[2025-11-18T02:48:07.848Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T02:48:07.849Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "vite/client", targetsArray: "
         "../node_modules/vite/client"
       "
-[2025-11-18T02:39:59.239Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T02:39:59.240Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "~", targetsArray: "
+[2025-11-18T02:48:07.849Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T02:48:07.849Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "~", targetsArray: "
         "../app"
       "
-[2025-11-18T02:39:59.240Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T02:39:59.240Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "exclude", targetsArray: ""
-[2025-11-18T02:39:59.240Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T02:39:59.241Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T02:39:59.242Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T02:39:59.242Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T02:39:59.243Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T02:39:59.243Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - paths section contains "~~": false
-[2025-11-18T02:39:59.243Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "nitropack/types", targetsArray: "
+[2025-11-18T02:48:07.849Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T02:48:07.850Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "exclude", targetsArray: ""
+[2025-11-18T02:48:07.850Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T02:48:07.850Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T02:48:07.851Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T02:48:07.851Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T02:48:07.852Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json: SyntaxError: Expected ':' after property name in JSON at position 1083 (line 49 column 11)
+[2025-11-18T02:48:07.852Z] [INFO] [TsConfig:Parse] First 500 chars of cleaned content: {
+  "compilerOptions": {
+    "paths": {
+      "nitropack/types": [
+        "../node_modules/nitropack/types"
+      ],
+      "nitropack/runtime": [
+        "../node_modules/nitropack/runtime"
+      ],
+      "nitropack": [
+        "../node_modules/nitropack"
+      ],
+      "defu": [
+        "../node_modules/defu"
+      ],
+      "h3": [
+        "../node_modules/h3"
+      ],
+      "consola": [
+        "../node_modules/consola"
+      ],
+      "ofetch": [
+        "../node_modules/ofetch"
+      ],
+    
+[2025-11-18T02:48:07.852Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - paths section contains "~~": false
+[2025-11-18T02:48:07.852Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "nitropack/types", targetsArray: "
         "../node_modules/nitropack/types"
       "
-[2025-11-18T02:39:59.244Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T02:39:59.244Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "nitropack/runtime", targetsArray: "
+[2025-11-18T02:48:07.853Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T02:48:07.853Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "nitropack/runtime", targetsArray: "
         "../node_modules/nitropack/runtime"
       "
-[2025-11-18T02:39:59.244Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T02:39:59.244Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "nitropack", targetsArray: "
+[2025-11-18T02:48:07.853Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T02:48:07.853Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "nitropack", targetsArray: "
         "../node_modules/nitropack"
       "
-[2025-11-18T02:39:59.244Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T02:39:59.245Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "defu", targetsArray: "
+[2025-11-18T02:48:07.854Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T02:48:07.854Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "defu", targetsArray: "
         "../node_modules/defu"
       "
-[2025-11-18T02:39:59.245Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T02:39:59.245Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "h3", targetsArray: "
+[2025-11-18T02:48:07.854Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T02:48:07.854Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "h3", targetsArray: "
         "../node_modules/h3"
       "
-[2025-11-18T02:39:59.245Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T02:39:59.245Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "consola", targetsArray: "
+[2025-11-18T02:48:07.855Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T02:48:07.855Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "consola", targetsArray: "
         "../node_modules/consola"
       "
-[2025-11-18T02:39:59.246Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T02:39:59.246Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "ofetch", targetsArray: "
+[2025-11-18T02:48:07.855Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T02:48:07.855Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "ofetch", targetsArray: "
         "../node_modules/ofetch"
       "
-[2025-11-18T02:39:59.247Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T02:39:59.247Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "@nuxt/devtools", targetsArray: "
+[2025-11-18T02:48:07.856Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T02:48:07.856Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "@nuxt/devtools", targetsArray: "
         "../node_modules/@nuxt/devtools"
       "
-[2025-11-18T02:39:59.247Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T02:39:59.247Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "@vue/runtime-core", targetsArray: "
+[2025-11-18T02:48:07.856Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T02:48:07.857Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "@vue/runtime-core", targetsArray: "
         "../node_modules/@vue/runtime-core"
       "
-[2025-11-18T02:39:59.248Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T02:39:59.248Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
+[2025-11-18T02:48:07.857Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T02:48:07.857Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
         "../node_modules/@vue/compiler-sfc"
       "
-[2025-11-18T02:39:59.248Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T02:39:59.248Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
+[2025-11-18T02:48:07.858Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T02:48:07.858Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
         "../node_modules/unplugin-vue-router/client"
       "
-[2025-11-18T02:39:59.248Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T02:39:59.248Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "@nuxt/schema", targetsArray: "
+[2025-11-18T02:48:07.858Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T02:48:07.859Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "@nuxt/schema", targetsArray: "
         "../node_modules/@nuxt/schema"
       "
-[2025-11-18T02:39:59.249Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T02:39:59.249Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "nuxt", targetsArray: "
+[2025-11-18T02:48:07.859Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T02:48:07.859Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "nuxt", targetsArray: "
         "../node_modules/nuxt"
       "
-[2025-11-18T02:39:59.249Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T02:39:59.249Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "vite/client", targetsArray: "
+[2025-11-18T02:48:07.860Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T02:48:07.860Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "vite/client", targetsArray: "
         "../node_modules/vite/client"
       "
-[2025-11-18T02:39:59.249Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T02:39:59.250Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "~", targetsArray: "
+[2025-11-18T02:48:07.860Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T02:48:07.860Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "~", targetsArray: "
         "../app"
       "
-[2025-11-18T02:39:59.250Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T02:39:59.250Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "exclude", targetsArray: "
+[2025-11-18T02:48:07.860Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T02:48:07.861Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "exclude", targetsArray: "
     "../node_modules",
     "../node_modules/nuxt/node_modules",
     "../node_modules/@nuxt/eslint/n"
-[2025-11-18T02:39:59.250Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T02:39:59.251Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T02:39:59.251Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T02:39:59.251Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T02:39:59.252Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - paths section contains "~~": false
-[2025-11-18T02:39:59.252Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack/types", targetsArray: "
+[2025-11-18T02:48:07.861Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T02:48:07.861Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T02:48:07.862Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T02:48:07.862Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json: SyntaxError: Expected ':' after property name in JSON at position 1083 (line 49 column 11)
+[2025-11-18T02:48:07.863Z] [INFO] [TsConfig:Parse] First 500 chars of cleaned content: {
+  "compilerOptions": {
+    "paths": {
+      "nitropack/types": [
+        "../node_modules/nitropack/types"
+      ],
+      "nitropack/runtime": [
+        "../node_modules/nitropack/runtime"
+      ],
+      "nitropack": [
+        "../node_modules/nitropack"
+      ],
+      "defu": [
+        "../node_modules/defu"
+      ],
+      "h3": [
+        "../node_modules/h3"
+      ],
+      "consola": [
+        "../node_modules/consola"
+      ],
+      "ofetch": [
+        "../node_modules/ofetch"
+      ],
+    
+[2025-11-18T02:48:07.863Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - paths section contains "~~": false
+[2025-11-18T02:48:07.864Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack/types", targetsArray: "
         "../node_modules/nitropack/types"
       "
-[2025-11-18T02:39:59.252Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T02:39:59.252Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack/runtime", targetsArray: "
+[2025-11-18T02:48:07.864Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T02:48:07.865Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack/runtime", targetsArray: "
         "../node_modules/nitropack/runtime"
       "
-[2025-11-18T02:39:59.252Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T02:39:59.253Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack", targetsArray: "
+[2025-11-18T02:48:07.865Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T02:48:07.866Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack", targetsArray: "
         "../node_modules/nitropack"
       "
-[2025-11-18T02:39:59.253Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T02:39:59.253Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "defu", targetsArray: "
+[2025-11-18T02:48:07.866Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T02:48:07.867Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "defu", targetsArray: "
         "../node_modules/defu"
       "
-[2025-11-18T02:39:59.253Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T02:39:59.253Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "h3", targetsArray: "
+[2025-11-18T02:48:07.867Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T02:48:07.869Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "h3", targetsArray: "
         "../node_modules/h3"
       "
-[2025-11-18T02:39:59.254Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T02:39:59.255Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "consola", targetsArray: "
+[2025-11-18T02:48:07.869Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T02:48:07.870Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "consola", targetsArray: "
         "../node_modules/consola"
       "
-[2025-11-18T02:39:59.256Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T02:39:59.256Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "ofetch", targetsArray: "
+[2025-11-18T02:48:07.870Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T02:48:07.870Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "ofetch", targetsArray: "
         "../node_modules/ofetch"
       "
-[2025-11-18T02:39:59.256Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T02:39:59.256Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@nuxt/devtools", targetsArray: "
+[2025-11-18T02:48:07.871Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T02:48:07.871Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@nuxt/devtools", targetsArray: "
         "../node_modules/@nuxt/devtools"
       "
-[2025-11-18T02:39:59.257Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T02:39:59.257Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@vue/runtime-core", targetsArray: "
+[2025-11-18T02:48:07.871Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T02:48:07.871Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@vue/runtime-core", targetsArray: "
         "../node_modules/@vue/runtime-core"
       "
-[2025-11-18T02:39:59.257Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T02:39:59.257Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
+[2025-11-18T02:48:07.872Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T02:48:07.872Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
         "../node_modules/@vue/compiler-sfc"
       "
-[2025-11-18T02:39:59.258Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T02:39:59.258Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
+[2025-11-18T02:48:07.872Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T02:48:07.873Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
         "../node_modules/unplugin-vue-router/client"
       "
-[2025-11-18T02:39:59.258Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T02:39:59.258Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@nuxt/schema", targetsArray: "
+[2025-11-18T02:48:07.873Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T02:48:07.873Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@nuxt/schema", targetsArray: "
         "../node_modules/@nuxt/schema"
       "
-[2025-11-18T02:39:59.258Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T02:39:59.259Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nuxt", targetsArray: "
+[2025-11-18T02:48:07.873Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T02:48:07.874Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nuxt", targetsArray: "
         "../node_modules/nuxt"
       "
-[2025-11-18T02:39:59.259Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T02:39:59.259Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "vite/client", targetsArray: "
+[2025-11-18T02:48:07.874Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T02:48:07.875Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "vite/client", targetsArray: "
         "../node_modules/vite/client"
       "
-[2025-11-18T02:39:59.259Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T02:39:59.259Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "~", targetsArray: "
+[2025-11-18T02:48:07.875Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T02:48:07.875Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "~", targetsArray: "
         "../app"
       "
-[2025-11-18T02:39:59.260Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T02:39:59.260Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "exclude", targetsArray: "
+[2025-11-18T02:48:07.876Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T02:48:07.876Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "exclude", targetsArray: "
     "../node_modules",
     "../node_modules/nuxt/node_modules",
     "../node_modules/@nuxt/eslint/n"
-[2025-11-18T02:39:59.260Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T02:39:59.260Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T02:39:59.260Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T02:39:59.261Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T02:39:59.261Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - paths section contains "~~": false
-[2025-11-18T02:39:59.261Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - Match found - alias: "#imports", targetsArray: "
+[2025-11-18T02:48:07.876Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T02:48:07.877Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T02:48:07.878Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T02:48:07.878Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json: SyntaxError: Expected ':' after property name in JSON at position 489 (line 20 column 16)
+[2025-11-18T02:48:07.878Z] [INFO] [TsConfig:Parse] First 500 chars of cleaned content: {
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "paths": {
+      "#imports": [
+        "./types/nitro-imports"
+      ],
+      "~*.d.ts",
+    "./ty
+[2025-11-18T02:48:07.879Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - paths section contains "~~": false
+[2025-11-18T02:48:07.879Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - Match found - alias: "#imports", targetsArray: "
         "./types/nitro-imports"
       "
-[2025-11-18T02:39:59.261Z] [INFO] [TsConfig:Regex] Extracted alias: "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T02:39:59.262Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - Match found - alias: "exclude", targetsArray: "
+[2025-11-18T02:48:07.879Z] [INFO] [TsConfig:Regex] Extracted alias: "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
+[2025-11-18T02:48:07.880Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - Match found - alias: "exclude", targetsArray: "
     "../node_modules",
     "../node_modules/nuxt/node_modules",
     "../node_modules/@nuxt/eslint/n"
-[2025-11-18T02:39:59.262Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T02:39:59.262Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T02:39:59.262Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T02:39:59.263Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T02:39:59.263Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - paths section contains "~~": false
-[2025-11-18T02:39:59.263Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack/types", targetsArray: "
+[2025-11-18T02:48:07.880Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T02:48:07.880Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T02:48:07.881Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T02:48:07.881Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json: SyntaxError: Expected ':' after property name in JSON at position 1083 (line 49 column 11)
+[2025-11-18T02:48:07.882Z] [INFO] [TsConfig:Parse] First 500 chars of cleaned content: {
+  "compilerOptions": {
+    "paths": {
+      "nitropack/types": [
+        "../node_modules/nitropack/types"
+      ],
+      "nitropack/runtime": [
+        "../node_modules/nitropack/runtime"
+      ],
+      "nitropack": [
+        "../node_modules/nitropack"
+      ],
+      "defu": [
+        "../node_modules/defu"
+      ],
+      "h3": [
+        "../node_modules/h3"
+      ],
+      "consola": [
+        "../node_modules/consola"
+      ],
+      "ofetch": [
+        "../node_modules/ofetch"
+      ],
+    
+[2025-11-18T02:48:07.882Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - paths section contains "~~": false
+[2025-11-18T02:48:07.882Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack/types", targetsArray: "
         "../node_modules/nitropack/types"
       "
-[2025-11-18T02:39:59.263Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T02:39:59.264Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack/runtime", targetsArray: "
+[2025-11-18T02:48:07.883Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T02:48:07.883Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack/runtime", targetsArray: "
         "../node_modules/nitropack/runtime"
       "
-[2025-11-18T02:39:59.264Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T02:39:59.264Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack", targetsArray: "
+[2025-11-18T02:48:07.883Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T02:48:07.883Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack", targetsArray: "
         "../node_modules/nitropack"
       "
-[2025-11-18T02:39:59.264Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T02:39:59.265Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "defu", targetsArray: "
+[2025-11-18T02:48:07.884Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T02:48:07.884Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "defu", targetsArray: "
         "../node_modules/defu"
       "
-[2025-11-18T02:39:59.265Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T02:39:59.265Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "h3", targetsArray: "
+[2025-11-18T02:48:07.884Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T02:48:07.884Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "h3", targetsArray: "
         "../node_modules/h3"
       "
-[2025-11-18T02:39:59.265Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T02:39:59.265Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "consola", targetsArray: "
+[2025-11-18T02:48:07.885Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T02:48:07.885Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "consola", targetsArray: "
         "../node_modules/consola"
       "
-[2025-11-18T02:39:59.266Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T02:39:59.266Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "ofetch", targetsArray: "
+[2025-11-18T02:48:07.885Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T02:48:07.886Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "ofetch", targetsArray: "
         "../node_modules/ofetch"
       "
-[2025-11-18T02:39:59.266Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T02:39:59.266Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@nuxt/devtools", targetsArray: "
+[2025-11-18T02:48:07.886Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T02:48:07.886Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@nuxt/devtools", targetsArray: "
         "../node_modules/@nuxt/devtools"
       "
-[2025-11-18T02:39:59.266Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T02:39:59.267Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@vue/runtime-core", targetsArray: "
+[2025-11-18T02:48:07.886Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T02:48:07.887Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@vue/runtime-core", targetsArray: "
         "../node_modules/@vue/runtime-core"
       "
-[2025-11-18T02:39:59.267Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T02:39:59.267Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
+[2025-11-18T02:48:07.887Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T02:48:07.887Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
         "../node_modules/@vue/compiler-sfc"
       "
-[2025-11-18T02:39:59.267Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T02:39:59.267Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
+[2025-11-18T02:48:07.887Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T02:48:07.888Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
         "../node_modules/unplugin-vue-router/client"
       "
-[2025-11-18T02:39:59.268Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T02:39:59.268Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@nuxt/schema", targetsArray: "
+[2025-11-18T02:48:07.888Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T02:48:07.888Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@nuxt/schema", targetsArray: "
         "../node_modules/@nuxt/schema"
       "
-[2025-11-18T02:39:59.268Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T02:39:59.268Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nuxt", targetsArray: "
+[2025-11-18T02:48:07.889Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T02:48:07.889Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nuxt", targetsArray: "
         "../node_modules/nuxt"
       "
-[2025-11-18T02:39:59.268Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T02:39:59.269Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "vite/client", targetsArray: "
+[2025-11-18T02:48:07.889Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T02:48:07.889Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "vite/client", targetsArray: "
         "../node_modules/vite/client"
       "
-[2025-11-18T02:39:59.269Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T02:39:59.269Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "~", targetsArray: "
+[2025-11-18T02:48:07.890Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T02:48:07.890Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "~", targetsArray: "
         "../app"
       "
-[2025-11-18T02:39:59.269Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T02:39:59.269Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "exclude", targetsArray: ""
-[2025-11-18T02:39:59.270Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T02:39:59.270Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T02:39:59.270Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T02:39:59.271Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T02:39:59.271Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T02:39:59.271Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T02:39:59.271Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T02:39:59.272Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T02:39:59.272Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T02:39:59.272Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T02:39:59.272Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T02:39:59.272Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T02:39:59.273Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T02:39:59.273Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T02:39:59.273Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T02:39:59.273Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T02:39:59.274Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T02:39:59.274Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T02:39:59.274Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T02:39:59.274Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T02:39:59.275Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T02:39:59.275Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T02:39:59.275Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T02:39:59.280Z] [INFO] Nuxt project initialized successfully
-[2025-11-18T02:40:03.359Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:29
-[2025-11-18T02:40:03.359Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T02:40:03.360Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="shared", stringAtCursor="~~/shared/utils/response"
-[2025-11-18T02:40:03.361Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
-[2025-11-18T02:40:03.361Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/response"
-[2025-11-18T02:40:03.362Z] [INFO] [Hover:Import] No extension, will try with various extensions
-[2025-11-18T02:40:03.362Z] [INFO] [Hover:Import] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
-[2025-11-18T02:40:03.363Z] [INFO] [Hover:Import] ✗ Could not resolve import path
-[2025-11-18T02:40:03.363Z] [INFO] [Hover] ✗ handleImportStatement returned null
-[2025-11-18T02:40:03.363Z] [INFO] [Hover] No Nuxt-specific match found, returning null
-[2025-11-18T02:40:03.363Z] [INFO] [Hover] No result (returning null)
-[2025-11-18T02:40:08.391Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:29
-[2025-11-18T02:40:08.392Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T02:40:08.392Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="shared", stringAtCursor="~~/shared/utils/response"
-[2025-11-18T02:40:08.393Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
-[2025-11-18T02:40:08.393Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/response"
-[2025-11-18T02:40:08.393Z] [INFO] [Hover:Import] No extension, will try with various extensions
-[2025-11-18T02:40:08.393Z] [INFO] [Hover:Import] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
-[2025-11-18T02:40:08.394Z] [INFO] [Hover:Import] ✗ Could not resolve import path
-[2025-11-18T02:40:08.394Z] [INFO] [Hover] ✗ handleImportStatement returned null
-[2025-11-18T02:40:08.397Z] [INFO] [Hover] No Nuxt-specific match found, returning null
-[2025-11-18T02:40:08.398Z] [INFO] [Hover] No result (returning null)
-[2025-11-18T02:40:09.912Z] [INFO] [Definition] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:29
-[2025-11-18T02:40:09.912Z] [INFO] [Definition] Document found, calling definitionProvider.provideDefinition()
-[2025-11-18T02:40:09.913Z] [INFO] [Definition] ==================== NEW REQUEST ====================
-[2025-11-18T02:40:09.913Z] [INFO] [Definition] File: file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue
-[2025-11-18T02:40:09.913Z] [INFO] [Definition] Position: line 1, char 29
-[2025-11-18T02:40:09.913Z] [INFO] [Definition] Word under cursor: "shared"
-[2025-11-18T02:40:09.914Z] [INFO] [Definition] String at cursor: "~~/shared/utils/response"
-[2025-11-18T02:40:09.914Z] [INFO] [Definition] Full line: "import { Response } from "~~/shared/utils/response";"
-[2025-11-18T02:40:09.914Z] [INFO] [Definition] =======================================================
-[2025-11-18T02:40:09.914Z] [INFO] [Definition] Checking import statement...
-[2025-11-18T02:40:09.914Z] [INFO] [Definition] Found import path: ~~/shared/utils/response
-[2025-11-18T02:40:09.915Z] [INFO] [Definition] Import extension: none
-[2025-11-18T02:40:09.915Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T02:40:09.915Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T02:40:09.916Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - paths section contains "~~": false
-[2025-11-18T02:40:09.916Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack/types", targetsArray: "
-        "../node_modules/nitropack/types"
-      "
-[2025-11-18T02:40:09.916Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T02:40:09.916Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack/runtime", targetsArray: "
-        "../node_modules/nitropack/runtime"
-      "
-[2025-11-18T02:40:09.916Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T02:40:09.917Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack", targetsArray: "
-        "../node_modules/nitropack"
-      "
-[2025-11-18T02:40:09.917Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T02:40:09.917Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "defu", targetsArray: "
-        "../node_modules/defu"
-      "
-[2025-11-18T02:40:09.917Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T02:40:09.917Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "h3", targetsArray: "
-        "../node_modules/h3"
-      "
-[2025-11-18T02:40:09.918Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T02:40:09.918Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "consola", targetsArray: "
-        "../node_modules/consola"
-      "
-[2025-11-18T02:40:09.918Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T02:40:09.918Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "ofetch", targetsArray: "
-        "../node_modules/ofetch"
-      "
-[2025-11-18T02:40:09.918Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T02:40:09.918Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@nuxt/devtools", targetsArray: "
-        "../node_modules/@nuxt/devtools"
-      "
-[2025-11-18T02:40:09.919Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T02:40:09.919Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@vue/runtime-core", targetsArray: "
-        "../node_modules/@vue/runtime-core"
-      "
-[2025-11-18T02:40:09.919Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T02:40:09.919Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
-        "../node_modules/@vue/compiler-sfc"
-      "
-[2025-11-18T02:40:09.919Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T02:40:09.920Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
-        "../node_modules/unplugin-vue-router/client"
-      "
-[2025-11-18T02:40:09.920Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T02:40:09.920Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@nuxt/schema", targetsArray: "
-        "../node_modules/@nuxt/schema"
-      "
-[2025-11-18T02:40:09.920Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T02:40:09.921Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nuxt", targetsArray: "
-        "../node_modules/nuxt"
-      "
-[2025-11-18T02:40:09.921Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T02:40:09.921Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "vite/client", targetsArray: "
-        "../node_modules/vite/client"
-      "
-[2025-11-18T02:40:09.921Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T02:40:09.921Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "~", targetsArray: "
-        "../app"
-      "
-[2025-11-18T02:40:09.921Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T02:40:09.922Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "exclude", targetsArray: "
-    "../node_modules",
-    "../node_modules/nuxt/node_modules",
-    "../node_modules/@nuxt/eslint/n"
-[2025-11-18T02:40:09.922Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T02:40:09.922Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T02:40:09.922Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T02:40:09.923Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T02:40:09.923Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - paths section contains "~~": false
-[2025-11-18T02:40:09.923Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - Match found - alias: "#imports", targetsArray: "
-        "./types/nitro-imports"
-      "
-[2025-11-18T02:40:09.923Z] [INFO] [TsConfig:Regex] Extracted alias: "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T02:40:09.924Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - Match found - alias: "exclude", targetsArray: "
-    "../node_modules",
-    "../node_modules/nuxt/node_modules",
-    "../node_modules/@nuxt/eslint/n"
-[2025-11-18T02:40:09.924Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T02:40:09.924Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T02:40:09.924Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T02:40:09.924Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T02:40:09.925Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - paths section contains "~~": false
-[2025-11-18T02:40:09.925Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack/types", targetsArray: "
-        "../node_modules/nitropack/types"
-      "
-[2025-11-18T02:40:09.925Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T02:40:09.925Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack/runtime", targetsArray: "
-        "../node_modules/nitropack/runtime"
-      "
-[2025-11-18T02:40:09.925Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T02:40:09.926Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack", targetsArray: "
-        "../node_modules/nitropack"
-      "
-[2025-11-18T02:40:09.926Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T02:40:09.926Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "defu", targetsArray: "
-        "../node_modules/defu"
-      "
-[2025-11-18T02:40:09.926Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T02:40:09.926Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "h3", targetsArray: "
-        "../node_modules/h3"
-      "
-[2025-11-18T02:40:09.926Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T02:40:09.927Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "consola", targetsArray: "
-        "../node_modules/consola"
-      "
-[2025-11-18T02:40:09.927Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T02:40:09.927Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "ofetch", targetsArray: "
-        "../node_modules/ofetch"
-      "
-[2025-11-18T02:40:09.927Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T02:40:09.927Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@nuxt/devtools", targetsArray: "
-        "../node_modules/@nuxt/devtools"
-      "
-[2025-11-18T02:40:09.928Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T02:40:09.928Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@vue/runtime-core", targetsArray: "
-        "../node_modules/@vue/runtime-core"
-      "
-[2025-11-18T02:40:09.928Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T02:40:09.928Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
-        "../node_modules/@vue/compiler-sfc"
-      "
-[2025-11-18T02:40:09.928Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T02:40:09.928Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
-        "../node_modules/unplugin-vue-router/client"
-      "
-[2025-11-18T02:40:09.929Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T02:40:09.929Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@nuxt/schema", targetsArray: "
-        "../node_modules/@nuxt/schema"
-      "
-[2025-11-18T02:40:09.929Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T02:40:09.929Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nuxt", targetsArray: "
-        "../node_modules/nuxt"
-      "
-[2025-11-18T02:40:09.929Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T02:40:09.930Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "vite/client", targetsArray: "
-        "../node_modules/vite/client"
-      "
-[2025-11-18T02:40:09.930Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T02:40:09.930Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "~", targetsArray: "
-        "../app"
-      "
-[2025-11-18T02:40:09.930Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T02:40:09.930Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "exclude", targetsArray: ""
-[2025-11-18T02:40:09.930Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T02:40:09.931Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T02:40:09.931Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T02:40:09.931Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T02:40:09.932Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T02:40:09.932Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - paths section contains "~~": false
-[2025-11-18T02:40:09.932Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "nitropack/types", targetsArray: "
-        "../node_modules/nitropack/types"
-      "
-[2025-11-18T02:40:09.932Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T02:40:09.932Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "nitropack/runtime", targetsArray: "
-        "../node_modules/nitropack/runtime"
-      "
-[2025-11-18T02:40:09.933Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T02:40:09.933Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "nitropack", targetsArray: "
-        "../node_modules/nitropack"
-      "
-[2025-11-18T02:40:09.933Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T02:40:09.933Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "defu", targetsArray: "
-        "../node_modules/defu"
-      "
-[2025-11-18T02:40:09.933Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T02:40:09.933Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "h3", targetsArray: "
-        "../node_modules/h3"
-      "
-[2025-11-18T02:40:09.934Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T02:40:09.934Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "consola", targetsArray: "
-        "../node_modules/consola"
-      "
-[2025-11-18T02:40:09.934Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T02:40:09.934Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "ofetch", targetsArray: "
-        "../node_modules/ofetch"
-      "
-[2025-11-18T02:40:09.934Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T02:40:09.935Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "@nuxt/devtools", targetsArray: "
-        "../node_modules/@nuxt/devtools"
-      "
-[2025-11-18T02:40:09.935Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T02:40:09.935Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "@vue/runtime-core", targetsArray: "
-        "../node_modules/@vue/runtime-core"
-      "
-[2025-11-18T02:40:09.935Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T02:40:09.936Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
-        "../node_modules/@vue/compiler-sfc"
-      "
-[2025-11-18T02:40:09.936Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T02:40:09.936Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
-        "../node_modules/unplugin-vue-router/client"
-      "
-[2025-11-18T02:40:09.936Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T02:40:09.936Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "@nuxt/schema", targetsArray: "
-        "../node_modules/@nuxt/schema"
-      "
-[2025-11-18T02:40:09.937Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T02:40:09.937Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "nuxt", targetsArray: "
-        "../node_modules/nuxt"
-      "
-[2025-11-18T02:40:09.937Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T02:40:09.937Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "vite/client", targetsArray: "
-        "../node_modules/vite/client"
-      "
-[2025-11-18T02:40:09.937Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T02:40:09.938Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "~", targetsArray: "
-        "../app"
-      "
-[2025-11-18T02:40:09.938Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T02:40:09.938Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.json - Match found - alias: "exclude", targetsArray: "
-    "../node_modules",
-    "../node_modules/nuxt/node_modules",
-    "../node_modules/@nuxt/eslint/n"
-[2025-11-18T02:40:09.938Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T02:40:09.938Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T02:40:09.939Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T02:40:09.939Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T02:40:09.939Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - paths section contains "~~": false
-[2025-11-18T02:40:09.939Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack/types", targetsArray: "
-        "../node_modules/nitropack/types"
-      "
-[2025-11-18T02:40:09.940Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T02:40:09.940Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack/runtime", targetsArray: "
-        "../node_modules/nitropack/runtime"
-      "
-[2025-11-18T02:40:09.940Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T02:40:09.940Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nitropack", targetsArray: "
-        "../node_modules/nitropack"
-      "
-[2025-11-18T02:40:09.940Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T02:40:09.940Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "defu", targetsArray: "
-        "../node_modules/defu"
-      "
-[2025-11-18T02:40:09.941Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T02:40:09.941Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "h3", targetsArray: "
-        "../node_modules/h3"
-      "
-[2025-11-18T02:40:09.941Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T02:40:09.941Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "consola", targetsArray: "
-        "../node_modules/consola"
-      "
-[2025-11-18T02:40:09.941Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T02:40:09.942Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "ofetch", targetsArray: "
-        "../node_modules/ofetch"
-      "
-[2025-11-18T02:40:09.942Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T02:40:09.942Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@nuxt/devtools", targetsArray: "
-        "../node_modules/@nuxt/devtools"
-      "
-[2025-11-18T02:40:09.942Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T02:40:09.942Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@vue/runtime-core", targetsArray: "
-        "../node_modules/@vue/runtime-core"
-      "
-[2025-11-18T02:40:09.942Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T02:40:09.943Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
-        "../node_modules/@vue/compiler-sfc"
-      "
-[2025-11-18T02:40:09.943Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T02:40:09.943Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
-        "../node_modules/unplugin-vue-router/client"
-      "
-[2025-11-18T02:40:09.943Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T02:40:09.943Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "@nuxt/schema", targetsArray: "
-        "../node_modules/@nuxt/schema"
-      "
-[2025-11-18T02:40:09.944Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T02:40:09.944Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "nuxt", targetsArray: "
-        "../node_modules/nuxt"
-      "
-[2025-11-18T02:40:09.944Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T02:40:09.944Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "vite/client", targetsArray: "
-        "../node_modules/vite/client"
-      "
-[2025-11-18T02:40:09.944Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T02:40:09.944Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "~", targetsArray: "
-        "../app"
-      "
-[2025-11-18T02:40:09.945Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T02:40:09.945Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.app.json - Match found - alias: "exclude", targetsArray: "
-    "../node_modules",
-    "../node_modules/nuxt/node_modules",
-    "../node_modules/@nuxt/eslint/n"
-[2025-11-18T02:40:09.945Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T02:40:09.945Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T02:40:09.945Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T02:40:09.946Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T02:40:09.946Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - paths section contains "~~": false
-[2025-11-18T02:40:09.946Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - Match found - alias: "#imports", targetsArray: "
-        "./types/nitro-imports"
-      "
-[2025-11-18T02:40:09.946Z] [INFO] [TsConfig:Regex] Extracted alias: "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T02:40:09.946Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.server.json - Match found - alias: "exclude", targetsArray: "
-    "../node_modules",
-    "../node_modules/nuxt/node_modules",
-    "../node_modules/@nuxt/eslint/n"
-[2025-11-18T02:40:09.947Z] [INFO] [TsConfig:Regex] Extracted alias: "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T02:40:09.947Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T02:40:09.947Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T02:40:09.947Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T02:40:09.948Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - paths section contains "~~": false
-[2025-11-18T02:40:09.948Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack/types", targetsArray: "
-        "../node_modules/nitropack/types"
-      "
-[2025-11-18T02:40:09.948Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T02:40:09.948Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack/runtime", targetsArray: "
-        "../node_modules/nitropack/runtime"
-      "
-[2025-11-18T02:40:09.948Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T02:40:09.948Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nitropack", targetsArray: "
-        "../node_modules/nitropack"
-      "
-[2025-11-18T02:40:09.949Z] [INFO] [TsConfig:Regex] Extracted alias: "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T02:40:09.949Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "defu", targetsArray: "
-        "../node_modules/defu"
-      "
-[2025-11-18T02:40:09.949Z] [INFO] [TsConfig:Regex] Extracted alias: "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T02:40:09.949Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "h3", targetsArray: "
-        "../node_modules/h3"
-      "
-[2025-11-18T02:40:09.949Z] [INFO] [TsConfig:Regex] Extracted alias: "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T02:40:09.949Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "consola", targetsArray: "
-        "../node_modules/consola"
-      "
-[2025-11-18T02:40:09.950Z] [INFO] [TsConfig:Regex] Extracted alias: "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T02:40:09.950Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "ofetch", targetsArray: "
-        "../node_modules/ofetch"
-      "
-[2025-11-18T02:40:09.950Z] [INFO] [TsConfig:Regex] Extracted alias: "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T02:40:09.950Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@nuxt/devtools", targetsArray: "
-        "../node_modules/@nuxt/devtools"
-      "
-[2025-11-18T02:40:09.950Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T02:40:09.951Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@vue/runtime-core", targetsArray: "
-        "../node_modules/@vue/runtime-core"
-      "
-[2025-11-18T02:40:09.951Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T02:40:09.951Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@vue/compiler-sfc", targetsArray: "
-        "../node_modules/@vue/compiler-sfc"
-      "
-[2025-11-18T02:40:09.951Z] [INFO] [TsConfig:Regex] Extracted alias: "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T02:40:09.951Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "unplugin-vue-router/client", targetsArray: "
-        "../node_modules/unplugin-vue-router/client"
-      "
-[2025-11-18T02:40:09.952Z] [INFO] [TsConfig:Regex] Extracted alias: "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T02:40:09.952Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "@nuxt/schema", targetsArray: "
-        "../node_modules/@nuxt/schema"
-      "
-[2025-11-18T02:40:09.952Z] [INFO] [TsConfig:Regex] Extracted alias: "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T02:40:09.952Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "nuxt", targetsArray: "
-        "../node_modules/nuxt"
-      "
-[2025-11-18T02:40:09.953Z] [INFO] [TsConfig:Regex] Extracted alias: "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T02:40:09.953Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "vite/client", targetsArray: "
-        "../node_modules/vite/client"
-      "
-[2025-11-18T02:40:09.953Z] [INFO] [TsConfig:Regex] Extracted alias: "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T02:40:09.953Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "~", targetsArray: "
-        "../app"
-      "
-[2025-11-18T02:40:09.953Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T02:40:09.954Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "exclude", targetsArray: ""
-[2025-11-18T02:40:09.954Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T02:40:09.954Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T02:40:09.954Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T02:40:09.955Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T02:40:09.955Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T02:40:09.955Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T02:40:09.955Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T02:40:09.956Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T02:40:09.956Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T02:40:09.956Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T02:40:09.956Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T02:40:09.956Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T02:40:09.957Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T02:40:09.957Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T02:40:09.957Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T02:40:09.957Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T02:40:09.957Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T02:40:09.958Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T02:40:09.958Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T02:40:09.958Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T02:40:09.959Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T02:40:09.959Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T02:40:09.959Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T02:40:09.959Z] [INFO] [Definition] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
-[2025-11-18T02:40:09.960Z] [INFO] [Definition] Import path not found: ~~/shared/utils/response
-[2025-11-18T02:40:09.960Z] [INFO] [Definition] ✗ No import definition found
-[2025-11-18T02:40:09.960Z] [INFO] [Definition] Checking auto-imported symbols for: shared...
-[2025-11-18T02:40:09.961Z] [INFO] [Definition] ✗ No symbol info found for: shared
-[2025-11-18T02:40:09.961Z] [INFO] [Definition] ✗ No Nuxt-specific definition found, returning null
-[2025-11-18T02:40:09.961Z] [INFO] [Definition] No result (returning null)
-[2025-11-18T02:40:10.002Z] [INFO] [Definition] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:29
-[2025-11-18T02:40:10.003Z] [INFO] [Definition] Document found, calling definitionProvider.provideDefinition()
-[2025-11-18T02:40:10.003Z] [INFO] [Definition] ==================== NEW REQUEST ====================
-[2025-11-18T02:40:10.004Z] [INFO] [Definition] File: file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue
-[2025-11-18T02:40:10.004Z] [INFO] [Definition] Position: line 1, char 29
-[2025-11-18T02:40:10.004Z] [INFO] [Definition] Word under cursor: "shared"
-[2025-11-18T02:40:10.004Z] [INFO] [Definition] String at cursor: "~~/shared/utils/response"
-[2025-11-18T02:40:10.004Z] [INFO] [Definition] Full line: "import { Response } from "~~/shared/utils/response";"
-[2025-11-18T02:40:10.005Z] [INFO] [Definition] =======================================================
-[2025-11-18T02:40:10.005Z] [INFO] [Definition] Checking import statement...
-[2025-11-18T02:40:10.005Z] [INFO] [Definition] Found import path: ~~/shared/utils/response
-[2025-11-18T02:40:10.005Z] [INFO] [Definition] Import extension: none
-[2025-11-18T02:40:10.005Z] [INFO] [Definition] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
-[2025-11-18T02:40:10.006Z] [INFO] [Definition] Import path not found: ~~/shared/utils/response
-[2025-11-18T02:40:10.006Z] [INFO] [Definition] ✗ No import definition found
-[2025-11-18T02:40:10.007Z] [INFO] [Definition] Checking auto-imported symbols for: shared...
-[2025-11-18T02:40:10.007Z] [INFO] [Definition] ✗ No symbol info found for: shared
-[2025-11-18T02:40:10.007Z] [INFO] [Definition] ✗ No Nuxt-specific definition found, returning null
-[2025-11-18T02:40:10.007Z] [INFO] [Definition] No result (returning null)
+[2025-11-18T02:48:07.890Z] [INFO] [TsConfig:Regex] Extracted alias: "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T02:48:07.891Z] [INFO] [TsConfig:Regex:DEBUG] tsconfig.shared.json - Match found - alias: "exclude", targetsArray: ""
+[2025-11-18T02:48:07.891Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T02:48:07.891Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T02:48:07.892Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T02:48:07.892Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T02:48:07.893Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T02:48:07.893Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
+[2025-11-18T02:48:07.894Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T02:48:07.894Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T02:48:07.894Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T02:48:07.894Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T02:48:07.894Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T02:48:07.895Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T02:48:07.895Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T02:48:07.895Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T02:48:07.895Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T02:48:07.896Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T02:48:07.896Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T02:48:07.896Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T02:48:07.896Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T02:48:07.896Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T02:48:07.897Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T02:48:07.897Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T02:48:07.897Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
+[2025-11-18T02:48:07.904Z] [INFO] Nuxt project initialized successfully
