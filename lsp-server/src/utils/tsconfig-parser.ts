@@ -293,8 +293,12 @@ export class TsConfigParser {
   resolveAliasPath(importPath: string): string | null {
     const aliases = this.getAliases();
 
+    // Sort aliases by length (descending) to match longer aliases first
+    // This prevents "~" from matching before "~~", "@" before "@@", etc.
+    const sortedAliases = Object.entries(aliases).sort((a, b) => b[0].length - a[0].length);
+
     // Check each alias to see if it matches the import path
-    for (const [alias, target] of Object.entries(aliases)) {
+    for (const [alias, target] of sortedAliases) {
       if (importPath.startsWith(alias)) {
         // Replace the alias with the target path
         const resolved = importPath.replace(alias, target);
