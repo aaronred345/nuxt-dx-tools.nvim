@@ -140,3 +140,22 @@ vim.api.nvim_create_user_command('NuxtDXLspInfo', function()
     ), vim.log.levels.INFO)
   end
 end, { desc = 'Show Nuxt DX LSP info' })
+
+-- Set up standard LSP keybinding for gd in Nuxt projects
+-- Note: Neovim does NOT automatically set up gd, only K and CTRL-]
+-- We use the standard vim.lsp.buf.definition() which queries all LSP clients
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.name == 'nuxt-dx-tools-lsp' then
+      -- Only set gd if it's not already mapped
+      if vim.fn.maparg('gd', 'n') == '' then
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {
+          buffer = args.buf,
+          desc = 'Go to definition',
+          silent = true
+        })
+      end
+    end
+  end,
+})
