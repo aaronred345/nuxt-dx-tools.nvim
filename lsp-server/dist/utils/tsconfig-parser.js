@@ -147,6 +147,17 @@ class TsConfigParser {
             }
         }
         const pathsSection = content.substring(startIndex, endIndex + 1);
+        // For shared config, check if ~~ is in the raw content
+        if (filepath.includes('tsconfig.shared.json')) {
+            const hasDoubleTilde = pathsSection.includes('"~~"');
+            this.logger.info(`[TsConfig:Regex:DEBUG] Shared config - paths section contains "~~": ${hasDoubleTilde}`);
+            if (hasDoubleTilde) {
+                // Log the section around ~~
+                const tildeIndex = pathsSection.indexOf('"~~"');
+                const snippet = pathsSection.substring(Math.max(0, tildeIndex - 50), Math.min(pathsSection.length, tildeIndex + 150));
+                this.logger.info(`[TsConfig:Regex:DEBUG] Snippet around ~~: ${snippet}`);
+            }
+        }
         // Extract each path mapping: "alias/*": ["target/*", ...]
         // Use [\s\S] instead of . to match newlines, and [^\]]* to match array contents
         const aliasPattern = /"([^"]+)"\s*:\s*\[([\s\S]*?)\]/g;
@@ -154,6 +165,10 @@ class TsConfigParser {
         while ((match = aliasPattern.exec(pathsSection)) !== null) {
             const alias = match[1];
             const targetsArray = match[2];
+            // Log all matches for shared config
+            if (filepath.includes('tsconfig.shared.json')) {
+                this.logger.info(`[TsConfig:Regex:DEBUG] Match found - alias: "${alias}", targetsArray: "${targetsArray.substring(0, 100)}"`);
+            }
             // Extract the first target from the array
             const targetMatch = targetsArray.match(/"([^"]+)"/);
             if (targetMatch) {
