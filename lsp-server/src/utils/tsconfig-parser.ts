@@ -148,15 +148,16 @@ export class TsConfigParser {
 
     const pathsSection = content.substring(startIndex, endIndex + 1);
 
-    // For shared config, check if ~~ is in the raw content
-    if (filepath.includes('tsconfig.shared.json')) {
+    // For all .nuxt tsconfig files, check if ~~ is in the raw content
+    if (filepath.includes('.nuxt')) {
       const hasDoubleTilde = pathsSection.includes('"~~"');
-      this.logger.info(`[TsConfig:Regex:DEBUG] Shared config - paths section contains "~~": ${hasDoubleTilde}`);
+      const filename = path.basename(filepath);
+      this.logger.info(`[TsConfig:Regex:DEBUG] ${filename} - paths section contains "~~": ${hasDoubleTilde}`);
       if (hasDoubleTilde) {
         // Log the section around ~~
         const tildeIndex = pathsSection.indexOf('"~~"');
         const snippet = pathsSection.substring(Math.max(0, tildeIndex - 50), Math.min(pathsSection.length, tildeIndex + 150));
-        this.logger.info(`[TsConfig:Regex:DEBUG] Snippet around ~~: ${snippet}`);
+        this.logger.info(`[TsConfig:Regex:DEBUG] ${filename} - Snippet around ~~: ${snippet}`);
       }
     }
 
@@ -169,9 +170,10 @@ export class TsConfigParser {
       const alias = match[1];
       const targetsArray = match[2];
 
-      // Log all matches for shared config
-      if (filepath.includes('tsconfig.shared.json')) {
-        this.logger.info(`[TsConfig:Regex:DEBUG] Match found - alias: "${alias}", targetsArray: "${targetsArray.substring(0, 100)}"`);
+      // Log all matches for .nuxt tsconfig files
+      if (filepath.includes('.nuxt')) {
+        const filename = path.basename(filepath);
+        this.logger.info(`[TsConfig:Regex:DEBUG] ${filename} - Match found - alias: "${alias}", targetsArray: "${targetsArray.substring(0, 100)}"`);
       }
 
       // Extract the first target from the array
