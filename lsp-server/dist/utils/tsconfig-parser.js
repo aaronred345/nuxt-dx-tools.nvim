@@ -215,6 +215,11 @@ class TsConfigParser {
             return cached;
         }
         const aliases = this.loadAllPathMappings();
+        // Log all loaded aliases for debugging
+        this.logger.info(`[TsConfig] Loaded ${Object.keys(aliases).length} path aliases from tsconfig:`);
+        for (const [alias, target] of Object.entries(aliases)) {
+            this.logger.info(`[TsConfig]   "${alias}" -> "${target}"`);
+        }
         this.cache.set('aliases', aliases, 10000); // 10 second TTL
         return aliases;
     }
