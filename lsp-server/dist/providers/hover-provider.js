@@ -610,17 +610,25 @@ class HoverProvider {
      */
     async resolvePageRoute(routePath) {
         let pagePath = routePath.replace(/^\//, '');
+        this.logger.info(`[Hover:PageRoutes:Resolve] Original route: "${routePath}", cleaned: "${pagePath}"`);
         if (pagePath === '' || pagePath === '/') {
             pagePath = 'index';
+            this.logger.info(`[Hover:PageRoutes:Resolve] Empty route, using: "index"`);
         }
+        // Replace :param with [param] for dynamic routes
         pagePath = pagePath.replace(/:(\w+)/g, '[$1]');
+        this.logger.info(`[Hover:PageRoutes:Resolve] After dynamic route conversion: "${pagePath}"`);
         const extensions = ['.vue', '.tsx', '.jsx'];
         for (const ext of extensions) {
+            const searchPath = `${pagePath}${ext}`;
+            this.logger.info(`[Hover:PageRoutes:Resolve] Trying: pages/${searchPath}`);
             const pageFile = this.projectManager.findFile('pages', `${pagePath}${ext}`);
             if (pageFile) {
+                this.logger.info(`[Hover:PageRoutes:Resolve] ✓ Found: ${pageFile}`);
                 return pageFile;
             }
         }
+        this.logger.info(`[Hover:PageRoutes:Resolve] ✗ No page file found for route: "${routePath}"`);
         return null;
     }
     /**
