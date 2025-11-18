@@ -50,12 +50,12 @@ class TsConfigParser {
      * Remove JSON comments and trailing commas to make it valid JSON
      */
     cleanJson(content) {
-        // Remove single-line comments
+        // Remove single-line comments (but not inside strings)
         content = content.replace(/\/\/[^\n]*/g, '');
         // Remove multi-line comments
         content = content.replace(/\/\*[\s\S]*?\*\//g, '');
-        // Remove trailing commas before closing braces/brackets
-        content = content.replace(/,(\s*[}\]])/g, '$1');
+        // Remove trailing commas before closing braces/brackets (global, multiline)
+        content = content.replace(/,(\s*[}\]])/gm, '$1');
         return content;
     }
     /**
