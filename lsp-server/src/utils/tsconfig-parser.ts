@@ -328,7 +328,7 @@ export class TsConfigParser {
   }
 
   /**
-   * Get all path aliases (with caching)
+   * Get all path aliases (with caching and Nuxt fallbacks)
    */
   getAliases(): PathAlias {
     const cached = this.cache.get('aliases');
@@ -338,8 +338,23 @@ export class TsConfigParser {
 
     const aliases = this.loadAllPathMappings();
 
+    // Nuxt fallback: if ~~ is not in tsconfig but ~ is, derive ~~ from ~
+    // In Nuxt: ~ points to srcDir (app/), ~~ points to rootDir (project root, one level up)
+    if (!aliases['~~'] && aliases['~']) {
+      const rootDir = path.dirname(aliases['~']);
+      aliases['~~'] = rootDir;
+      this.logger.info(`[TsConfig] Added fallback: "~~" -> "${rootDir}" (parent of "~")`);
+    }
+
+    // Similarly for @@ alias
+    if (!aliases['@@'] && aliases['@']) {
+      const rootDir = path.dirname(aliases['@']);
+      aliases['@@'] = rootDir;
+      this.logger.info(`[TsConfig] Added fallback: "@@" -> "${rootDir}" (parent of "@")`);
+    }
+
     // Log all loaded aliases for debugging
-    this.logger.info(`[TsConfig] Loaded ${Object.keys(aliases).length} path aliases from tsconfig:`);
+    this.logger.info(`[TsConfig] Loaded ${Object.keys(aliases).length} path aliases (with fallbacks):`);
     for (const [alias, target] of Object.entries(aliases)) {
       this.logger.info(`[TsConfig]   "${alias}" -> "${target}"`);
     }
@@ -356,21 +371,6 @@ export class TsConfigParser {
 
     this.logger.info(`[TsConfig:Resolve] Resolving "${importPath}"...`);
     this.logger.info(`[TsConfig:Resolve] Has ~~: ${!!aliases['~~']}, Has ~: ${!!aliases['~']}`);
-
-    // Nuxt fallback: if ~~ is not in tsconfig but ~ is, derive ~~ from ~
-    // In Nuxt: ~ points to srcDir (app/), ~~ points to rootDir (project root, one level up)
-    if (!aliases['~~'] && aliases['~']) {
-      const rootDir = path.dirname(aliases['~']);
-      aliases['~~'] = rootDir;
-      this.logger.info(`[TsConfig:Resolve] Added fallback: "~~" -> "${rootDir}" (parent of "~")`);
-    }
-
-    // Similarly for @@ alias
-    if (!aliases['@@'] && aliases['@']) {
-      const rootDir = path.dirname(aliases['@']);
-      aliases['@@'] = rootDir;
-      this.logger.info(`[TsConfig:Resolve] Added fallback: "@@" -> "${rootDir}" (parent of "@")`);
-    }
 
     // Sort aliases by length (descending) to match longer aliases first
     // This prevents "~" from matching before "~~", "@" before "@@", etc.

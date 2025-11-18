@@ -43,7 +43,7 @@ export declare class TsConfigParser {
      */
     private loadAllPathMappings;
     /**
-     * Get all path aliases (with caching)
+     * Get all path aliases (with caching and Nuxt fallbacks)
      */
     getAliases(): PathAlias;
     /**
