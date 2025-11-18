@@ -90,8 +90,22 @@ export class TsConfigParser {
           this.logger.info(`[TsConfig:Parse] Cleaned content length: ${cleanedContent.length}`);
           // Show content around position 1083 where the error occurs
           const errorPos = 1083;
-          const snippet = cleanedContent.substring(Math.max(0, errorPos - 100), Math.min(cleanedContent.length, errorPos + 100));
-          this.logger.info(`[TsConfig:Parse] Content around position ${errorPos}: ${snippet}`);
+          const snippet = cleanedContent.substring(Math.max(0, errorPos - 200), Math.min(cleanedContent.length, errorPos + 100));
+          this.logger.info(`[TsConfig:Parse] Content around position ${errorPos} (200 chars before): ${snippet}`);
+
+          // Also show lines around the error
+          const lines = cleanedContent.split('\n');
+          let charCount = 0;
+          let lineNum = 0;
+          for (let i = 0; i < lines.length; i++) {
+            charCount += lines[i].length + 1; // +1 for newline
+            if (charCount >= errorPos) {
+              lineNum = i + 1;
+              break;
+            }
+          }
+          this.logger.info(`[TsConfig:Parse] Error at line ${lineNum}: "${lines[lineNum - 1]}"`);
+          if (lineNum > 1) this.logger.info(`[TsConfig:Parse] Previous line ${lineNum - 1}: "${lines[lineNum - 2]}"`);
         }
         const paths = this.parseTsConfigRegex(cleanedContent, filepath);
         this.logger.info(`[TsConfig:Parse] Regex extracted ${Object.keys(paths).length} aliases from ${filepath}`);
