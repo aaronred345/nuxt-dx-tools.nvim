@@ -144,7 +144,6 @@ end, { desc = 'Show Nuxt DX LSP info' })
 -- Custom go-to-definition that queries our LSP server explicitly
 -- This is needed because Neovim's default vim.lsp.buf.definition() only queries one server
 local function nuxt_goto_definition()
-  local params = vim.lsp.util.make_position_params()
   local buf = vim.api.nvim_get_current_buf()
 
   -- Find our LSP client
@@ -157,6 +156,9 @@ local function nuxt_goto_definition()
   end
 
   local client = nuxt_clients[1]
+
+  -- Make position params with the client's encoding to avoid warnings
+  local params = vim.lsp.util.make_position_params(0, client.offset_encoding)
 
   -- Request definition from our server
   client.request('textDocument/definition', params, function(err, result)
@@ -172,7 +174,7 @@ local function nuxt_goto_definition()
     end
 
     -- Jump to the definition
-    vim.lsp.util.jump_to_location(result[1] or result, 'utf-8')
+    vim.lsp.util.jump_to_location(result[1] or result, client.offset_encoding)
   end, buf)
 end
 

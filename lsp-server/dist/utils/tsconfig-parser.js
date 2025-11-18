@@ -322,14 +322,30 @@ class TsConfigParser {
      */
     resolveAliasPath(importPath) {
         const aliases = this.getAliases();
+        // Nuxt fallback: if ~~ is not in tsconfig but ~ is, derive ~~ from ~
+        // In Nuxt: ~ points to srcDir (app/), ~~ points to rootDir (project root, one level up)
+        if (!aliases['~~'] && aliases['~']) {
+            const rootDir = path.dirname(aliases['~']);
+            aliases['~~'] = rootDir;
+            this.logger.info(`[TsConfig:Resolve] Added fallback: "~~" -> "${rootDir}" (parent of "~")`);
+        }
+        // Similarly for @@ alias
+        if (!aliases['@@'] && aliases['@']) {
+            const rootDir = path.dirname(aliases['@']);
+            aliases['@@'] = rootDir;
+            this.logger.info(`[TsConfig:Resolve] Added fallback: "@@" -> "${rootDir}" (parent of "@")`);
+        }
         // Sort aliases by length (descending) to match longer aliases first
         // This prevents "~" from matching before "~~", "@" before "@@", etc.
         const sortedAliases = Object.entries(aliases).sort((a, b) => b[0].length - a[0].length);
         // Check each alias to see if it matches the import path
         for (const [alias, target] of sortedAliases) {
             if (importPath.startsWith(alias)) {
-                // Replace the alias with the target path
-                const resolved = importPath.replace(alias, target);
+                // Replace the alias prefix with the target path
+                // Use slice instead of replace to avoid issues with partial matches
+                // For example: "~~/foo" with alias "~" should not become "<target>~/foo"
+                const resolved = target + importPath.slice(alias.length);
+                this.logger.info(`[TsConfig:Resolve] Matched alias "${alias}" in "${importPath}" -> "${resolved}"`);
                 return resolved;
             }
         }
