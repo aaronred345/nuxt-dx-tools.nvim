@@ -50,3 +50,60 @@
 [2025-11-18T00:09:36.898Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
 [2025-11-18T00:09:36.898Z] [INFO] [Hover] Analyzing: line="<SelectionModal :data="{}" @callback="handleReturnItem" />", word="SelectionModal", stringAtCursor=""
 [2025-11-18T00:09:36.901Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T00:11:01.290Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/layouts/default.vue at 2:5
+[2025-11-18T00:11:01.290Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:11:01.291Z] [INFO] [Hover] Analyzing: line="<NavBar />", word="NavBar", stringAtCursor=""
+[2025-11-18T00:11:01.293Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T00:12:07.017Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/admin/is_admin.ts at 1:13
+[2025-11-18T00:12:07.017Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:12:07.018Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="Response", stringAtCursor=""
+[2025-11-18T00:12:07.018Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
+[2025-11-18T00:12:07.019Z] [INFO] [Hover] ✗ handleImportStatement returned null
+[2025-11-18T00:12:07.019Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T00:12:12.939Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/admin/is_admin.ts at 1:30
+[2025-11-18T00:12:12.940Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:12:12.940Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="shared", stringAtCursor="~~/shared/utils/response"
+[2025-11-18T00:12:12.940Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
+[2025-11-18T00:12:12.942Z] [INFO] [Hover] ✗ handleImportStatement returned null
+[2025-11-18T00:12:12.945Z] [INFO] [Hover] No Nuxt-specific match found, returning null
+[2025-11-18T00:12:12.945Z] [INFO] [Hover] No result (returning null)
+[2025-11-18T00:12:23.563Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/admin/is_admin.ts at 1:49
+[2025-11-18T00:12:23.563Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:12:23.563Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="response", stringAtCursor="~~/shared/utils/response"
+[2025-11-18T00:12:23.564Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
+[2025-11-18T00:12:23.567Z] [INFO] [Hover] ✗ handleImportStatement returned null
+[2025-11-18T00:12:23.569Z] [INFO] [Hover] No Nuxt-specific match found, returning null
+[2025-11-18T00:12:23.569Z] [INFO] [Hover] No result (returning null)
+[2025-11-18T00:12:26.566Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/admin/is_admin.ts at 1:15
+[2025-11-18T00:12:26.566Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:12:26.566Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="Response", stringAtCursor=""
+[2025-11-18T00:12:26.566Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
+[2025-11-18T00:12:26.567Z] [INFO] [Hover] ✗ handleImportStatement returned null
+[2025-11-18T00:12:26.567Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T00:12:51.551Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/admin/is_admin.ts at 1:32
+[2025-11-18T00:12:51.552Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:12:51.552Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="shared", stringAtCursor="~~/shared/utils/response"
+[2025-11-18T00:12:51.552Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
+[2025-11-18T00:12:51.555Z] [INFO] [Hover] ✗ handleImportStatement returned null
+[2025-11-18T00:12:51.557Z] [INFO] [Hover] No Nuxt-specific match found, returning null
+[2025-11-18T00:12:51.557Z] [INFO] [Hover] No result (returning null)
+[2025-11-18T00:12:53.674Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/admin/is_admin.ts at 0:41
+[2025-11-18T00:12:53.674Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:12:53.674Z] [INFO] [Hover] Analyzing: line="import { serverSupabaseClient } from "#supabase/server";", word="supabase", stringAtCursor="#supabase/server"
+[2025-11-18T00:12:53.675Z] [INFO] [Hover] Import detected on line: import { serverSupabaseClient } from "#supabase/server";
+[2025-11-18T00:12:53.675Z] [INFO] [Hover] ✗ handleImportStatement returned null
+[2025-11-18T00:12:53.675Z] [INFO] [Hover] No Nuxt-specific match found, returning null
+[2025-11-18T00:12:53.675Z] [INFO] [Hover] No result (returning null)
+[2025-11-18T00:12:56.060Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/admin/is_admin.ts at 1:39
+[2025-11-18T00:12:56.061Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:12:56.061Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="utils", stringAtCursor="~~/shared/utils/response"
+[2025-11-18T00:12:56.062Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
+[2025-11-18T00:12:56.062Z] [INFO] [Hover] ✗ handleImportStatement returned null
+[2025-11-18T00:12:56.062Z] [INFO] [Hover] No Nuxt-specific match found, returning null
+[2025-11-18T00:12:56.062Z] [INFO] [Hover] No result (returning null)
+[2025-11-18T00:13:54.375Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/shared/utils/run_types.ts at 0:30
+[2025-11-18T00:13:54.375Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:13:54.376Z] [INFO] [Hover] Analyzing: line="import { Response } from "~/../shared/utils/response";", word="", stringAtCursor="~/../shared/utils/response"
+[2025-11-18T00:13:54.376Z] [INFO] [Hover] Import detected on line: import { Response } from "~/../shared/utils/response";
+[2025-11-18T00:13:54.377Z] [INFO] [Hover] ✓ Provided import file preview
+[2025-11-18T00:13:54.377Z] [INFO] [Hover] Provided Nuxt-specific result
