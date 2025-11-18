@@ -87,7 +87,11 @@ export class TsConfigParser {
         // If JSON parsing fails, fall back to regex parsing
         this.logger.info(`[TsConfig:Parse] JSON parsing failed for ${filepath}: ${jsonError}`);
         if (filepath.includes('.nuxt')) {
-          this.logger.info(`[TsConfig:Parse] First 500 chars of cleaned content: ${cleanedContent.substring(0, 500)}`);
+          this.logger.info(`[TsConfig:Parse] Cleaned content length: ${cleanedContent.length}`);
+          // Show content around position 1083 where the error occurs
+          const errorPos = 1083;
+          const snippet = cleanedContent.substring(Math.max(0, errorPos - 100), Math.min(cleanedContent.length, errorPos + 100));
+          this.logger.info(`[TsConfig:Parse] Content around position ${errorPos}: ${snippet}`);
         }
         const paths = this.parseTsConfigRegex(cleanedContent, filepath);
         this.logger.info(`[TsConfig:Parse] Regex extracted ${Object.keys(paths).length} aliases from ${filepath}`);
