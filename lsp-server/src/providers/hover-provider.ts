@@ -146,118 +146,54 @@ export class HoverProvider {
 
     let resolvedPath: string | null = null;
 
-    // Try with alias resolution first
+    // Use tsconfig to resolve ALL path aliases (no hardcoding ~~, ~, @)
     if (hasExtension) {
       this.logger.info(`[Hover:Import] Has extension: ${importExtension}`);
 
       const aliasResolved = tsConfigParser.resolveAliasPath(importPath);
       if (aliasResolved) {
-        this.logger.info(`[Hover:Import] Alias resolved to: ${aliasResolved}`);
+        this.logger.info(`[Hover:Import] TsConfig resolved "${importPath}" to: ${aliasResolved}`);
         if (fs.existsSync(aliasResolved)) {
           const resolvedExt = path.extname(aliasResolved);
           if (resolvedExt === importExtension) {
             resolvedPath = aliasResolved;
-            this.logger.info(`[Hover:Import] ✓ Using alias resolved path`);
+            this.logger.info(`[Hover:Import] ✓ Found file with matching extension`);
+          } else {
+            this.logger.info(`[Hover:Import] ✗ Extension mismatch (expected ${importExtension}, got ${resolvedExt})`);
           }
         } else {
-          this.logger.info(`[Hover:Import] ✗ Alias resolved path doesn't exist`);
+          this.logger.info(`[Hover:Import] ✗ Resolved path doesn't exist: ${aliasResolved}`);
         }
-      }
-
-      // Try Nuxt-specific aliases: ~~ (rootDir) and ~ (srcDir/app)
-      if (!resolvedPath && importPath.startsWith('~~')) {
-        // ~~ = rootDir (project root)
-        const withoutTilde = importPath.replace(/^~~\//, '');
-        const rootDirPath = path.join(rootPath, withoutTilde);
-        this.logger.info(`[Hover:Import] Trying ~~ (rootDir): ${rootDirPath}`);
-        if (fs.existsSync(rootDirPath)) {
-          resolvedPath = rootDirPath;
-          this.logger.info(`[Hover:Import] ✓ Found with ~~ alias`);
-        }
-      }
-
-      // Try ~ = srcDir (app directory in Nuxt 4)
-      if (!resolvedPath && importPath.startsWith('~')) {
-        const withoutTilde = importPath.replace(/^~\//, '');
-        const appPath = this.projectManager.getAppPath();
-        const srcDirPath = path.join(appPath, withoutTilde);
-        this.logger.info(`[Hover:Import] Trying ~ (srcDir): ${srcDirPath}`);
-        if (fs.existsSync(srcDirPath)) {
-          resolvedPath = srcDirPath;
-          this.logger.info(`[Hover:Import] ✓ Found with ~ alias (srcDir)`);
-        }
-      }
-
-      // Try without @
-      if (!resolvedPath && importPath.startsWith('@')) {
-        const withoutAt = importPath.replace(/^@\//, '');
-        const appPath = this.projectManager.getAppPath();
-        const atStrippedPath = path.join(appPath, withoutAt);
-        this.logger.info(`[Hover:Import] Trying @ (srcDir): ${atStrippedPath}`);
-        if (fs.existsSync(atStrippedPath)) {
-          resolvedPath = atStrippedPath;
-          this.logger.info(`[Hover:Import] ✓ Found with @ alias`);
-        }
+      } else {
+        this.logger.info(`[Hover:Import] TsConfig could not resolve "${importPath}"`);
       }
     } else {
       this.logger.info(`[Hover:Import] No extension, will try with various extensions`);
 
       const extensions = ['.vue', '.ts', '.js', '.tsx', '.jsx', '.mjs', '.css', '.pcss', '.scss'];
 
-      // FIRST: Try Nuxt-specific aliases (~~, ~, @) BEFORE tsconfig resolution
-      // This prevents incorrect tsconfig mappings from interfering
+      // Use tsconfig to resolve ALL path aliases (no hardcoding)
+      const aliasResolved = tsConfigParser.resolveAliasPath(importPath);
+      if (aliasResolved) {
+        this.logger.info(`[Hover:Import] TsConfig resolved "${importPath}" to: ${aliasResolved}`);
 
-      // Try ~~ (rootDir) FIRST
-      if (importPath.startsWith('~~')) {
-        const withoutTilde = importPath.replace(/^~~\//, '');
+        // Try with various extensions
         for (const ext of extensions) {
-          const fullPath = path.join(rootPath, withoutTilde + ext);
+          const fullPath = `${aliasResolved}${ext}`;
           if (fs.existsSync(fullPath)) {
             resolvedPath = fullPath;
-            this.logger.info(`[Hover:Import] ✓ Found with ~~ alias: ${fullPath}`);
+            this.logger.info(`[Hover:Import] ✓ Found file: ${fullPath}`);
             break;
           }
         }
-      }
 
-      // Try ~ (srcDir/app)
-      if (!resolvedPath && importPath.startsWith('~') && !importPath.startsWith('~~')) {
-        const withoutTilde = importPath.replace(/^~\//, '');
-        const appPath = this.projectManager.getAppPath();
-        for (const ext of extensions) {
-          const fullPath = path.join(appPath, withoutTilde + ext);
-          if (fs.existsSync(fullPath)) {
-            resolvedPath = fullPath;
-            this.logger.info(`[Hover:Import] ✓ Found with ~ alias: ${fullPath}`);
-            break;
-          }
+        // Try without extension (direct path)
+        if (!resolvedPath && fs.existsSync(aliasResolved) && !aliasResolved.endsWith('.d.ts')) {
+          resolvedPath = aliasResolved;
+          this.logger.info(`[Hover:Import] ✓ Found file (no ext): ${aliasResolved}`);
         }
-      }
-
-      // Try @ (srcDir/app)
-      if (!resolvedPath && importPath.startsWith('@')) {
-        const withoutAt = importPath.replace(/^@\//, '');
-        const appPath = this.projectManager.getAppPath();
-        for (const ext of extensions) {
-          const fullPath = path.join(appPath, withoutAt + ext);
-          if (fs.existsSync(fullPath)) {
-            resolvedPath = fullPath;
-            this.logger.info(`[Hover:Import] ✓ Found with @ alias: ${fullPath}`);
-            break;
-          }
-        }
-      }
-
-      // LAST: Try tsconfig alias resolution (only for non-Nuxt aliases)
-      if (!resolvedPath) {
-        const aliasResolved = tsConfigParser.resolveAliasPath(importPath);
-        if (aliasResolved) {
-          this.logger.info(`[Hover:Import] Alias resolved to: ${aliasResolved}`);
-          if (fs.existsSync(aliasResolved) && !aliasResolved.endsWith('.d.ts')) {
-            resolvedPath = aliasResolved;
-            this.logger.info(`[Hover:Import] ✓ Using alias resolved path`);
-          }
-        }
+      } else {
+        this.logger.info(`[Hover:Import] TsConfig could not resolve "${importPath}"`);
       }
     }
 

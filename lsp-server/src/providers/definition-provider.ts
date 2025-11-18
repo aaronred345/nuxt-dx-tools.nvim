@@ -213,103 +213,35 @@ export class DefinitionProvider {
       } else {
         this.logger.info(`[Definition] ✗ File does not exist at direct path`);
       }
-
-      // Try Nuxt-specific aliases: ~~ (rootDir) and ~ (srcDir/app)
-      if (importPath.startsWith('~~')) {
-        // ~~ = rootDir (project root)
-        const withoutTilde = importPath.replace(/^~~\//, '');
-        const rootDirPath = path.join(rootPath, withoutTilde);
-        this.logger.info(`[Definition] Trying ~~ (rootDir): ${rootDirPath}`);
-        if (fs.existsSync(rootDirPath)) {
-          this.logger.info(`[Definition] ✓ Found file with ~~ alias`);
-          return Location.create(URI.file(rootDirPath).toString(), Range.create(0, 0, 0, 0));
-        }
-      }
-
-      // Try ~ = srcDir (app directory in Nuxt 4)
-      if (importPath.startsWith('~') && !importPath.startsWith('~~')) {
-        const withoutTilde = importPath.replace(/^~\//, '');
-        const appPath = this.projectManager.getAppPath();
-        const srcDirPath = path.join(appPath, withoutTilde);
-        this.logger.info(`[Definition] Trying ~ (srcDir): ${srcDirPath}`);
-        if (fs.existsSync(srcDirPath)) {
-          this.logger.info(`[Definition] ✓ Found file with ~ alias (srcDir)`);
-          return Location.create(URI.file(srcDirPath).toString(), Range.create(0, 0, 0, 0));
-        }
-      }
-
-      // Try @/ prefix (srcDir/app)
-      if (importPath.startsWith('@')) {
-        const withoutAt = importPath.replace(/^@\//, '');
-        const appPath = this.projectManager.getAppPath();
-        const atStrippedPath = path.join(appPath, withoutAt);
-        this.logger.info(`[Definition] Trying @ (srcDir): ${atStrippedPath}`);
-        if (fs.existsSync(atStrippedPath)) {
-          this.logger.info(`[Definition] ✓ Found file with @ alias`);
-          return Location.create(URI.file(atStrippedPath).toString(), Range.create(0, 0, 0, 0));
-        }
-      }
     }
 
-    // For imports without extensions, try Nuxt aliases FIRST, then tsconfig resolution
+    // For imports without extensions, use tsconfig to resolve ALL aliases (no hardcoding)
     const extensions = [
       '.vue', '.ts', '.js', '.tsx', '.jsx', '.mjs',
       '.css', '.pcss', '.scss', '.sass', '.less', '.styl'
     ];
 
-    // FIRST: Try Nuxt-specific aliases (~~, ~, @) BEFORE tsconfig resolution
-    // This prevents incorrect tsconfig mappings from interfering
-
-    // Try ~~ (rootDir)
-    if (importPath.startsWith('~~')) {
-      const withoutTilde = importPath.replace(/^~~\//, '');
-      for (const ext of extensions) {
-        const fullPath = path.join(rootPath, withoutTilde + ext);
-        if (fs.existsSync(fullPath)) {
-          this.logger.info(`[Definition] ✓ Found with ~~ alias: ${fullPath}`);
-          return Location.create(URI.file(fullPath).toString(), Range.create(0, 0, 0, 0));
-        }
-      }
-    }
-
-    // Try ~ (srcDir/app)
-    if (importPath.startsWith('~') && !importPath.startsWith('~~')) {
-      const withoutTilde = importPath.replace(/^~\//, '');
-      const appPath = this.projectManager.getAppPath();
-      for (const ext of extensions) {
-        const fullPath = path.join(appPath, withoutTilde + ext);
-        if (fs.existsSync(fullPath)) {
-          this.logger.info(`[Definition] ✓ Found with ~ alias: ${fullPath}`);
-          return Location.create(URI.file(fullPath).toString(), Range.create(0, 0, 0, 0));
-        }
-      }
-    }
-
-    // Try @ (srcDir/app)
-    if (importPath.startsWith('@')) {
-      const withoutAt = importPath.replace(/^@\//, '');
-      const appPath = this.projectManager.getAppPath();
-      for (const ext of extensions) {
-        const fullPath = path.join(appPath, withoutAt + ext);
-        if (fs.existsSync(fullPath)) {
-          this.logger.info(`[Definition] ✓ Found with @ alias: ${fullPath}`);
-          return Location.create(URI.file(fullPath).toString(), Range.create(0, 0, 0, 0));
-        }
-      }
-    }
-
-    // LAST: Try tsconfig alias resolution (only for non-Nuxt aliases)
     const resolvedPath = tsConfigParser.resolveAliasPath(importPath);
-    this.logger.info(`[Definition] Resolved import path: ${resolvedPath || 'null'}, hasExtension: ${hasExtension}`);
+    this.logger.info(`[Definition] TsConfig resolved "${importPath}" to: ${resolvedPath || 'null'}`);
 
-    if (resolvedPath && fs.existsSync(resolvedPath)) {
-      // Skip .d.ts files unless that's what we're looking for
-      if (!resolvedPath.endsWith('.d.ts')) {
+    if (resolvedPath) {
+      // Try with various extensions
+      for (const ext of extensions) {
+        const fullPath = `${resolvedPath}${ext}`;
+        if (fs.existsSync(fullPath)) {
+          this.logger.info(`[Definition] ✓ Found file: ${fullPath}`);
+          return Location.create(URI.file(fullPath).toString(), Range.create(0, 0, 0, 0));
+        }
+      }
+
+      // Try without extension (direct path)
+      if (fs.existsSync(resolvedPath) && !resolvedPath.endsWith('.d.ts')) {
+        this.logger.info(`[Definition] ✓ Found file (no ext): ${resolvedPath}`);
         return Location.create(URI.file(resolvedPath).toString(), Range.create(0, 0, 0, 0));
       }
     }
 
-    // Try to resolve as a relative path with various extensions
+    // Fallback: Try to resolve as a relative path with various extensions
     for (const ext of extensions) {
       const fullPath = path.join(rootPath, importPath + ext);
       if (fs.existsSync(fullPath)) {
