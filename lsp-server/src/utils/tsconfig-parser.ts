@@ -354,17 +354,19 @@ export class TsConfigParser {
   resolveAliasPath(importPath: string): string | null {
     const aliases = this.getAliases();
 
-    // Nuxt fallback: if ~~ is not in tsconfig but ~ is, add ~~ pointing to the same location
-    // This handles cases where Nuxt's generated tsconfig is missing the ~~ alias
+    // Nuxt fallback: if ~~ is not in tsconfig but ~ is, derive ~~ from ~
+    // In Nuxt: ~ points to srcDir (app/), ~~ points to rootDir (project root, one level up)
     if (!aliases['~~'] && aliases['~']) {
-      aliases['~~'] = aliases['~'];
-      this.logger.info(`[TsConfig:Resolve] Added fallback: "~~" -> "${aliases['~']}"`);
+      const rootDir = path.dirname(aliases['~']);
+      aliases['~~'] = rootDir;
+      this.logger.info(`[TsConfig:Resolve] Added fallback: "~~" -> "${rootDir}" (parent of "~")`);
     }
 
     // Similarly for @@ alias
     if (!aliases['@@'] && aliases['@']) {
-      aliases['@@'] = aliases['@'];
-      this.logger.info(`[TsConfig:Resolve] Added fallback: "@@" -> "${aliases['@']}"`);
+      const rootDir = path.dirname(aliases['@']);
+      aliases['@@'] = rootDir;
+      this.logger.info(`[TsConfig:Resolve] Added fallback: "@@" -> "${rootDir}" (parent of "@")`);
     }
 
     // Sort aliases by length (descending) to match longer aliases first
