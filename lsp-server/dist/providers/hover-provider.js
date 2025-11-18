@@ -544,15 +544,35 @@ class HoverProvider {
             }
         }
         else if (symbolInfo.type === 'component') {
-            lines.push('```vue');
-            lines.push('<!-- Nuxt Auto-imported Component -->');
-            lines.push(`<${word} />`);
-            lines.push('```');
-            if (symbolInfo.path) {
+            // Show file preview for components (first 20 lines)
+            if (symbolInfo.path && fs.existsSync(symbolInfo.path)) {
+                const filePreview = this.readFirstLines(symbolInfo.path, 20);
+                const fileName = path.basename(symbolInfo.path);
+                lines.push('```vue');
+                lines.push(`// Component: ${fileName}`);
+                lines.push('```');
+                lines.push('');
+                lines.push('**File Preview:**');
+                lines.push('```vue');
+                lines.push(filePreview);
+                lines.push('```');
                 lines.push('');
                 lines.push(`**Source:** \`${symbolInfo.path}\``);
                 lines.push('');
                 lines.push('*Press `gd` to open the component file*');
+            }
+            else {
+                // Fallback if file doesn't exist
+                lines.push('```vue');
+                lines.push('<!-- Nuxt Auto-imported Component -->');
+                lines.push(`<${word} />`);
+                lines.push('```');
+                if (symbolInfo.path) {
+                    lines.push('');
+                    lines.push(`**Source:** \`${symbolInfo.path}\``);
+                    lines.push('');
+                    lines.push('*Press `gd` to open the component file*');
+                }
             }
         }
         if (lines.length > 0) {
