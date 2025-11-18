@@ -81,3 +81,105 @@
 [2025-11-18T00:43:51.793Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
 [2025-11-18T00:43:51.794Z] [INFO] [Hover] Analyzing: line="const { data, error } = await useFetch("/api/pics/upload_picture", {", word="api", stringAtCursor="/api/pics/upload_picture"
 [2025-11-18T00:43:51.795Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T00:44:16.200Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 13:15
+[2025-11-18T00:44:16.201Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:44:16.201Z] [INFO] [Hover] Analyzing: line="<SelectionModal :data="{}" @callback="handleReturnItem" />", word="SelectionModal", stringAtCursor=""
+[2025-11-18T00:44:16.205Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T00:44:18.456Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 13:15
+[2025-11-18T00:44:18.457Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:44:18.458Z] [INFO] [Hover] Analyzing: line="<SelectionModal :data="{}" @callback="handleReturnItem" />", word="SelectionModal", stringAtCursor=""
+[2025-11-18T00:44:18.458Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T00:44:39.219Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 13:15
+[2025-11-18T00:44:39.220Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:44:39.220Z] [INFO] [Hover] Analyzing: line="<SelectionModal :data="{}" @callback="handleReturnItem" />", word="SelectionModal", stringAtCursor=""
+[2025-11-18T00:44:39.223Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T00:44:45.063Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
+[2025-11-18T00:44:45.063Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T00:44:45.063Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T00:44:45.064Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T00:44:45.064Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T00:44:45.064Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T00:44:45.064Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T00:44:45.064Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T00:44:45.065Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T00:44:45.065Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T00:44:45.065Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T00:44:45.065Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T00:44:45.066Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T00:44:45.066Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T00:44:45.066Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T00:44:45.066Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T00:44:45.067Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T00:44:45.067Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\types\nitro-imports"
+[2025-11-18T00:44:53.017Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/admin/is_admin.ts at 1:31
+[2025-11-18T00:44:53.018Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:44:53.018Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="shared", stringAtCursor="~~/shared/utils/response"
+[2025-11-18T00:44:53.018Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
+[2025-11-18T00:44:53.019Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/response"
+[2025-11-18T00:44:53.019Z] [INFO] [Hover:Import] No extension, will try with various extensions
+[2025-11-18T00:44:53.019Z] [INFO] [Hover:Import] ✓ Found with ~~ alias: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\shared\utils\response.ts
+[2025-11-18T00:44:53.020Z] [INFO] [Hover:Import] ✓ Final resolved path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\shared\utils\response.ts
+[2025-11-18T00:44:53.020Z] [INFO] [Hover] ✓ Provided import file preview
+[2025-11-18T00:44:53.020Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T00:45:00.020Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/admin/is_admin.ts at 1:13
+[2025-11-18T00:45:00.020Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:45:00.021Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="Response", stringAtCursor=""
+[2025-11-18T00:45:00.021Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
+[2025-11-18T00:45:00.021Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/response"
+[2025-11-18T00:45:00.022Z] [INFO] [Hover:Import] No extension, will try with various extensions
+[2025-11-18T00:45:00.022Z] [INFO] [Hover:Import] ✓ Found with ~~ alias: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\shared\utils\response.ts
+[2025-11-18T00:45:00.022Z] [INFO] [Hover:Import] ✓ Final resolved path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\shared\utils\response.ts
+[2025-11-18T00:45:00.023Z] [INFO] [Hover] ✓ Provided import file preview
+[2025-11-18T00:45:00.023Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T00:46:09.778Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/components/NavBar.vue at 74:20
+[2025-11-18T00:46:09.778Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:46:09.779Z] [INFO] [Hover] Analyzing: line="</div>", word="", stringAtCursor=""
+[2025-11-18T00:46:09.782Z] [INFO] [Hover] No Nuxt-specific match found, returning null
+[2025-11-18T00:46:09.783Z] [INFO] [Hover] No result (returning null)
+[2025-11-18T00:46:10.343Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/components/NavBar.vue at 74:20
+[2025-11-18T00:46:10.344Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:46:10.344Z] [INFO] [Hover] Analyzing: line="</div>", word="", stringAtCursor=""
+[2025-11-18T00:46:10.344Z] [INFO] [Hover] No Nuxt-specific match found, returning null
+[2025-11-18T00:46:10.345Z] [INFO] [Hover] No result (returning null)
+[2025-11-18T00:46:10.756Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/components/NavBar.vue at 74:20
+[2025-11-18T00:46:10.757Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:46:10.757Z] [INFO] [Hover] Analyzing: line="</div>", word="", stringAtCursor=""
+[2025-11-18T00:46:10.757Z] [INFO] [Hover] No Nuxt-specific match found, returning null
+[2025-11-18T00:46:10.757Z] [INFO] [Hover] No result (returning null)
+[2025-11-18T00:46:13.685Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
+[2025-11-18T00:46:13.685Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T00:46:13.686Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T00:46:13.686Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T00:46:13.686Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T00:46:13.686Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T00:46:13.687Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T00:46:13.687Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T00:46:13.687Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T00:46:13.687Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T00:46:13.688Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T00:46:13.688Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T00:46:13.688Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T00:46:13.688Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T00:46:13.689Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T00:46:13.689Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T00:46:13.689Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T00:46:13.690Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\types\nitro-imports"
+[2025-11-18T00:46:23.243Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/login.vue at 4:63
+[2025-11-18T00:46:23.243Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:46:23.243Z] [INFO] [Hover] Analyzing: line="if (userStore.get_authenticated) return navigateTo({ path: "/profile" });", word="profile", stringAtCursor="/profile"
+[2025-11-18T00:46:23.244Z] [INFO] [Hover:PageRoutes] Attempting to resolve route: "/profile"
+[2025-11-18T00:46:23.244Z] [INFO] [Hover:PageRoutes] Could not resolve route to page file
+[2025-11-18T00:46:23.247Z] [INFO] [Hover] No Nuxt-specific match found, returning null
+[2025-11-18T00:46:23.247Z] [INFO] [Hover] No result (returning null)
+[2025-11-18T00:46:24.841Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/login.vue at 4:49
+[2025-11-18T00:46:24.841Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:46:24.842Z] [INFO] [Hover] Analyzing: line="if (userStore.get_authenticated) return navigateTo({ path: "/profile" });", word="navigateTo", stringAtCursor=""
+[2025-11-18T00:46:24.842Z] [INFO] [Hover:PageRoutes] No route path found on line
+[2025-11-18T00:46:24.842Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T00:46:34.234Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/login.vue at 4:63
+[2025-11-18T00:46:34.235Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:46:34.235Z] [INFO] [Hover] Analyzing: line="if (userStore.get_authenticated) return navigateTo({ path: "/profile" });", word="profile", stringAtCursor="/profile"
+[2025-11-18T00:46:34.236Z] [INFO] [Hover:PageRoutes] Attempting to resolve route: "/profile"
+[2025-11-18T00:46:34.236Z] [INFO] [Hover:PageRoutes] Could not resolve route to page file
+[2025-11-18T00:46:34.239Z] [INFO] [Hover] No Nuxt-specific match found, returning null
+[2025-11-18T00:46:34.239Z] [INFO] [Hover] No result (returning null)
