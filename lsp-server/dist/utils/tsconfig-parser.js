@@ -322,6 +322,8 @@ class TsConfigParser {
      */
     resolveAliasPath(importPath) {
         const aliases = this.getAliases();
+        this.logger.info(`[TsConfig:Resolve] Resolving "${importPath}"...`);
+        this.logger.info(`[TsConfig:Resolve] Has ~~: ${!!aliases['~~']}, Has ~: ${!!aliases['~']}`);
         // Nuxt fallback: if ~~ is not in tsconfig but ~ is, derive ~~ from ~
         // In Nuxt: ~ points to srcDir (app/), ~~ points to rootDir (project root, one level up)
         if (!aliases['~~'] && aliases['~']) {
@@ -338,6 +340,7 @@ class TsConfigParser {
         // Sort aliases by length (descending) to match longer aliases first
         // This prevents "~" from matching before "~~", "@" before "@@", etc.
         const sortedAliases = Object.entries(aliases).sort((a, b) => b[0].length - a[0].length);
+        this.logger.info(`[TsConfig:Resolve] Checking ${sortedAliases.length} aliases (sorted by length)...`);
         // Check each alias to see if it matches the import path
         for (const [alias, target] of sortedAliases) {
             if (importPath.startsWith(alias)) {
@@ -349,6 +352,7 @@ class TsConfigParser {
                 return resolved;
             }
         }
+        this.logger.info(`[TsConfig:Resolve] No alias matched for "${importPath}"`);
         return null;
     }
     /**
