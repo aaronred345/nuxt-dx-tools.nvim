@@ -47,3 +47,23 @@
 [2025-11-18T00:22:23.255Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
 [2025-11-18T00:22:23.255Z] [INFO] [Hover] Analyzing: line="const item_list: Ref<ItemType | null> = ref(null);", word="ItemType", stringAtCursor=""
 [2025-11-18T00:22:23.256Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T00:22:52.863Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/components/NavBar.vue at 74:20
+[2025-11-18T00:22:52.863Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:22:52.864Z] [INFO] [Hover] Analyzing: line="</div>", word="", stringAtCursor=""
+[2025-11-18T00:22:52.867Z] [INFO] [Hover] No Nuxt-specific match found, returning null
+[2025-11-18T00:22:52.867Z] [INFO] [Hover] No result (returning null)
+[2025-11-18T00:23:10.643Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 13:13
+[2025-11-18T00:23:10.643Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:23:10.643Z] [INFO] [Hover] Analyzing: line="<SelectionModal :data="{}" @callback="handleReturnItem" />", word="SelectionModal", stringAtCursor=""
+[2025-11-18T00:23:10.648Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T00:23:51.758Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/admin/is_admin.ts at 1:39
+[2025-11-18T00:23:51.759Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T00:23:51.759Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="utils", stringAtCursor="~~/shared/utils/response"
+[2025-11-18T00:23:51.759Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
+[2025-11-18T00:23:51.760Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/response"
+[2025-11-18T00:23:51.760Z] [INFO] [Hover:Import] No extension, will try with various extensions
+[2025-11-18T00:23:51.760Z] [INFO] [Hover:Import] Alias resolved to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
+[2025-11-18T00:23:51.760Z] [INFO] [Hover:Import] ✓ Found with ~~ alias: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\shared\utils\response.ts
+[2025-11-18T00:23:51.761Z] [INFO] [Hover:Import] ✓ Final resolved path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\shared\utils\response.ts
+[2025-11-18T00:23:51.761Z] [INFO] [Hover] ✓ Provided import file preview
+[2025-11-18T00:23:51.761Z] [INFO] [Hover] Provided Nuxt-specific result
