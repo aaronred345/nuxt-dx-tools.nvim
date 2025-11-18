@@ -176,6 +176,7 @@ export class TsConfigParser {
         // Resolve target path relative to project root
         const absoluteTarget = path.resolve(baseDir, cleanTarget);
 
+        this.logger.info(`[TsConfig:Regex] Extracted alias: "${cleanAlias}" -> "${absoluteTarget}"`);
         paths[cleanAlias] = absoluteTarget;
       }
     }
