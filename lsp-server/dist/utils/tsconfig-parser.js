@@ -147,20 +147,13 @@ class TsConfigParser {
             }
         }
         const pathsSection = content.substring(startIndex, endIndex + 1);
-        // Log the paths section for debugging
-        if (filepath.includes('tsconfig.shared.json')) {
-            this.logger.info(`[TsConfig:Regex:DEBUG] Paths section from shared config (first 500 chars): ${pathsSection.substring(0, 500)}`);
-        }
         // Extract each path mapping: "alias/*": ["target/*", ...]
-        const aliasPattern = /"([^"]+)"\s*:\s*\[([^\]]*)\]/g;
+        // Use [\s\S] instead of . to match newlines, and [^\]]* to match array contents
+        const aliasPattern = /"([^"]+)"\s*:\s*\[([\s\S]*?)\]/g;
         let match;
         while ((match = aliasPattern.exec(pathsSection)) !== null) {
             const alias = match[1];
             const targetsArray = match[2];
-            // Log each raw match for shared config debugging
-            if (filepath.includes('tsconfig.shared.json')) {
-                this.logger.info(`[TsConfig:Regex:DEBUG] Raw match - alias: "${alias}", targets: [${targetsArray}]`);
-            }
             // Extract the first target from the array
             const targetMatch = targetsArray.match(/"([^"]+)"/);
             if (targetMatch) {
