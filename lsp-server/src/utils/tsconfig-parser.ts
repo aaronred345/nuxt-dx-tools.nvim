@@ -328,7 +328,7 @@ export class TsConfigParser {
   }
 
   /**
-   * Get all path aliases (with caching and Nuxt fallbacks)
+   * Get all path aliases (with caching)
    */
   getAliases(): PathAlias {
     const cached = this.cache.get('aliases');
@@ -338,23 +338,8 @@ export class TsConfigParser {
 
     const aliases = this.loadAllPathMappings();
 
-    // Nuxt fallback: if ~~ is not in tsconfig but ~ is, derive ~~ from ~
-    // In Nuxt: ~ points to srcDir (app/), ~~ points to rootDir (project root, one level up)
-    if (!aliases['~~'] && aliases['~']) {
-      const rootDir = path.dirname(aliases['~']);
-      aliases['~~'] = rootDir;
-      this.logger.info(`[TsConfig] Added fallback: "~~" -> "${rootDir}" (parent of "~")`);
-    }
-
-    // Similarly for @@ alias
-    if (!aliases['@@'] && aliases['@']) {
-      const rootDir = path.dirname(aliases['@']);
-      aliases['@@'] = rootDir;
-      this.logger.info(`[TsConfig] Added fallback: "@@" -> "${rootDir}" (parent of "@")`);
-    }
-
     // Log all loaded aliases for debugging
-    this.logger.info(`[TsConfig] Loaded ${Object.keys(aliases).length} path aliases (with fallbacks):`);
+    this.logger.info(`[TsConfig] Loaded ${Object.keys(aliases).length} path aliases from tsconfig:`);
     for (const [alias, target] of Object.entries(aliases)) {
       this.logger.info(`[TsConfig]   "${alias}" -> "${target}"`);
     }
@@ -370,10 +355,25 @@ export class TsConfigParser {
     const aliases = this.getAliases();
 
     this.logger.info(`[TsConfig:Resolve] Resolving "${importPath}"...`);
-    this.logger.info(`[TsConfig:Resolve] Has ~~: ${!!aliases['~~']}, Has ~: ${!!aliases['~']}`);
+
+    // Nuxt-specific handling: Check for ~~ and @@ FIRST, even if not in tsconfig
+    // In Nuxt: ~ → srcDir (app/), ~~ → rootDir (parent of srcDir)
+    if (importPath.startsWith('~~') && aliases['~']) {
+      const rootDir = path.dirname(aliases['~']);
+      const resolved = rootDir + importPath.slice(2);
+      this.logger.info(`[TsConfig:Resolve] Matched Nuxt ~~ (derived from ~) -> "${resolved}"`);
+      return resolved;
+    }
+
+    if (importPath.startsWith('@@') && aliases['@']) {
+      const rootDir = path.dirname(aliases['@']);
+      const resolved = rootDir + importPath.slice(2);
+      this.logger.info(`[TsConfig:Resolve] Matched Nuxt @@ (derived from @) -> "${resolved}"`);
+      return resolved;
+    }
 
     // Sort aliases by length (descending) to match longer aliases first
-    // This prevents "~" from matching before "~~", "@" before "@@", etc.
+    // This prevents "@" from matching before "@foo", etc.
     const sortedAliases = Object.entries(aliases).sort((a, b) => b[0].length - a[0].length);
 
     this.logger.info(`[TsConfig:Resolve] Checking ${sortedAliases.length} aliases (sorted by length)...`);
@@ -381,9 +381,6 @@ export class TsConfigParser {
     // Check each alias to see if it matches the import path
     for (const [alias, target] of sortedAliases) {
       if (importPath.startsWith(alias)) {
-        // Replace the alias prefix with the target path
-        // Use slice instead of replace to avoid issues with partial matches
-        // For example: "~~/foo" with alias "~" should not become "<target>~/foo"
         const resolved = target + importPath.slice(alias.length);
         this.logger.info(`[TsConfig:Resolve] Matched alias "${alias}" in "${importPath}" -> "${resolved}"`);
         return resolved;
