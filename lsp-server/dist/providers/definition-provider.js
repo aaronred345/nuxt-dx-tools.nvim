@@ -259,7 +259,49 @@ class DefinitionProvider {
                 }
             }
         }
-        // For imports without extensions, try alias resolution
+        // For imports without extensions, try Nuxt aliases FIRST, then tsconfig resolution
+        const extensions = [
+            '.vue', '.ts', '.js', '.tsx', '.jsx', '.mjs',
+            '.css', '.pcss', '.scss', '.sass', '.less', '.styl'
+        ];
+        // FIRST: Try Nuxt-specific aliases (~~, ~, @) BEFORE tsconfig resolution
+        // This prevents incorrect tsconfig mappings from interfering
+        // Try ~~ (rootDir)
+        if (importPath.startsWith('~~')) {
+            const withoutTilde = importPath.replace(/^~~\//, '');
+            for (const ext of extensions) {
+                const fullPath = path.join(rootPath, withoutTilde + ext);
+                if (fs.existsSync(fullPath)) {
+                    this.logger.info(`[Definition] ✓ Found with ~~ alias: ${fullPath}`);
+                    return node_1.Location.create(vscode_uri_1.URI.file(fullPath).toString(), node_1.Range.create(0, 0, 0, 0));
+                }
+            }
+        }
+        // Try ~ (srcDir/app)
+        if (importPath.startsWith('~') && !importPath.startsWith('~~')) {
+            const withoutTilde = importPath.replace(/^~\//, '');
+            const appPath = this.projectManager.getAppPath();
+            for (const ext of extensions) {
+                const fullPath = path.join(appPath, withoutTilde + ext);
+                if (fs.existsSync(fullPath)) {
+                    this.logger.info(`[Definition] ✓ Found with ~ alias: ${fullPath}`);
+                    return node_1.Location.create(vscode_uri_1.URI.file(fullPath).toString(), node_1.Range.create(0, 0, 0, 0));
+                }
+            }
+        }
+        // Try @ (srcDir/app)
+        if (importPath.startsWith('@')) {
+            const withoutAt = importPath.replace(/^@\//, '');
+            const appPath = this.projectManager.getAppPath();
+            for (const ext of extensions) {
+                const fullPath = path.join(appPath, withoutAt + ext);
+                if (fs.existsSync(fullPath)) {
+                    this.logger.info(`[Definition] ✓ Found with @ alias: ${fullPath}`);
+                    return node_1.Location.create(vscode_uri_1.URI.file(fullPath).toString(), node_1.Range.create(0, 0, 0, 0));
+                }
+            }
+        }
+        // LAST: Try tsconfig alias resolution (only for non-Nuxt aliases)
         const resolvedPath = tsConfigParser.resolveAliasPath(importPath);
         this.logger.info(`[Definition] Resolved import path: ${resolvedPath || 'null'}, hasExtension: ${hasExtension}`);
         if (resolvedPath && fs.existsSync(resolvedPath)) {
@@ -269,11 +311,6 @@ class DefinitionProvider {
             }
         }
         // Try to resolve as a relative path with various extensions
-        // Include all common file types: JS/TS, Vue, CSS, etc.
-        const extensions = [
-            '.vue', '.ts', '.js', '.tsx', '.jsx', '.mjs',
-            '.css', '.pcss', '.scss', '.sass', '.less', '.styl'
-        ];
         for (const ext of extensions) {
             const fullPath = path.join(rootPath, importPath + ext);
             if (fs.existsSync(fullPath)) {
