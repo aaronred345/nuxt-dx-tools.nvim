@@ -173,8 +173,15 @@ local function nuxt_goto_definition()
       return
     end
 
-    -- Jump to the definition
-    vim.lsp.util.jump_to_location(result[1] or result, 'utf-8')
+    -- Jump to the definition using the modern API
+    local location = result[1] or result
+    if location.uri then
+      -- It's a Location object
+      vim.lsp.util.show_document(location.uri, client.offset_encoding, location.range)
+    elseif location.targetUri then
+      -- It's a LocationLink object
+      vim.lsp.util.show_document(location.targetUri, client.offset_encoding, location.targetSelectionRange)
+    end
   end, buf)
 end
 
