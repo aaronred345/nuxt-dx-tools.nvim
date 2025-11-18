@@ -1,793 +1,473 @@
-[2025-11-18T01:07:37.009Z] Logger initialized
-[2025-11-18T01:07:37.010Z] [INFO] TextDocuments now listening on connection
-[2025-11-18T01:07:37.011Z] [INFO] Nuxt DX Tools LSP Server is now listening for connections
-[2025-11-18T01:07:37.015Z] [INFO] Initializing Nuxt DX Tools LSP Server for workspace: file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web
-[2025-11-18T01:07:37.015Z] [INFO] Capabilities: hover=true, definition=true, completion=true
-[2025-11-18T01:07:37.043Z] [INFO] Nuxt DX Tools LSP Server initialized successfully
-[2025-11-18T01:07:37.043Z] [INFO] Initializing Nuxt project at: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web
-[2025-11-18T01:07:37.044Z] [INFO] Detected Nuxt 4 structure
-[2025-11-18T01:07:37.045Z] [INFO] App directory: app/
-[2025-11-18T01:07:37.046Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:07:37.047Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:07:37.048Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:07:37.048Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:07:37.049Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:07:37.049Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:07:37.049Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:07:37.050Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:07:37.050Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:07:37.050Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:07:37.051Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:07:37.052Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:07:37.052Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T01:07:37.053Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:07:37.053Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:07:37.054Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:07:37.054Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:07:37.055Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:07:37.055Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:07:37.055Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:07:37.056Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:07:37.056Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:07:37.056Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:07:37.057Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:07:37.057Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:07:37.057Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:07:37.058Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:07:37.058Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T01:07:37.058Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T01:07:37.058Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T01:07:37.059Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T01:07:37.059Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T01:07:37.059Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T01:07:37.059Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T01:07:37.060Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T01:07:37.060Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T01:07:37.060Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T01:07:37.060Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T01:07:37.061Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T01:07:37.061Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T01:07:37.061Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T01:07:37.061Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T01:07:37.062Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T01:07:37.062Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T01:07:37.062Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T01:07:37.067Z] [INFO] Nuxt project initialized successfully
-[2025-11-18T01:07:41.134Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 16:9
-[2025-11-18T01:07:41.134Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:07:41.135Z] [INFO] [Hover] Analyzing: line="<SelectionModal :data="{}" @callback="handleReturnItem" />", word="SelectionModal", stringAtCursor=""
-[2025-11-18T01:07:41.136Z] [INFO] [Hover] Provided Nuxt-specific result
-[2025-11-18T01:07:43.396Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 16:9
-[2025-11-18T01:07:43.396Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:07:43.397Z] [INFO] [Hover] Analyzing: line="<SelectionModal :data="{}" @callback="handleReturnItem" />", word="SelectionModal", stringAtCursor=""
-[2025-11-18T01:07:43.400Z] [INFO] [Hover] Provided Nuxt-specific result
-[2025-11-18T01:07:48.756Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 17:18
-[2025-11-18T01:07:48.757Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:07:48.757Z] [INFO] [Hover] Analyzing: line="<NuxtLink to="/">test</NuxtLink>", word="", stringAtCursor="/"
-[2025-11-18T01:07:48.757Z] [INFO] [Hover:PageRoutes] Attempting to resolve route: "/"
-[2025-11-18T01:07:48.758Z] [INFO] [Hover:PageRoutes:Resolve] Original route: "/", cleaned: ""
-[2025-11-18T01:07:48.758Z] [INFO] [Hover:PageRoutes:Resolve] Empty route, using: "index"
-[2025-11-18T01:07:48.758Z] [INFO] [Hover:PageRoutes:Resolve] After dynamic route conversion: "index"
-[2025-11-18T01:07:48.758Z] [INFO] [Hover:PageRoutes:Resolve] Trying: pages/index.vue
-[2025-11-18T01:07:48.759Z] [INFO] [Hover:PageRoutes:Resolve] ✓ Found: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app\pages\index.vue
-[2025-11-18T01:07:48.759Z] [INFO] [Hover:PageRoutes] Resolved to file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app\pages\index.vue
-[2025-11-18T01:07:48.759Z] [INFO] [Hover] Provided Nuxt-specific result
-[2025-11-18T01:07:54.690Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 2:18
-[2025-11-18T01:07:54.690Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:07:54.691Z] [INFO] [Hover] Analyzing: line="import "~/assets/main-plate.pcss";", word="main", stringAtCursor="~/assets/main-plate.pcss"
-[2025-11-18T01:07:54.691Z] [INFO] [Hover] Import detected on line: import "~/assets/main-plate.pcss";
-[2025-11-18T01:07:54.691Z] [INFO] [Hover:Import] Checking import path: "~/assets/main-plate.pcss"
-[2025-11-18T01:07:54.691Z] [INFO] [Hover:Import] Has extension: .pcss
-[2025-11-18T01:07:54.692Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:07:54.692Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:07:54.693Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:07:54.693Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:07:54.693Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:07:54.693Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:07:54.694Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:07:54.694Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:07:54.694Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:07:54.694Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:07:54.695Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:07:54.695Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:07:54.695Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T01:07:54.696Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:07:54.696Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:07:54.696Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:07:54.696Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:07:54.697Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:07:54.697Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:07:54.697Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:07:54.697Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:07:54.698Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:07:54.698Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:07:54.698Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:07:54.698Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:07:54.699Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:07:54.699Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:07:54.699Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T01:07:54.699Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T01:07:54.699Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T01:07:54.700Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T01:07:54.700Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T01:07:54.700Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T01:07:54.700Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T01:07:54.700Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T01:07:54.700Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T01:07:54.701Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T01:07:54.701Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T01:07:54.701Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T01:07:54.701Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T01:07:54.701Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T01:07:54.702Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T01:07:54.702Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T01:07:54.702Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T01:07:54.702Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T01:07:54.702Z] [INFO] [Hover:Import] TsConfig resolved "~/assets/main-plate.pcss" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/assets/main-plate.pcss
-[2025-11-18T01:07:54.703Z] [INFO] [Hover:Import] ✓ Found file with matching extension
-[2025-11-18T01:07:54.703Z] [INFO] [Hover:Import] ✓ Final resolved path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/assets/main-plate.pcss
-[2025-11-18T01:07:54.703Z] [INFO] [Hover] ✓ Provided import file preview
-[2025-11-18T01:07:54.703Z] [INFO] [Hover] Provided Nuxt-specific result
-[2025-11-18T01:07:56.732Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:30
-[2025-11-18T01:07:56.732Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:07:56.733Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="shared", stringAtCursor="~~/shared/utils/response"
-[2025-11-18T01:07:56.733Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
-[2025-11-18T01:07:56.733Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/response"
-[2025-11-18T01:07:56.733Z] [INFO] [Hover:Import] No extension, will try with various extensions
-[2025-11-18T01:07:56.734Z] [INFO] [Hover:Import] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
-[2025-11-18T01:07:56.734Z] [INFO] [Hover:Import] ✗ Could not resolve import path
-[2025-11-18T01:07:56.735Z] [INFO] [Hover] ✗ handleImportStatement returned null
-[2025-11-18T01:07:56.738Z] [INFO] [Hover] No Nuxt-specific match found, returning null
-[2025-11-18T01:07:56.738Z] [INFO] [Hover] No result (returning null)
-[2025-11-18T01:08:27.666Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:08:27.666Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:08:27.667Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:08:27.667Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:08:27.667Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:08:27.668Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:08:27.668Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:08:27.668Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:08:27.669Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:08:27.669Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:08:27.670Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:08:27.670Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:08:27.670Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T01:08:27.671Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:08:27.671Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:08:27.672Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:08:27.672Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:08:27.672Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:08:27.673Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:08:27.673Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:08:27.673Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:08:27.673Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:08:27.674Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:08:27.674Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:08:27.674Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:08:27.675Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:08:27.675Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:08:27.675Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T01:08:27.675Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T01:08:27.676Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T01:08:27.676Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T01:08:27.676Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T01:08:27.676Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T01:08:27.676Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T01:08:27.677Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T01:08:27.677Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T01:08:27.677Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T01:08:27.677Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T01:08:27.678Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T01:08:27.678Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T01:08:27.678Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T01:08:27.678Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T01:08:27.679Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T01:08:27.679Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T01:08:27.679Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T01:08:40.857Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 17:34
-[2025-11-18T01:08:40.858Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:08:40.858Z] [INFO] [Hover] Analyzing: line="<NuxtLink to="/">test</NuxtLink>", word="NuxtLink", stringAtCursor=""
-[2025-11-18T01:08:40.858Z] [INFO] [Hover] SPECIAL: NuxtLink with to/href detected on line: <NuxtLink to="/">test</NuxtLink>
-[2025-11-18T01:08:40.858Z] [INFO] [Hover:PageRoutes] Extracted route path from line: "/"
-[2025-11-18T01:08:40.859Z] [INFO] [Hover:PageRoutes] Attempting to resolve route: "/"
-[2025-11-18T01:08:40.859Z] [INFO] [Hover:PageRoutes:Resolve] Original route: "/", cleaned: ""
-[2025-11-18T01:08:40.859Z] [INFO] [Hover:PageRoutes:Resolve] Empty route, using: "index"
-[2025-11-18T01:08:40.859Z] [INFO] [Hover:PageRoutes:Resolve] After dynamic route conversion: "index"
-[2025-11-18T01:08:40.859Z] [INFO] [Hover:PageRoutes:Resolve] Trying: pages/index.vue
-[2025-11-18T01:08:40.860Z] [INFO] [Hover:PageRoutes:Resolve] ✓ Found: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app\pages\index.vue
-[2025-11-18T01:08:40.860Z] [INFO] [Hover:PageRoutes] Resolved to file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app\pages\index.vue
-[2025-11-18T01:08:40.860Z] [INFO] [Hover] ✓ Provided page route info for NuxtLink
-[2025-11-18T01:08:40.860Z] [INFO] [Hover] Provided Nuxt-specific result
-[2025-11-18T01:08:42.982Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 16:31
-[2025-11-18T01:08:42.983Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:08:42.984Z] [INFO] [Hover] Analyzing: line="<SelectionModal :data="{}" @callback="handleReturnItem" />", word="", stringAtCursor=""
-[2025-11-18T01:08:42.988Z] [INFO] [Hover] No Nuxt-specific match found, returning null
-[2025-11-18T01:08:42.988Z] [INFO] [Hover] No result (returning null)
-[2025-11-18T01:08:44.489Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 16:15
-[2025-11-18T01:08:44.489Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:08:44.489Z] [INFO] [Hover] Analyzing: line="<SelectionModal :data="{}" @callback="handleReturnItem" />", word="SelectionModal", stringAtCursor=""
-[2025-11-18T01:08:44.490Z] [INFO] [Hover] Provided Nuxt-specific result
-[2025-11-18T01:08:47.922Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 11:14
-[2025-11-18T01:08:47.922Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:08:47.923Z] [INFO] [Hover] Analyzing: line="navigateTo("/");", word="", stringAtCursor="/"
-[2025-11-18T01:08:47.923Z] [INFO] [Hover:PageRoutes] Attempting to resolve route: "/"
-[2025-11-18T01:08:47.923Z] [INFO] [Hover:PageRoutes:Resolve] Original route: "/", cleaned: ""
-[2025-11-18T01:08:47.923Z] [INFO] [Hover:PageRoutes:Resolve] Empty route, using: "index"
-[2025-11-18T01:08:47.924Z] [INFO] [Hover:PageRoutes:Resolve] After dynamic route conversion: "index"
-[2025-11-18T01:08:47.924Z] [INFO] [Hover:PageRoutes:Resolve] Trying: pages/index.vue
-[2025-11-18T01:08:47.924Z] [INFO] [Hover:PageRoutes:Resolve] ✓ Found: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app\pages\index.vue
-[2025-11-18T01:08:47.924Z] [INFO] [Hover:PageRoutes] Resolved to file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app\pages\index.vue
-[2025-11-18T01:08:47.925Z] [INFO] [Hover] Provided Nuxt-specific result
-[2025-11-18T01:08:52.286Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 6:49
-[2025-11-18T01:08:52.286Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:08:52.287Z] [INFO] [Hover] Analyzing: line="const { data, error } = await useFetch("/api/items/get_item_list");", word="items", stringAtCursor="/api/items/get_item_list"
-[2025-11-18T01:08:52.288Z] [INFO] [Hover] Provided Nuxt-specific result
-[2025-11-18T01:09:21.689Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 2:30
-[2025-11-18T01:09:21.690Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:09:21.690Z] [INFO] [Hover] Analyzing: line="import "~/assets/main-plate.pcss";", word="pcss", stringAtCursor="~/assets/main-plate.pcss"
-[2025-11-18T01:09:21.690Z] [INFO] [Hover] Import detected on line: import "~/assets/main-plate.pcss";
-[2025-11-18T01:09:21.690Z] [INFO] [Hover:Import] Checking import path: "~/assets/main-plate.pcss"
-[2025-11-18T01:09:21.691Z] [INFO] [Hover:Import] Has extension: .pcss
-[2025-11-18T01:09:21.691Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:09:21.692Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:09:21.692Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:09:21.692Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:09:21.692Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:09:21.693Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:09:21.693Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:09:21.693Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:09:21.693Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:09:21.693Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:09:21.694Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:09:21.694Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:09:21.694Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T01:09:21.694Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:09:21.695Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:09:21.695Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:09:21.695Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:09:21.695Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:09:21.696Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:09:21.696Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:09:21.696Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:09:21.696Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:09:21.697Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:09:21.697Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:09:21.697Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:09:21.697Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:09:21.698Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:09:21.698Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T01:09:21.698Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T01:09:21.698Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T01:09:21.698Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T01:09:21.699Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T01:09:21.699Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T01:09:21.699Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T01:09:21.699Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T01:09:21.699Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T01:09:21.699Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T01:09:21.700Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T01:09:21.700Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T01:09:21.700Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T01:09:21.700Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T01:09:21.700Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T01:09:21.701Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T01:09:21.701Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T01:09:21.701Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T01:09:21.701Z] [INFO] [Hover:Import] TsConfig resolved "~/assets/main-plate.pcss" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/assets/main-plate.pcss
-[2025-11-18T01:09:21.701Z] [INFO] [Hover:Import] ✓ Found file with matching extension
-[2025-11-18T01:09:21.702Z] [INFO] [Hover:Import] ✓ Final resolved path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/assets/main-plate.pcss
-[2025-11-18T01:09:21.702Z] [INFO] [Hover] ✓ Provided import file preview
-[2025-11-18T01:09:21.702Z] [INFO] [Hover] Provided Nuxt-specific result
-[2025-11-18T01:09:56.263Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 4:25
-[2025-11-18T01:09:56.264Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:09:56.265Z] [INFO] [Hover] Analyzing: line="const userStore = useUserStore();", word="useUserStore", stringAtCursor=""
-[2025-11-18T01:09:56.266Z] [INFO] [Hover] Provided Nuxt-specific result
-[2025-11-18T01:10:01.979Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 4:10
-[2025-11-18T01:10:01.979Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:10:01.980Z] [INFO] [Hover] Analyzing: line="const userStore = useUserStore();", word="userStore", stringAtCursor=""
-[2025-11-18T01:10:01.982Z] [INFO] [Hover] No Nuxt-specific match found, returning null
-[2025-11-18T01:10:01.983Z] [INFO] [Hover] No result (returning null)
-[2025-11-18T01:10:19.209Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:10:19.210Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:10:19.210Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:10:19.210Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:10:19.211Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:10:19.211Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:10:19.211Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:10:19.211Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:10:19.212Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:10:19.212Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:10:19.212Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:10:19.213Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:10:19.213Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T01:10:19.213Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:10:19.214Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:10:19.214Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:10:19.214Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:10:19.214Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:10:19.215Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:10:19.215Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:10:19.215Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:10:19.215Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:10:19.216Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:10:19.216Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:10:19.216Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:10:19.216Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:10:19.217Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:10:19.217Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T01:10:19.217Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T01:10:19.217Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T01:10:19.217Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T01:10:19.218Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T01:10:19.218Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T01:10:19.218Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T01:10:19.218Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T01:10:19.218Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T01:10:19.219Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T01:10:19.219Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T01:10:19.219Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T01:10:19.219Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T01:10:19.219Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T01:10:19.220Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T01:10:19.220Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T01:10:19.220Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T01:10:19.220Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T01:10:29.283Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:29
-[2025-11-18T01:10:29.284Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:10:29.284Z] [INFO] [Hover] Analyzing: line="import { Response } from "~/../shared/utils/response";", word="", stringAtCursor="~/../shared/utils/response"
-[2025-11-18T01:10:29.285Z] [INFO] [Hover] Import detected on line: import { Response } from "~/../shared/utils/response";
-[2025-11-18T01:10:29.285Z] [INFO] [Hover:Import] Checking import path: "~/../shared/utils/response"
-[2025-11-18T01:10:29.285Z] [INFO] [Hover:Import] No extension, will try with various extensions
-[2025-11-18T01:10:29.286Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:10:29.286Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:10:29.286Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:10:29.286Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:10:29.287Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:10:29.287Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:10:29.287Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:10:29.288Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:10:29.288Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:10:29.288Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:10:29.288Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:10:29.289Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:10:29.289Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T01:10:29.289Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:10:29.289Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:10:29.290Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:10:29.290Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:10:29.290Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:10:29.290Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:10:29.291Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:10:29.291Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:10:29.291Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:10:29.291Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:10:29.292Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:10:29.292Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:10:29.292Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:10:29.292Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:10:29.293Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T01:10:29.293Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T01:10:29.293Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T01:10:29.293Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T01:10:29.293Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T01:10:29.294Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T01:10:29.294Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T01:10:29.294Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T01:10:29.294Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T01:10:29.294Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T01:10:29.294Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T01:10:29.295Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T01:10:29.295Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T01:10:29.295Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T01:10:29.295Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T01:10:29.295Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T01:10:29.295Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T01:10:29.296Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T01:10:29.296Z] [INFO] [Hover:Import] TsConfig resolved "~/../shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/response
-[2025-11-18T01:10:29.296Z] [INFO] [Hover:Import] ✓ Found file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/response.ts
-[2025-11-18T01:10:29.296Z] [INFO] [Hover:Import] ✓ Final resolved path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/response.ts
-[2025-11-18T01:10:29.297Z] [INFO] [Hover] ✓ Provided import file preview
-[2025-11-18T01:10:29.297Z] [INFO] [Hover] Provided Nuxt-specific result
-[2025-11-18T01:10:34.660Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:27
-[2025-11-18T01:10:34.660Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:10:34.661Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="", stringAtCursor="~~/shared/utils/response"
-[2025-11-18T01:10:34.661Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
-[2025-11-18T01:10:34.661Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/response"
-[2025-11-18T01:10:34.661Z] [INFO] [Hover:Import] No extension, will try with various extensions
-[2025-11-18T01:10:34.662Z] [INFO] [Hover:Import] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
-[2025-11-18T01:10:34.662Z] [INFO] [Hover:Import] ✗ Could not resolve import path
-[2025-11-18T01:10:34.662Z] [INFO] [Hover] ✗ handleImportStatement returned null
-[2025-11-18T01:10:34.665Z] [INFO] [Hover] No Nuxt-specific match found, returning null
-[2025-11-18T01:10:34.665Z] [INFO] [Hover] No result (returning null)
-[2025-11-18T01:10:48.762Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:27
-[2025-11-18T01:10:48.763Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:10:48.763Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="", stringAtCursor="~~/shared/utils/response"
-[2025-11-18T01:10:48.764Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
-[2025-11-18T01:10:48.764Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/response"
-[2025-11-18T01:10:48.764Z] [INFO] [Hover:Import] No extension, will try with various extensions
-[2025-11-18T01:10:48.764Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:10:48.765Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:10:48.765Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:10:48.765Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:10:48.766Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:10:48.766Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:10:48.766Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:10:48.766Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:10:48.767Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:10:48.767Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:10:48.767Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:10:48.767Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:10:48.768Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T01:10:48.768Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:10:48.768Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:10:48.768Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:10:48.769Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:10:48.769Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:10:48.769Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:10:48.769Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:10:48.770Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:10:48.770Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:10:48.770Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:10:48.770Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:10:48.771Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:10:48.771Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:10:48.771Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:10:48.771Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T01:10:48.771Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T01:10:48.772Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T01:10:48.772Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T01:10:48.772Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T01:10:48.772Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T01:10:48.772Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T01:10:48.773Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T01:10:48.773Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T01:10:48.773Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T01:10:48.773Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T01:10:48.773Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T01:10:48.773Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T01:10:48.774Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T01:10:48.774Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T01:10:48.774Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T01:10:48.774Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T01:10:48.774Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T01:10:48.775Z] [INFO] [Hover:Import] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
-[2025-11-18T01:10:48.775Z] [INFO] [Hover:Import] ✗ Could not resolve import path
-[2025-11-18T01:10:48.775Z] [INFO] [Hover] ✗ handleImportStatement returned null
-[2025-11-18T01:10:48.779Z] [INFO] [Hover] No Nuxt-specific match found, returning null
-[2025-11-18T01:10:48.779Z] [INFO] [Hover] No result (returning null)
-[2025-11-18T01:11:32.518Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:11:32.519Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:11:32.519Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:11:32.519Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:11:32.520Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:11:32.520Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:11:32.521Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:11:32.521Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:11:32.521Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:11:32.521Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:11:32.522Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:11:32.522Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:11:32.522Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T01:11:32.523Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:11:32.523Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:11:32.523Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:11:32.524Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:11:32.524Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:11:32.524Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:11:32.525Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:11:32.525Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:11:32.526Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:11:32.526Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:11:32.527Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:11:32.527Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:11:32.528Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:11:32.528Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:11:32.528Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T01:11:32.528Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T01:11:32.529Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T01:11:32.529Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T01:11:32.529Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T01:11:32.529Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T01:11:32.529Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T01:11:32.530Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T01:11:32.530Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T01:11:32.530Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T01:11:32.530Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T01:11:32.531Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T01:11:32.531Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T01:11:32.531Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T01:11:32.531Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T01:11:32.531Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T01:11:32.532Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T01:11:32.532Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T01:13:22.848Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/shared/utils/run_types.ts at 0:35
-[2025-11-18T01:13:22.848Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:13:22.849Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="shared", stringAtCursor="~~/shared/utils/response"
-[2025-11-18T01:13:22.850Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
-[2025-11-18T01:13:22.850Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/response"
-[2025-11-18T01:13:22.850Z] [INFO] [Hover:Import] No extension, will try with various extensions
-[2025-11-18T01:13:22.851Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:13:22.851Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:13:22.852Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:13:22.852Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:13:22.852Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:13:22.853Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:13:22.853Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:13:22.853Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:13:22.853Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:13:22.854Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:13:22.854Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:13:22.854Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:13:22.855Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T01:13:22.855Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:13:22.855Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:13:22.856Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:13:22.856Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:13:22.856Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:13:22.857Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:13:22.857Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:13:22.857Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:13:22.857Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:13:22.857Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:13:22.858Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:13:22.858Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:13:22.858Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:13:22.858Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:13:22.859Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T01:13:22.859Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T01:13:22.859Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T01:13:22.859Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T01:13:22.860Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T01:13:22.860Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T01:13:22.860Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T01:13:22.860Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T01:13:22.860Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T01:13:22.860Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T01:13:22.861Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T01:13:22.861Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T01:13:22.861Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T01:13:22.861Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T01:13:22.862Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T01:13:22.862Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T01:13:22.862Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T01:13:22.862Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T01:13:22.862Z] [INFO] [Hover:Import] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
-[2025-11-18T01:13:22.863Z] [INFO] [Hover:Import] ✗ Could not resolve import path
-[2025-11-18T01:13:22.863Z] [INFO] [Hover] ✗ handleImportStatement returned null
-[2025-11-18T01:13:22.866Z] [INFO] [Hover] No Nuxt-specific match found, returning null
-[2025-11-18T01:13:22.866Z] [INFO] [Hover] No result (returning null)
-[2025-11-18T01:13:45.510Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:13:45.511Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:13:45.511Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:13:45.511Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:13:45.512Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:13:45.512Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:13:45.512Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:13:45.512Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:13:45.513Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:13:45.513Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:13:45.513Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:13:45.514Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:13:45.514Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T01:13:45.514Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:13:45.514Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:13:45.515Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:13:45.515Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:13:45.515Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:13:45.516Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:13:45.516Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:13:45.516Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:13:45.516Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:13:45.517Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:13:45.517Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:13:45.517Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:13:45.518Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:13:45.518Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:13:45.519Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T01:13:45.519Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T01:13:45.519Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T01:13:45.519Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T01:13:45.519Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T01:13:45.520Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T01:13:45.520Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T01:13:45.520Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T01:13:45.520Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T01:13:45.520Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T01:13:45.521Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T01:13:45.521Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T01:13:45.521Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T01:13:45.521Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T01:13:45.522Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T01:13:45.522Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T01:13:45.522Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T01:13:45.522Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T01:13:46.135Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 2:27
-[2025-11-18T01:13:46.136Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:13:46.136Z] [INFO] [Hover] Analyzing: line="import "~~/shared/utils/path";", word="path", stringAtCursor="~~/shared/utils/path"
-[2025-11-18T01:13:46.136Z] [INFO] [Hover] Import detected on line: import "~~/shared/utils/path";
-[2025-11-18T01:13:46.137Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/path"
-[2025-11-18T01:13:46.137Z] [INFO] [Hover:Import] No extension, will try with various extensions
-[2025-11-18T01:13:46.137Z] [INFO] [Hover:Import] TsConfig resolved "~~/shared/utils/path" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/path
-[2025-11-18T01:13:46.137Z] [INFO] [Hover:Import] ✗ Could not resolve import path
-[2025-11-18T01:13:46.138Z] [INFO] [Hover] ✗ handleImportStatement returned null
-[2025-11-18T01:13:46.141Z] [INFO] [Hover] No Nuxt-specific match found, returning null
-[2025-11-18T01:13:46.142Z] [INFO] [Hover] No result (returning null)
-[2025-11-18T01:14:37.552Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:28
-[2025-11-18T01:14:37.552Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:14:37.553Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="", stringAtCursor="~~/shared/utils/response"
-[2025-11-18T01:14:37.553Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
-[2025-11-18T01:14:37.554Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/response"
-[2025-11-18T01:14:37.554Z] [INFO] [Hover:Import] No extension, will try with various extensions
-[2025-11-18T01:14:37.554Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:14:37.555Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:14:37.555Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:14:37.555Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:14:37.555Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:14:37.556Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:14:37.556Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:14:37.556Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:14:37.556Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:14:37.557Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:14:37.557Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:14:37.557Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:14:37.557Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T01:14:37.558Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:14:37.558Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:14:37.559Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:14:37.559Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:14:37.559Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:14:37.560Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:14:37.560Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:14:37.560Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:14:37.560Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:14:37.561Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:14:37.561Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:14:37.561Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:14:37.561Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:14:37.562Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:14:37.562Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T01:14:37.562Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T01:14:37.562Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T01:14:37.562Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T01:14:37.563Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T01:14:37.563Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T01:14:37.563Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T01:14:37.563Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T01:14:37.563Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T01:14:37.563Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T01:14:37.564Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T01:14:37.564Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T01:14:37.564Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T01:14:37.564Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T01:14:37.564Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T01:14:37.565Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T01:14:37.565Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T01:14:37.565Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T01:14:37.565Z] [INFO] [Hover:Import] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
-[2025-11-18T01:14:37.565Z] [INFO] [Hover:Import] ✗ Could not resolve import path
-[2025-11-18T01:14:37.566Z] [INFO] [Hover] ✗ handleImportStatement returned null
-[2025-11-18T01:14:37.568Z] [INFO] [Hover] No Nuxt-specific match found, returning null
-[2025-11-18T01:14:37.568Z] [INFO] [Hover] No result (returning null)
-[2025-11-18T01:14:40.660Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:28
-[2025-11-18T01:14:40.660Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:14:40.660Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="", stringAtCursor="~~/shared/utils/response"
-[2025-11-18T01:14:40.661Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
-[2025-11-18T01:14:40.661Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/response"
-[2025-11-18T01:14:40.661Z] [INFO] [Hover:Import] No extension, will try with various extensions
-[2025-11-18T01:14:40.661Z] [INFO] [Hover:Import] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
-[2025-11-18T01:14:40.662Z] [INFO] [Hover:Import] ✗ Could not resolve import path
-[2025-11-18T01:14:40.662Z] [INFO] [Hover] ✗ handleImportStatement returned null
-[2025-11-18T01:14:40.662Z] [INFO] [Hover] No Nuxt-specific match found, returning null
-[2025-11-18T01:14:40.662Z] [INFO] [Hover] No result (returning null)
-[2025-11-18T01:14:56.966Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:14:56.966Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:14:56.966Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:14:56.967Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:14:56.967Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:14:56.967Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:14:56.968Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:14:56.968Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:14:56.968Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:14:56.968Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:14:56.969Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:14:56.969Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:14:56.969Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T01:14:56.970Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:14:56.970Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:14:56.970Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:14:56.970Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:14:56.971Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:14:56.971Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:14:56.971Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:14:56.971Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:14:56.972Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:14:56.972Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:14:56.972Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:14:56.972Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:14:56.973Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:14:56.973Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:14:56.973Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T01:14:56.973Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T01:14:56.973Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T01:14:56.973Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T01:14:56.974Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T01:14:56.974Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T01:14:56.974Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T01:14:56.974Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T01:14:56.974Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T01:14:56.975Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T01:14:56.975Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T01:14:56.975Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T01:14:56.975Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T01:14:56.975Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T01:14:56.975Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T01:14:56.976Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T01:14:56.976Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T01:14:56.976Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T01:15:21.432Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 2:11
-[2025-11-18T01:15:21.433Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:15:21.433Z] [INFO] [Hover] Analyzing: line="import "~/../shared/utils/path";", word="", stringAtCursor="~/../shared/utils/path"
-[2025-11-18T01:15:21.434Z] [INFO] [Hover] Import detected on line: import "~/../shared/utils/path";
-[2025-11-18T01:15:21.434Z] [INFO] [Hover:Import] Checking import path: "~/../shared/utils/path"
-[2025-11-18T01:15:21.434Z] [INFO] [Hover:Import] No extension, will try with various extensions
-[2025-11-18T01:15:21.435Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:15:21.435Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:15:21.435Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:15:21.436Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:15:21.436Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:15:21.436Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:15:21.436Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:15:21.437Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:15:21.437Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:15:21.437Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:15:21.437Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:15:21.438Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:15:21.438Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
-[2025-11-18T01:15:21.438Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
-[2025-11-18T01:15:21.438Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:15:21.439Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
-[2025-11-18T01:15:21.439Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
-[2025-11-18T01:15:21.439Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:15:21.440Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
-[2025-11-18T01:15:21.440Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
-[2025-11-18T01:15:21.440Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:15:21.440Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
-[2025-11-18T01:15:21.441Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
-[2025-11-18T01:15:21.441Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:15:21.441Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
-[2025-11-18T01:15:21.442Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:15:21.442Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
-[2025-11-18T01:15:21.443Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
-[2025-11-18T01:15:21.443Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
-[2025-11-18T01:15:21.443Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
-[2025-11-18T01:15:21.443Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
-[2025-11-18T01:15:21.444Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
-[2025-11-18T01:15:21.444Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
-[2025-11-18T01:15:21.444Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
-[2025-11-18T01:15:21.444Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
-[2025-11-18T01:15:21.444Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
-[2025-11-18T01:15:21.445Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
-[2025-11-18T01:15:21.445Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
-[2025-11-18T01:15:21.445Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
-[2025-11-18T01:15:21.445Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
-[2025-11-18T01:15:21.446Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
-[2025-11-18T01:15:21.446Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
-[2025-11-18T01:15:21.446Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
-[2025-11-18T01:15:21.446Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
-[2025-11-18T01:15:21.446Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
-[2025-11-18T01:15:21.446Z] [INFO] [Hover:Import] TsConfig resolved "~/../shared/utils/path" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/path
-[2025-11-18T01:15:21.447Z] [INFO] [Hover:Import] ✓ Found file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/path.ts
-[2025-11-18T01:15:21.447Z] [INFO] [Hover:Import] ✓ Final resolved path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/path.ts
-[2025-11-18T01:15:21.448Z] [INFO] [Hover] ✓ Provided import file preview
-[2025-11-18T01:15:21.448Z] [INFO] [Hover] Provided Nuxt-specific result
-[2025-11-18T01:15:22.361Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 2:11
-[2025-11-18T01:15:22.362Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
-[2025-11-18T01:15:22.362Z] [INFO] [Hover] Analyzing: line="import "~/../shared/utils/path";", word="", stringAtCursor="~/../shared/utils/path"
-[2025-11-18T01:15:22.362Z] [INFO] [Hover] Import detected on line: import "~/../shared/utils/path";
-[2025-11-18T01:15:22.362Z] [INFO] [Hover:Import] Checking import path: "~/../shared/utils/path"
-[2025-11-18T01:15:22.363Z] [INFO] [Hover:Import] No extension, will try with various extensions
-[2025-11-18T01:15:22.363Z] [INFO] [Hover:Import] TsConfig resolved "~/../shared/utils/path" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/path
-[2025-11-18T01:15:22.363Z] [INFO] [Hover:Import] ✓ Found file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/path.ts
-[2025-11-18T01:15:22.363Z] [INFO] [Hover:Import] ✓ Final resolved path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/path.ts
-[2025-11-18T01:15:22.364Z] [INFO] [Hover] ✓ Provided import file preview
-[2025-11-18T01:15:22.364Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T01:21:47.322Z] Logger initialized
+[2025-11-18T01:21:47.325Z] [INFO] TextDocuments now listening on connection
+[2025-11-18T01:21:47.326Z] [INFO] Nuxt DX Tools LSP Server is now listening for connections
+[2025-11-18T01:21:47.331Z] [INFO] Initializing Nuxt DX Tools LSP Server for workspace: file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web
+[2025-11-18T01:21:47.331Z] [INFO] Capabilities: hover=true, definition=true, completion=true
+[2025-11-18T01:21:47.336Z] [INFO] Nuxt DX Tools LSP Server initialized successfully
+[2025-11-18T01:21:47.337Z] [INFO] Initializing Nuxt project at: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web
+[2025-11-18T01:21:47.339Z] [INFO] Detected Nuxt 4 structure
+[2025-11-18T01:21:47.340Z] [INFO] App directory: app/
+[2025-11-18T01:21:47.342Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:21:47.344Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
+[2025-11-18T01:21:47.345Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:21:47.346Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:21:47.347Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
+[2025-11-18T01:21:47.347Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:21:47.348Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:21:47.348Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
+[2025-11-18T01:21:47.349Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:21:47.349Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:21:47.350Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:21:47.351Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T01:21:47.352Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
+[2025-11-18T01:21:47.352Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T01:21:47.353Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:21:47.353Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
+[2025-11-18T01:21:47.354Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:21:47.354Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:21:47.355Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
+[2025-11-18T01:21:47.355Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:21:47.356Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:21:47.357Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
+[2025-11-18T01:21:47.357Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:21:47.357Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:21:47.358Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:21:47.359Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T01:21:47.360Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T01:21:47.360Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
+[2025-11-18T01:21:47.360Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T01:21:47.361Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T01:21:47.361Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T01:21:47.361Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T01:21:47.361Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T01:21:47.362Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T01:21:47.362Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T01:21:47.362Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T01:21:47.363Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T01:21:47.363Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T01:21:47.363Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T01:21:47.364Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T01:21:47.364Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T01:21:47.364Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T01:21:47.364Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T01:21:47.365Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T01:21:47.365Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
+[2025-11-18T01:21:47.372Z] [INFO] Nuxt project initialized successfully
+[2025-11-18T01:21:55.226Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 2:13
+[2025-11-18T01:21:55.226Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T01:21:55.227Z] [INFO] [Hover] Analyzing: line="import "~/../shared/utils/path";", word="shared", stringAtCursor="~/../shared/utils/path"
+[2025-11-18T01:21:55.228Z] [INFO] [Hover] Import detected on line: import "~/../shared/utils/path";
+[2025-11-18T01:21:55.228Z] [INFO] [Hover:Import] Checking import path: "~/../shared/utils/path"
+[2025-11-18T01:21:55.229Z] [INFO] [Hover:Import] No extension, will try with various extensions
+[2025-11-18T01:21:55.229Z] [INFO] [Hover:Import] TsConfig resolved "~/../shared/utils/path" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/path
+[2025-11-18T01:21:55.229Z] [INFO] [Hover:Import] ✓ Found file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/path.ts
+[2025-11-18T01:21:55.229Z] [INFO] [Hover:Import] ✓ Final resolved path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/path.ts
+[2025-11-18T01:21:55.230Z] [INFO] [Hover] ✓ Provided import file preview
+[2025-11-18T01:21:55.230Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T01:22:00.893Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 3:13
+[2025-11-18T01:22:00.894Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T01:22:00.894Z] [INFO] [Hover] Analyzing: line="import "~/assets/main-plate.pcss";", word="assets", stringAtCursor="~/assets/main-plate.pcss"
+[2025-11-18T01:22:00.895Z] [INFO] [Hover] Import detected on line: import "~/assets/main-plate.pcss";
+[2025-11-18T01:22:00.895Z] [INFO] [Hover:Import] Checking import path: "~/assets/main-plate.pcss"
+[2025-11-18T01:22:00.895Z] [INFO] [Hover:Import] Has extension: .pcss
+[2025-11-18T01:22:00.896Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:00.896Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
+[2025-11-18T01:22:00.896Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:00.896Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:00.897Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
+[2025-11-18T01:22:00.897Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:00.897Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:00.898Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
+[2025-11-18T01:22:00.898Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:00.898Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:00.898Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:00.899Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T01:22:00.899Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
+[2025-11-18T01:22:00.899Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T01:22:00.900Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:00.900Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
+[2025-11-18T01:22:00.900Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:00.900Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:00.901Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
+[2025-11-18T01:22:00.901Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:00.901Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:00.902Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
+[2025-11-18T01:22:00.902Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:00.902Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:00.902Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:00.903Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T01:22:00.903Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T01:22:00.903Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
+[2025-11-18T01:22:00.903Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T01:22:00.903Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T01:22:00.904Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T01:22:00.904Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T01:22:00.904Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T01:22:00.904Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T01:22:00.904Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T01:22:00.904Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T01:22:00.905Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T01:22:00.905Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T01:22:00.905Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T01:22:00.905Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T01:22:00.905Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T01:22:00.906Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T01:22:00.906Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T01:22:00.906Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T01:22:00.906Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
+[2025-11-18T01:22:00.906Z] [INFO] [Hover:Import] TsConfig resolved "~/assets/main-plate.pcss" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/assets/main-plate.pcss
+[2025-11-18T01:22:00.907Z] [INFO] [Hover:Import] ✓ Found file with matching extension
+[2025-11-18T01:22:00.907Z] [INFO] [Hover:Import] ✓ Final resolved path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/assets/main-plate.pcss
+[2025-11-18T01:22:00.907Z] [INFO] [Hover] ✓ Provided import file preview
+[2025-11-18T01:22:00.907Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T01:22:01.844Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 2:13
+[2025-11-18T01:22:01.844Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T01:22:01.844Z] [INFO] [Hover] Analyzing: line="import "~/../shared/utils/path";", word="shared", stringAtCursor="~/../shared/utils/path"
+[2025-11-18T01:22:01.845Z] [INFO] [Hover] Import detected on line: import "~/../shared/utils/path";
+[2025-11-18T01:22:01.845Z] [INFO] [Hover:Import] Checking import path: "~/../shared/utils/path"
+[2025-11-18T01:22:01.845Z] [INFO] [Hover:Import] No extension, will try with various extensions
+[2025-11-18T01:22:01.845Z] [INFO] [Hover:Import] TsConfig resolved "~/../shared/utils/path" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/path
+[2025-11-18T01:22:01.846Z] [INFO] [Hover:Import] ✓ Found file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/path.ts
+[2025-11-18T01:22:01.846Z] [INFO] [Hover:Import] ✓ Final resolved path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/path.ts
+[2025-11-18T01:22:01.846Z] [INFO] [Hover] ✓ Provided import file preview
+[2025-11-18T01:22:01.846Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T01:22:05.958Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:13
+[2025-11-18T01:22:05.959Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T01:22:05.959Z] [INFO] [Hover] Analyzing: line="import { Response } from "~/../shared/utils/response";", word="Response", stringAtCursor=""
+[2025-11-18T01:22:05.959Z] [INFO] [Hover] Import detected on line: import { Response } from "~/../shared/utils/response";
+[2025-11-18T01:22:05.959Z] [INFO] [Hover:Import] Checking import path: "~/../shared/utils/response"
+[2025-11-18T01:22:05.959Z] [INFO] [Hover:Import] No extension, will try with various extensions
+[2025-11-18T01:22:05.960Z] [INFO] [Hover:Import] TsConfig resolved "~/../shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/response
+[2025-11-18T01:22:05.960Z] [INFO] [Hover:Import] ✓ Found file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/response.ts
+[2025-11-18T01:22:05.960Z] [INFO] [Hover:Import] ✓ Final resolved path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/response.ts
+[2025-11-18T01:22:05.961Z] [INFO] [Hover] ✓ Provided import file preview
+[2025-11-18T01:22:05.961Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T01:22:07.606Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:27
+[2025-11-18T01:22:07.607Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T01:22:07.607Z] [INFO] [Hover] Analyzing: line="import { Response } from "~/../shared/utils/response";", word="", stringAtCursor="~/../shared/utils/response"
+[2025-11-18T01:22:07.607Z] [INFO] [Hover] Import detected on line: import { Response } from "~/../shared/utils/response";
+[2025-11-18T01:22:07.608Z] [INFO] [Hover:Import] Checking import path: "~/../shared/utils/response"
+[2025-11-18T01:22:07.608Z] [INFO] [Hover:Import] No extension, will try with various extensions
+[2025-11-18T01:22:07.608Z] [INFO] [Hover:Import] TsConfig resolved "~/../shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/response
+[2025-11-18T01:22:07.608Z] [INFO] [Hover:Import] ✓ Found file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/response.ts
+[2025-11-18T01:22:07.608Z] [INFO] [Hover:Import] ✓ Final resolved path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app/../shared/utils/response.ts
+[2025-11-18T01:22:07.609Z] [INFO] [Hover] ✓ Provided import file preview
+[2025-11-18T01:22:07.609Z] [INFO] [Hover] Provided Nuxt-specific result
+[2025-11-18T01:22:12.826Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:12.826Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
+[2025-11-18T01:22:12.826Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:12.826Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:12.827Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
+[2025-11-18T01:22:12.827Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:12.827Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:12.828Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
+[2025-11-18T01:22:12.828Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:12.828Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:12.829Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:12.829Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T01:22:12.829Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
+[2025-11-18T01:22:12.829Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T01:22:12.830Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:12.830Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
+[2025-11-18T01:22:12.830Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:12.831Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:12.831Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
+[2025-11-18T01:22:12.831Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:12.832Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:12.832Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
+[2025-11-18T01:22:12.832Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:12.833Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:12.833Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:12.833Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T01:22:12.834Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T01:22:12.834Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
+[2025-11-18T01:22:12.834Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T01:22:12.834Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T01:22:12.835Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T01:22:12.835Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T01:22:12.835Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T01:22:12.835Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T01:22:12.835Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T01:22:12.835Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T01:22:12.836Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T01:22:12.836Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T01:22:12.836Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T01:22:12.836Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T01:22:12.836Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T01:22:12.837Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T01:22:12.837Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T01:22:12.837Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T01:22:12.837Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
+[2025-11-18T01:22:17.710Z] [INFO] [Hover] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:27
+[2025-11-18T01:22:17.710Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T01:22:17.710Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="", stringAtCursor="~~/shared/utils/response"
+[2025-11-18T01:22:17.711Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
+[2025-11-18T01:22:17.711Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/response"
+[2025-11-18T01:22:17.711Z] [INFO] [Hover:Import] No extension, will try with various extensions
+[2025-11-18T01:22:17.711Z] [INFO] [Hover:Import] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
+[2025-11-18T01:22:17.712Z] [INFO] [Hover:Import] ✗ Could not resolve import path
+[2025-11-18T01:22:17.712Z] [INFO] [Hover] ✗ handleImportStatement returned null
+[2025-11-18T01:22:17.716Z] [INFO] [Hover] No Nuxt-specific match found, returning null
+[2025-11-18T01:22:17.716Z] [INFO] [Hover] No result (returning null)
+[2025-11-18T01:22:39.846Z] [INFO] [Definition] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:27
+[2025-11-18T01:22:39.847Z] [INFO] [Definition] Document found, calling definitionProvider.provideDefinition()
+[2025-11-18T01:22:39.847Z] [INFO] [Definition] ==================== NEW REQUEST ====================
+[2025-11-18T01:22:39.848Z] [INFO] [Definition] File: file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue
+[2025-11-18T01:22:39.848Z] [INFO] [Definition] Position: line 1, char 27
+[2025-11-18T01:22:39.848Z] [INFO] [Definition] Word under cursor: ""
+[2025-11-18T01:22:39.848Z] [INFO] [Definition] String at cursor: "~~/shared/utils/response"
+[2025-11-18T01:22:39.848Z] [INFO] [Definition] Full line: "import { Response } from "~~/shared/utils/response";"
+[2025-11-18T01:22:39.849Z] [INFO] [Definition] =======================================================
+[2025-11-18T01:22:39.849Z] [INFO] [Definition] Checking import statement...
+[2025-11-18T01:22:39.849Z] [INFO] [Definition] Found import path: ~~/shared/utils/response
+[2025-11-18T01:22:39.850Z] [INFO] [Definition] Import extension: none
+[2025-11-18T01:22:39.850Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:39.851Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
+[2025-11-18T01:22:39.851Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:39.851Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:39.852Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
+[2025-11-18T01:22:39.852Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:39.852Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:39.853Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
+[2025-11-18T01:22:39.853Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:39.853Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:39.853Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:39.854Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T01:22:39.854Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
+[2025-11-18T01:22:39.854Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T01:22:39.854Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:39.855Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
+[2025-11-18T01:22:39.855Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:39.855Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:39.855Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
+[2025-11-18T01:22:39.856Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:39.856Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:39.856Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
+[2025-11-18T01:22:39.857Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:39.857Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:39.857Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:39.858Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T01:22:39.858Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T01:22:39.858Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
+[2025-11-18T01:22:39.858Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T01:22:39.858Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T01:22:39.859Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T01:22:39.859Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T01:22:39.859Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T01:22:39.859Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T01:22:39.859Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T01:22:39.860Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T01:22:39.860Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T01:22:39.860Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T01:22:39.860Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T01:22:39.860Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T01:22:39.861Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T01:22:39.861Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T01:22:39.861Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T01:22:39.861Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T01:22:39.861Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
+[2025-11-18T01:22:39.862Z] [INFO] [Definition] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
+[2025-11-18T01:22:39.863Z] [INFO] [Definition] Import path not found: ~~/shared/utils/response
+[2025-11-18T01:22:39.863Z] [INFO] [Definition] ✗ No import definition found
+[2025-11-18T01:22:39.864Z] [INFO] [Definition] Checking auto-imported symbols for: ...
+[2025-11-18T01:22:39.868Z] [INFO] [Definition] ✗ No symbol info found for: 
+[2025-11-18T01:22:39.869Z] [INFO] [Definition] ✗ No Nuxt-specific definition found, returning null
+[2025-11-18T01:22:39.869Z] [INFO] [Definition] No result (returning null)
+[2025-11-18T01:22:39.879Z] [INFO] [Definition] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 1:27
+[2025-11-18T01:22:39.879Z] [INFO] [Definition] Document found, calling definitionProvider.provideDefinition()
+[2025-11-18T01:22:39.880Z] [INFO] [Definition] ==================== NEW REQUEST ====================
+[2025-11-18T01:22:39.880Z] [INFO] [Definition] File: file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue
+[2025-11-18T01:22:39.880Z] [INFO] [Definition] Position: line 1, char 27
+[2025-11-18T01:22:39.881Z] [INFO] [Definition] Word under cursor: ""
+[2025-11-18T01:22:39.881Z] [INFO] [Definition] String at cursor: "~~/shared/utils/response"
+[2025-11-18T01:22:39.881Z] [INFO] [Definition] Full line: "import { Response } from "~~/shared/utils/response";"
+[2025-11-18T01:22:39.881Z] [INFO] [Definition] =======================================================
+[2025-11-18T01:22:39.882Z] [INFO] [Definition] Checking import statement...
+[2025-11-18T01:22:39.882Z] [INFO] [Definition] Found import path: ~~/shared/utils/response
+[2025-11-18T01:22:39.882Z] [INFO] [Definition] Import extension: none
+[2025-11-18T01:22:39.882Z] [INFO] [Definition] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
+[2025-11-18T01:22:39.883Z] [INFO] [Definition] Import path not found: ~~/shared/utils/response
+[2025-11-18T01:22:39.883Z] [INFO] [Definition] ✗ No import definition found
+[2025-11-18T01:22:39.884Z] [INFO] [Definition] Checking auto-imported symbols for: ...
+[2025-11-18T01:22:39.884Z] [INFO] [Definition] ✗ No symbol info found for: 
+[2025-11-18T01:22:39.884Z] [INFO] [Definition] ✗ No Nuxt-specific definition found, returning null
+[2025-11-18T01:22:39.884Z] [INFO] [Definition] No result (returning null)
+[2025-11-18T01:22:48.502Z] [INFO] [Definition] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 13:14
+[2025-11-18T01:22:48.502Z] [INFO] [Definition] Document found, calling definitionProvider.provideDefinition()
+[2025-11-18T01:22:48.503Z] [INFO] [Definition] ==================== NEW REQUEST ====================
+[2025-11-18T01:22:48.503Z] [INFO] [Definition] File: file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue
+[2025-11-18T01:22:48.503Z] [INFO] [Definition] Position: line 13, char 14
+[2025-11-18T01:22:48.503Z] [INFO] [Definition] Word under cursor: ""
+[2025-11-18T01:22:48.503Z] [INFO] [Definition] String at cursor: "/"
+[2025-11-18T01:22:48.504Z] [INFO] [Definition] Full line: "navigateTo("/");"
+[2025-11-18T01:22:48.504Z] [INFO] [Definition] =======================================================
+[2025-11-18T01:22:48.504Z] [INFO] [Definition] Checking page routes...
+[2025-11-18T01:22:48.505Z] [INFO] [Definition] ✓ Provided page route definition
+[2025-11-18T01:22:48.505Z] [INFO] [Definition] Provided Nuxt-specific result
+[2025-11-18T01:22:50.968Z] [INFO] [Definition] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 18:14
+[2025-11-18T01:22:50.968Z] [INFO] [Definition] Document found, calling definitionProvider.provideDefinition()
+[2025-11-18T01:22:50.969Z] [INFO] [Definition] ==================== NEW REQUEST ====================
+[2025-11-18T01:22:50.969Z] [INFO] [Definition] File: file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue
+[2025-11-18T01:22:50.969Z] [INFO] [Definition] Position: line 18, char 14
+[2025-11-18T01:22:50.969Z] [INFO] [Definition] Word under cursor: "SelectionModal"
+[2025-11-18T01:22:50.969Z] [INFO] [Definition] String at cursor: ""
+[2025-11-18T01:22:50.970Z] [INFO] [Definition] Full line: "<SelectionModal :data="{}" @callback="handleReturnItem" />"
+[2025-11-18T01:22:50.970Z] [INFO] [Definition] =======================================================
+[2025-11-18T01:22:50.970Z] [INFO] [Definition] Checking auto-imported symbols for: SelectionModal...
+[2025-11-18T01:22:50.972Z] [INFO] [Definition] Found symbol info: type=component, path=c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app\components\SelectionModal.vue, importPath=undefined
+[2025-11-18T01:22:50.973Z] [INFO] [Definition:handleComponents] Symbol info: type=component, path=c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app\components\SelectionModal.vue, importPath=undefined
+[2025-11-18T01:22:50.973Z] [INFO] [Definition:handleComponents] Checking component path: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app\components\SelectionModal.vue
+[2025-11-18T01:22:50.973Z] [INFO] [Definition:handleComponents] ✓ Component file exists: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app\components\SelectionModal.vue
+[2025-11-18T01:22:50.974Z] [INFO] [Definition] ✓ Provided definition for: SelectionModal
+[2025-11-18T01:22:50.974Z] [INFO] [Definition] Provided Nuxt-specific result
+[2025-11-18T01:22:51.025Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:51.026Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
+[2025-11-18T01:22:51.026Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:51.027Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:51.027Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
+[2025-11-18T01:22:51.027Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:51.028Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:51.029Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
+[2025-11-18T01:22:51.029Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:51.030Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:51.030Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:51.030Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T01:22:51.031Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
+[2025-11-18T01:22:51.031Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T01:22:51.032Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:51.032Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
+[2025-11-18T01:22:51.032Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:22:51.033Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:51.033Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
+[2025-11-18T01:22:51.033Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:22:51.034Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:51.034Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
+[2025-11-18T01:22:51.035Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:22:51.035Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:51.036Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:22:51.036Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T01:22:51.036Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T01:22:51.037Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
+[2025-11-18T01:22:51.037Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T01:22:51.037Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T01:22:51.037Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T01:22:51.038Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T01:22:51.038Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T01:22:51.038Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T01:22:51.038Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T01:22:51.039Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T01:22:51.039Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T01:22:51.039Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T01:22:51.039Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T01:22:51.040Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T01:22:51.040Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T01:22:51.040Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T01:22:51.040Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T01:22:51.041Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T01:22:51.041Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
+[2025-11-18T01:22:59.838Z] [INFO] [Definition] REQUEST RECEIVED for file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue at 8:46
+[2025-11-18T01:22:59.839Z] [INFO] [Definition] Document found, calling definitionProvider.provideDefinition()
+[2025-11-18T01:22:59.839Z] [INFO] [Definition] ==================== NEW REQUEST ====================
+[2025-11-18T01:22:59.839Z] [INFO] [Definition] File: file:///C:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/app/pages/test.vue
+[2025-11-18T01:22:59.839Z] [INFO] [Definition] Position: line 8, char 46
+[2025-11-18T01:22:59.840Z] [INFO] [Definition] Word under cursor: "api"
+[2025-11-18T01:22:59.840Z] [INFO] [Definition] String at cursor: "/api/items/get_item_list"
+[2025-11-18T01:22:59.840Z] [INFO] [Definition] Full line: "const { data, error } = await useFetch("/api/items/get_item_list");"
+[2025-11-18T01:22:59.840Z] [INFO] [Definition] =======================================================
+[2025-11-18T01:22:59.840Z] [INFO] [Definition] Checking API routes...
+[2025-11-18T01:22:59.841Z] [INFO] [Definition] ✓ Provided API route definition
+[2025-11-18T01:22:59.841Z] [INFO] [Definition] Provided Nuxt-specific result
+[2025-11-18T01:23:28.512Z] [INFO] [Hover] REQUEST RECEIVED for file:///c:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/items/get_item_list.ts at 1:32
+[2025-11-18T01:23:28.512Z] [INFO] [Hover] Document found, calling hoverProvider.provideHover()
+[2025-11-18T01:23:28.513Z] [INFO] [Hover] Analyzing: line="import { Response } from "~~/shared/utils/response";", word="shared", stringAtCursor="~~/shared/utils/response"
+[2025-11-18T01:23:28.513Z] [INFO] [Hover] Import detected on line: import { Response } from "~~/shared/utils/response";
+[2025-11-18T01:23:28.514Z] [INFO] [Hover:Import] Checking import path: "~~/shared/utils/response"
+[2025-11-18T01:23:28.514Z] [INFO] [Hover:Import] No extension, will try with various extensions
+[2025-11-18T01:23:28.515Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:23:28.516Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
+[2025-11-18T01:23:28.516Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:23:28.516Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:23:28.517Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
+[2025-11-18T01:23:28.517Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:23:28.518Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:23:28.518Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
+[2025-11-18T01:23:28.518Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:23:28.519Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:23:28.519Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:23:28.519Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T01:23:28.520Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json, using regex fallback
+[2025-11-18T01:23:28.520Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.json
+[2025-11-18T01:23:28.520Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:23:28.521Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json, using regex fallback
+[2025-11-18T01:23:28.521Z] [INFO] [TsConfig:Parse] Regex extracted 16 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.app.json
+[2025-11-18T01:23:28.521Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:23:28.521Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json, using regex fallback
+[2025-11-18T01:23:28.522Z] [INFO] [TsConfig:Parse] Regex extracted 2 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.server.json
+[2025-11-18T01:23:28.522Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:23:28.523Z] [INFO] [TsConfig:Parse] JSON parsing failed for c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json, using regex fallback
+[2025-11-18T01:23:28.523Z] [INFO] [TsConfig:Parse] Regex extracted 15 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.shared.json
+[2025-11-18T01:23:28.523Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:23:28.524Z] [INFO] [TsConfig:Parse] Extracted 14 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\.nuxt\tsconfig.node.json
+[2025-11-18T01:23:28.524Z] [INFO] [TsConfig:Parse] Reading file: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T01:23:28.524Z] [INFO] [TsConfig:Parse] Extracted 0 aliases from c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\tsconfig.json
+[2025-11-18T01:23:28.524Z] [INFO] [TsConfig] Loaded 17 path aliases from tsconfig:
+[2025-11-18T01:23:28.524Z] [INFO] [TsConfig]   "nitropack/types" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\types"
+[2025-11-18T01:23:28.525Z] [INFO] [TsConfig]   "nitropack/runtime" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack\runtime"
+[2025-11-18T01:23:28.525Z] [INFO] [TsConfig]   "nitropack" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nitropack"
+[2025-11-18T01:23:28.525Z] [INFO] [TsConfig]   "defu" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\defu"
+[2025-11-18T01:23:28.525Z] [INFO] [TsConfig]   "h3" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\h3"
+[2025-11-18T01:23:28.525Z] [INFO] [TsConfig]   "consola" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\consola"
+[2025-11-18T01:23:28.526Z] [INFO] [TsConfig]   "ofetch" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\ofetch"
+[2025-11-18T01:23:28.526Z] [INFO] [TsConfig]   "@nuxt/devtools" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\devtools"
+[2025-11-18T01:23:28.526Z] [INFO] [TsConfig]   "@vue/runtime-core" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\runtime-core"
+[2025-11-18T01:23:28.526Z] [INFO] [TsConfig]   "@vue/compiler-sfc" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@vue\compiler-sfc"
+[2025-11-18T01:23:28.526Z] [INFO] [TsConfig]   "unplugin-vue-router/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\unplugin-vue-router\client"
+[2025-11-18T01:23:28.526Z] [INFO] [TsConfig]   "@nuxt/schema" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\@nuxt\schema"
+[2025-11-18T01:23:28.527Z] [INFO] [TsConfig]   "nuxt" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\nuxt"
+[2025-11-18T01:23:28.527Z] [INFO] [TsConfig]   "vite/client" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules\vite\client"
+[2025-11-18T01:23:28.527Z] [INFO] [TsConfig]   "~" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app"
+[2025-11-18T01:23:28.527Z] [INFO] [TsConfig]   "exclude" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\node_modules"
+[2025-11-18T01:23:28.527Z] [INFO] [TsConfig]   "#imports" -> "c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\types\nitro-imports"
+[2025-11-18T01:23:28.527Z] [INFO] [Hover:Import] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
+[2025-11-18T01:23:28.528Z] [INFO] [Hover:Import] ✗ Could not resolve import path
+[2025-11-18T01:23:28.528Z] [INFO] [Hover] ✗ handleImportStatement returned null
+[2025-11-18T01:23:28.532Z] [INFO] [Hover] No Nuxt-specific match found, returning null
+[2025-11-18T01:23:28.532Z] [INFO] [Hover] No result (returning null)
+[2025-11-18T01:23:31.560Z] [INFO] [Definition] REQUEST RECEIVED for file:///c:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/items/get_item_list.ts at 1:32
+[2025-11-18T01:23:31.560Z] [INFO] [Definition] Document found, calling definitionProvider.provideDefinition()
+[2025-11-18T01:23:31.561Z] [INFO] [Definition] ==================== NEW REQUEST ====================
+[2025-11-18T01:23:31.561Z] [INFO] [Definition] File: file:///c:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/items/get_item_list.ts
+[2025-11-18T01:23:31.561Z] [INFO] [Definition] Position: line 1, char 32
+[2025-11-18T01:23:31.561Z] [INFO] [Definition] Word under cursor: "shared"
+[2025-11-18T01:23:31.561Z] [INFO] [Definition] String at cursor: "~~/shared/utils/response"
+[2025-11-18T01:23:31.561Z] [INFO] [Definition] Full line: "import { Response } from "~~/shared/utils/response";"
+[2025-11-18T01:23:31.562Z] [INFO] [Definition] =======================================================
+[2025-11-18T01:23:31.562Z] [INFO] [Definition] Checking import statement...
+[2025-11-18T01:23:31.562Z] [INFO] [Definition] Found import path: ~~/shared/utils/response
+[2025-11-18T01:23:31.562Z] [INFO] [Definition] Import extension: none
+[2025-11-18T01:23:31.562Z] [INFO] [Definition] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
+[2025-11-18T01:23:31.563Z] [INFO] [Definition] Import path not found: ~~/shared/utils/response
+[2025-11-18T01:23:31.563Z] [INFO] [Definition] ✗ No import definition found
+[2025-11-18T01:23:31.564Z] [INFO] [Definition] Checking auto-imported symbols for: shared...
+[2025-11-18T01:23:31.564Z] [INFO] [Definition] ✗ No symbol info found for: shared
+[2025-11-18T01:23:31.564Z] [INFO] [Definition] ✗ No Nuxt-specific definition found, returning null
+[2025-11-18T01:23:31.564Z] [INFO] [Definition] No result (returning null)
+[2025-11-18T01:23:31.565Z] [INFO] [Definition] REQUEST RECEIVED for file:///c:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/items/get_item_list.ts at 1:32
+[2025-11-18T01:23:31.566Z] [INFO] [Definition] Document found, calling definitionProvider.provideDefinition()
+[2025-11-18T01:23:31.566Z] [INFO] [Definition] ==================== NEW REQUEST ====================
+[2025-11-18T01:23:31.566Z] [INFO] [Definition] File: file:///c:/Users/aaron/Projects/CloverPit_Seed_Tracker/web/server/api/items/get_item_list.ts
+[2025-11-18T01:23:31.566Z] [INFO] [Definition] Position: line 1, char 32
+[2025-11-18T01:23:31.566Z] [INFO] [Definition] Word under cursor: "shared"
+[2025-11-18T01:23:31.567Z] [INFO] [Definition] String at cursor: "~~/shared/utils/response"
+[2025-11-18T01:23:31.567Z] [INFO] [Definition] Full line: "import { Response } from "~~/shared/utils/response";"
+[2025-11-18T01:23:31.567Z] [INFO] [Definition] =======================================================
+[2025-11-18T01:23:31.567Z] [INFO] [Definition] Checking import statement...
+[2025-11-18T01:23:31.568Z] [INFO] [Definition] Found import path: ~~/shared/utils/response
+[2025-11-18T01:23:31.568Z] [INFO] [Definition] Import extension: none
+[2025-11-18T01:23:31.568Z] [INFO] [Definition] TsConfig resolved "~~/shared/utils/response" to: c:\Users\aaron\Projects\CloverPit_Seed_Tracker\web\app~/shared/utils/response
+[2025-11-18T01:23:31.569Z] [INFO] [Definition] Import path not found: ~~/shared/utils/response
+[2025-11-18T01:23:31.570Z] [INFO] [Definition] ✗ No import definition found
+[2025-11-18T01:23:31.570Z] [INFO] [Definition] Checking auto-imported symbols for: shared...
+[2025-11-18T01:23:31.570Z] [INFO] [Definition] ✗ No symbol info found for: shared
+[2025-11-18T01:23:31.571Z] [INFO] [Definition] ✗ No Nuxt-specific definition found, returning null
+[2025-11-18T01:23:31.571Z] [INFO] [Definition] No result (returning null)
