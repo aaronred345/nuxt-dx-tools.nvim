@@ -84,6 +84,15 @@ local function start_lsp_server()
         end
         return vim.lsp.handlers['textDocument/hover'](err, result, ctx, config)
       end,
+      ['textDocument/definition'] = function(err, result, ctx, config)
+        local log_h = io.open(log_file, 'a')
+        if log_h then
+          log_h:write(string.format('[%s] DEFINITION request received! err=%s result=%s\n',
+            os.date('%H:%M:%S'), err or 'nil', result and 'yes' or 'nil'))
+          log_h:close()
+        end
+        return vim.lsp.handlers['textDocument/definition'](err, result, ctx, config)
+      end,
     },
   })
 
