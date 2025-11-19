@@ -84,6 +84,15 @@ function M.enable_debug()
   DEBUG = true
 end
 
+function M.toggle_debug()
+  DEBUG = not DEBUG
+  if DEBUG then
+    vim.notify("Nuxt Components debug mode enabled", vim.log.levels.INFO)
+  else
+    vim.notify("Nuxt Components debug mode disabled", vim.log.levels.INFO)
+  end
+end
+
 -- Go to component definition
 function M.goto_definition(word)
   log("goto_definition called for: " .. word)

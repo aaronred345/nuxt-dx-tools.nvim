@@ -153,7 +153,13 @@ To enable Nuxt path alias autocompletion:
 
 ### LSP Integration
 
-This plugin seamlessly enhances standard LSP commands with Nuxt-specific features. **You can use your normal LSP workflow** and automatically get Nuxt enhancements.
+This plugin includes a built-in LSP server (`nuxt-dx-tools-lsp`) that provides Nuxt-specific go-to-definition, hover, and completion for:
+- Path aliases (`~~`, `~`, `@`, `@@`)
+- Auto-imported components and composables
+- Nuxt page routes and API endpoints
+- Virtual modules (`#imports`, `#app`, etc.)
+
+The LSP server works alongside your existing TypeScript/Vue LSP servers (volar, tsserver, etc.) and is automatically started by the plugin.
 
 #### Dynamic Type Information
 
@@ -170,51 +176,31 @@ This means:
 - ✅ **Auto-refresh** when `.nuxt` directory changes
 - ✅ Works with **vue_ls**, **vtsls**, **volar**, and **tsserver**
 
-#### Standard LSP Commands (Enhanced)
+#### Standard LSP Commands
 
-- **`vim.lsp.buf.hover()` / `K`** - Shows Nuxt-specific hover info:
+When you use standard LSP commands, Neovim queries all attached LSP servers. The `nuxt-dx-tools-lsp` server responds with Nuxt-specific information when relevant:
+
+- **`vim.lsp.buf.hover()` / `K`** - Shows Nuxt-specific hover info from the LSP server:
   - **ALL auto-imported symbols** (composables, components, utilities) with source paths
   - **Page routes** in `navigateTo()` and `<NuxtLink>` with resolved file paths
   - **API routes** with handler signatures, parameters, and return types
   - Virtual module documentation (`#imports`, `#app`, etc.)
   - Data fetching patterns (cache keys, SSR warnings)
   - **Hints to press `gd`** to jump to source files
-  - Combines with standard LSP hover when both available
 
-- **`vim.lsp.buf.signature_help()` / `<C-k>`** - Shows signatures for:
-  - **ALL auto-imported functions** from your project
-  - Built-in Nuxt composables (`useAsyncData`, `useFetch`, `useState`, etc.)
-  - Custom composables from your `composables/` directory
-  - Functions from installed Nuxt modules
-  - Shows actual TypeScript signatures from `.nuxt/imports.d.ts`
-
-- **`vim.lsp.buf.code_action()` / `<leader>ca`** - Provides actions like:
-  - Replace deprecated APIs (e.g., `useAsync` → `useAsyncData`)
-  - Add cache keys to data fetching
-  - Create test files
-  - Find usages of auto-imported symbols
-  - Fix `definePageMeta` placement
-  - Then shows standard LSP code actions
-
-- **`vim.lsp.buf.definition()` / `gd`** - Enhanced navigation:
-  - Virtual modules (#imports, #app) → type definitions
+- **`vim.lsp.buf.definition()` / `gd`** - The LSP server provides definitions for:
+  - Path aliases (`~~/shared/utils` → actual file)
   - Auto-imported components → source files in `components/`
   - **Page routes** (`navigateTo('/path')`, `<NuxtLink to="/path">`) → page files
   - **API routes** (`$fetch('/api/endpoint')`, `useFetch('/api/...')`) → handler files in `server/api/`
-  - definePageMeta references → layouts/middleware
-  - Then falls back to standard LSP definition
+  - definePageMeta references → layouts/middleware files
 
-- **`vim.lsp.buf.references()` / `gr`** - Find references including:
-  - Auto-imported symbol usages (no explicit imports needed)
-  - Data fetch cache key usages
-  - Then shows standard LSP references
+- **Completion** - The LSP server provides completions for:
+  - Path aliases (`~~`, `~`, `@`, `@@`) in import statements
+  - File paths after aliases
+  - API route paths in `$fetch()` and `useFetch()`
 
-- **`vim.lsp.buf.workspace_symbol()` / `<leader>ws`** - Workspace symbols including:
-  - All auto-imported composables
-  - All auto-imported components
-  - Then shows standard LSP workspace symbols
-
-**This means you don't need to learn new commands!** Just use your existing LSP workflow and get Nuxt superpowers automatically.
+**Note:** The plugin also provides additional features through Lua keymaps (fuzzy pickers, code actions, etc.) that go beyond standard LSP commands.
 
 ### Default Keymaps
 
@@ -297,7 +283,8 @@ All commands are prefixed with `:Nuxt`:
 - `:NuxtRefresh` / `:NuxtDXRefresh` - Refresh cache
 
 #### Debug
-- `:NuxtDebug` - Enable debug logging for LSP integration and type parsing
+- `:NuxtDebug` - Toggle debug logging for Lua modules and LSP server (logs written to `lsp-server/server-debug.log`)
+- `:NuxtDXLspInfo` - Show LSP server attachment status and capabilities
 
 ## 📝 Requirements
 

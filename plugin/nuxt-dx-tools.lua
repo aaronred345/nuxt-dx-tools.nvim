@@ -37,17 +37,6 @@ local function start_lsp_server()
     return
   end
 
-  -- Create a log file for our LSP server
-  local log_file = plugin_path .. '/lsp-server/nuxt-lsp-server.log'
-  local log_handle = io.open(log_file, 'a')
-  if log_handle then
-    log_handle:write(string.format('[%s] Starting LSP server attach attempt\n', os.date('%Y-%m-%d %H:%M:%S')))
-    log_handle:close()
-  end
-
-  -- Create error log file
-  local error_log_file = plugin_path .. '/lsp-server/server-error.log'
-
   -- Start or attach the LSP server to this buffer
   local client_id = vim.lsp.start({
     name = 'nuxt-dx-tools-lsp',
@@ -59,46 +48,12 @@ local function start_lsp_server()
       enableDefinition = true,
       enableCompletion = true,
     },
-    on_attach = function(client, bufnr)
-      local msg = string.format('[Nuxt DX Tools] LSP attached! client_id=%s bufnr=%s\nLogs: %s', client.id, bufnr, log_file)
-      vim.notify(msg, vim.log.levels.INFO)
-    end,
     on_exit = function(code, signal, client_id)
-      local err_log = io.open(error_log_file, 'a')
-      if err_log then
-        err_log:write(string.format('[%s] Server exited! code=%s signal=%s client_id=%s\n',
-          os.date('%Y-%m-%d %H:%M:%S'), code or 'nil', signal or 'nil', client_id or 'nil'))
-        err_log:close()
-      end
       if code ~= 0 then
-        vim.notify(string.format('[Nuxt DX Tools] LSP server crashed! Exit code: %s. Check: %s', code, error_log_file), vim.log.levels.ERROR)
+        vim.notify(string.format('[Nuxt DX Tools] LSP server crashed! Exit code: %s', code), vim.log.levels.ERROR)
       end
     end,
-    handlers = {
-      ['textDocument/hover'] = function(err, result, ctx, config)
-        local log_h = io.open(log_file, 'a')
-        if log_h then
-          log_h:write(string.format('[%s] HOVER request received! err=%s result=%s\n',
-            os.date('%H:%M:%S'), err or 'nil', result and 'yes' or 'nil'))
-          log_h:close()
-        end
-        return vim.lsp.handlers['textDocument/hover'](err, result, ctx, config)
-      end,
-      ['textDocument/definition'] = function(err, result, ctx, config)
-        local log_h = io.open(log_file, 'a')
-        if log_h then
-          log_h:write(string.format('[%s] DEFINITION request received! err=%s result=%s\n',
-            os.date('%H:%M:%S'), err or 'nil', result and 'yes' or 'nil'))
-          log_h:close()
-        end
-        return vim.lsp.handlers['textDocument/definition'](err, result, ctx, config)
-      end,
-    },
   })
-
-  if client_id then
-    vim.notify('[Nuxt DX Tools] LSP started with client_id: ' .. client_id, vim.log.levels.DEBUG)
-  end
 end
 
 -- Auto-start LSP for Vue, TS, and JS files in Nuxt projects
@@ -140,56 +95,3 @@ vim.api.nvim_create_user_command('NuxtDXLspInfo', function()
     ), vim.log.levels.INFO)
   end
 end, { desc = 'Show Nuxt DX LSP info' })
-
--- Custom go-to-definition that queries our LSP server explicitly
--- This is needed because Neovim's default vim.lsp.buf.definition() only queries one server
-local function nuxt_goto_definition()
-  local buf = vim.api.nvim_get_current_buf()
-
-  -- Find our LSP client
-  local nuxt_clients = vim.lsp.get_clients({ bufnr = buf, name = 'nuxt-dx-tools-lsp' })
-
-  if #nuxt_clients == 0 then
-    -- Fall back to default behavior if our server isn't attached
-    vim.lsp.buf.definition()
-    return
-  end
-
-  local client = nuxt_clients[1]
-
-  -- Make position params with the client's encoding to avoid warnings
-  local params = vim.lsp.util.make_position_params(0, client.offset_encoding)
-
-  -- Request definition from our server
-  client.request('textDocument/definition', params, function(err, result)
-    if err then
-      vim.notify('[Nuxt DX] Definition error: ' .. tostring(err), vim.log.levels.ERROR)
-      return
-    end
-
-    if not result or vim.tbl_isempty(result) then
-      -- No result from our server, try default LSP (vtsls, etc.)
-      vim.lsp.buf.definition()
-      return
-    end
-
-    -- Jump to the definition
-    vim.lsp.util.jump_to_location(result[1] or result, client.offset_encoding)
-  end, buf)
-end
-
--- Set up keybinding for gd in supported filetypes
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'vue', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
-  callback = function()
-    -- Only set up the keymap if we're in a Nuxt project
-    local nuxt_root = vim.fn.finddir('.nuxt', '.;')
-    if nuxt_root ~= '' then
-      vim.keymap.set('n', 'gd', nuxt_goto_definition, {
-        buffer = true,
-        desc = 'Go to definition (Nuxt-aware)',
-        silent = true
-      })
-    end
-  end,
-})

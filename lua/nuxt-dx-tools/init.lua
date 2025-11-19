@@ -187,4 +187,14 @@ function M.enable_debug()
   vim.notify("Nuxt Init debug mode enabled", vim.log.levels.INFO)
 end
 
+-- Toggle debug mode
+function M.toggle_debug()
+  DEBUG = not DEBUG
+  if DEBUG then
+    vim.notify("Nuxt Init debug mode enabled", vim.log.levels.INFO)
+  else
+    vim.notify("Nuxt Init debug mode disabled", vim.log.levels.INFO)
+  end
+end
+
 return M

@@ -109,6 +109,10 @@ connection.onInitialize((params) => {
                     supported: true,
                 },
             },
+            // Execute command support for debug toggle
+            executeCommandProvider: {
+                commands: ['nuxt-dx-tools.toggleDebug'],
+            },
         },
     };
     return result;
@@ -119,6 +123,20 @@ connection.onInitialized(() => {
     projectManager.initialize().catch((err) => {
         logger.error(`Failed to initialize project: ${err}`);
     });
+});
+// Handle execute command requests
+connection.onExecuteCommand((params) => {
+    if (params.command === 'nuxt-dx-tools.toggleDebug') {
+        const currentMode = logger.getDebugMode();
+        logger.setDebugMode(!currentMode);
+        const newMode = !currentMode;
+        const message = newMode
+            ? 'Nuxt DX Tools: Debug logging enabled'
+            : 'Nuxt DX Tools: Debug logging disabled';
+        connection.window.showInformationMessage(message);
+        return { enabled: newMode };
+    }
+    return null;
 });
 // Handle goto definition requests
 connection.onDefinition(async (params) => {
