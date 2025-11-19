@@ -37,17 +37,6 @@ local function start_lsp_server()
     return
   end
 
-  -- Create a log file for our LSP server
-  local log_file = plugin_path .. '/lsp-server/nuxt-lsp-server.log'
-  local log_handle = io.open(log_file, 'a')
-  if log_handle then
-    log_handle:write(string.format('[%s] Starting LSP server attach attempt\n', os.date('%Y-%m-%d %H:%M:%S')))
-    log_handle:close()
-  end
-
-  -- Create error log file
-  local error_log_file = plugin_path .. '/lsp-server/server-error.log'
-
   -- Start or attach the LSP server to this buffer
   local client_id = vim.lsp.start({
     name = 'nuxt-dx-tools-lsp',
@@ -59,46 +48,12 @@ local function start_lsp_server()
       enableDefinition = true,
       enableCompletion = true,
     },
-    on_attach = function(client, bufnr)
-      local msg = string.format('[Nuxt DX Tools] LSP attached! client_id=%s bufnr=%s\nLogs: %s', client.id, bufnr, log_file)
-      vim.notify(msg, vim.log.levels.INFO)
-    end,
     on_exit = function(code, signal, client_id)
-      local err_log = io.open(error_log_file, 'a')
-      if err_log then
-        err_log:write(string.format('[%s] Server exited! code=%s signal=%s client_id=%s\n',
-          os.date('%Y-%m-%d %H:%M:%S'), code or 'nil', signal or 'nil', client_id or 'nil'))
-        err_log:close()
-      end
       if code ~= 0 then
-        vim.notify(string.format('[Nuxt DX Tools] LSP server crashed! Exit code: %s. Check: %s', code, error_log_file), vim.log.levels.ERROR)
+        vim.notify(string.format('[Nuxt DX Tools] LSP server crashed! Exit code: %s', code), vim.log.levels.ERROR)
       end
     end,
-    handlers = {
-      ['textDocument/hover'] = function(err, result, ctx, config)
-        local log_h = io.open(log_file, 'a')
-        if log_h then
-          log_h:write(string.format('[%s] HOVER request received! err=%s result=%s\n',
-            os.date('%H:%M:%S'), err or 'nil', result and 'yes' or 'nil'))
-          log_h:close()
-        end
-        return vim.lsp.handlers['textDocument/hover'](err, result, ctx, config)
-      end,
-      ['textDocument/definition'] = function(err, result, ctx, config)
-        local log_h = io.open(log_file, 'a')
-        if log_h then
-          log_h:write(string.format('[%s] DEFINITION request received! err=%s result=%s\n',
-            os.date('%H:%M:%S'), err or 'nil', result and 'yes' or 'nil'))
-          log_h:close()
-        end
-        return vim.lsp.handlers['textDocument/definition'](err, result, ctx, config)
-      end,
-    },
   })
-
-  if client_id then
-    vim.notify('[Nuxt DX Tools] LSP started with client_id: ' .. client_id, vim.log.levels.DEBUG)
-  end
 end
 
 -- Auto-start LSP for Vue, TS, and JS files in Nuxt projects
