@@ -1,0 +1,64 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-and-release:
+    name: Build and Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+          cache-dependency-path: lsp-server/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd lsp-server
+          npm ci
+
+      - name: Build LSP server
+        run: |
+          cd lsp-server
+          npm run build
+
+      - name: Create release archive
+        run: |
+          mkdir -p release
+          cp -r lua plugin lsp-server/dist lsp-server/package.json lsp-server/README.md release/
+          cd release
+          tar -czf ../nuxt-dx-tools-lsp.tar.gz .
+          cd ..
+
+      - name: Extract version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            nuxt-dx-tools-lsp.tar.gz
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to npm (if configured)
+        if: secrets.NPM_TOKEN != ''
+        run: |
+          cd lsp-server
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+          npm publish || echo "NPM publish skipped or failed"
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

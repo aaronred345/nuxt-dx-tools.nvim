@@ -9,8 +9,14 @@ function M.set_config(cfg)
 end
 
 -- Extract API call information from current line
+-- @return table|nil: { path = string, method = string } or nil if no API call found
+-- @return string|nil: Error message if extraction failed
 function M.extract_api_info()
-  local line = vim.api.nvim_get_current_line()
+  -- Safely get current line
+  local ok, line = pcall(vim.api.nvim_get_current_line)
+  if not ok or not line or line == "" then
+    return nil, "Cannot get current line"
+  end
 
   -- Patterns to match various API call syntaxes
   local patterns = {
@@ -23,33 +29,79 @@ function M.extract_api_info()
   }
 
   for _, p in ipairs(patterns) do
-    local matches = { line:match(p.pattern) }
-    if #matches > 0 then
+    -- Safely match pattern
+    local ok_match, matches = pcall(function() return { line:match(p.pattern) } end)
+    if ok_match and matches and #matches > 0 then
+      -- Validate path_idx is within bounds
+      if not p.path_idx or p.path_idx > #matches then
+        return nil, string.format("Internal error: path_idx %d out of bounds (matches: %d)", p.path_idx or 0, #matches)
+      end
+
       local path = matches[p.path_idx]
-      local method = p.method_idx and matches[p.method_idx] or "GET"
-      
+      if not path or path == "" then
+        return nil, "Extracted path is empty"
+      end
+
+      -- Validate method_idx if present
+      local method = "GET"  -- Default method
+      if p.method_idx then
+        if p.method_idx > #matches then
+          return nil, string.format("Internal error: method_idx %d out of bounds", p.method_idx)
+        end
+        method = matches[p.method_idx] or "GET"
+      end
+
+      -- Process template strings
       if p.is_template then
         path = path:gsub("%$%{[^}]+%}", "[id]")
-      elseif p.is_concat then
-        path = path
       end
-      
-      return { path = path, method = method }
+
+      -- Validate method is a valid HTTP method
+      local valid_methods = { GET = true, POST = true, PUT = true, DELETE = true, PATCH = true, HEAD = true, OPTIONS = true }
+      if not valid_methods[method:upper()] then
+        return nil, string.format("Invalid HTTP method: %s", method)
+      end
+
+      return { path = path, method = method:upper() }, nil
     end
   end
 
-  return nil
+  return nil, "No API call pattern found in current line"
 end
 
 -- Find server API routes with support for dynamic parameters and methods
+-- @param api_path string: API path (e.g., "/api/users", "/api/users/123")
+-- @param http_method string|nil: HTTP method (GET, POST, etc.)
+-- @return string|nil: File path to the route handler, or nil if not found
+-- @return string|nil: Error message if search failed
 function M.find_server_route(api_path, http_method)
-  local root = utils.find_nuxt_root()
-  if not root then return nil end
+  -- Validate inputs
+  if not api_path or api_path == "" then
+    return nil, "Invalid API path: empty or nil"
+  end
 
+  if http_method and type(http_method) ~= "string" then
+    return nil, "Invalid HTTP method: must be a string"
+  end
+
+  local root, err = utils.find_nuxt_root()
+  if not root then
+    return nil, err or "No Nuxt project root found"
+  end
+
+  -- Normalize API path
   local route = api_path:gsub("^/api", "")
-  if route == "" then route = "/" end
+  if route == "" then
+    route = "/"
+  end
 
-  local server_dir = root .. "/server/api"
+  local sep = package.config:sub(1,1)
+  local server_dir = root .. sep .. "server" .. sep .. "api"
+
+  -- Check if server/api directory exists
+  if vim.fn.isdirectory(server_dir) ~= 1 then
+    return nil, string.format("Server API directory not found: %s", server_dir)
+  end
   
   local result = utils.try_file_extensions(server_dir .. route, { ".ts", ".js", ".mjs" })
   if result then return result end

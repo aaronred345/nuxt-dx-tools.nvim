@@ -21,9 +21,18 @@ function M.parse_route_from_path(file_path, pages_dir)
 end
 
 -- Extract metadata from page file
+-- @param file_path string: Path to the Vue page file
+-- @return table: Metadata object with layout, middleware, name, etc.
 function M.extract_page_metadata(file_path)
-  local content = utils.read_file(file_path)
-  if not content then return {} end
+  if not file_path or file_path == "" then
+    return {}
+  end
+
+  local content, err = utils.read_file(file_path)
+  if not content then
+    -- Don't error on metadata extraction failure, just return empty
+    return {}
+  end
 
   local metadata = {
     layout = nil,
@@ -32,28 +41,35 @@ function M.extract_page_metadata(file_path)
     auth = nil,
   }
 
-  -- Extract layout
-  local layout = content:match("layout%s*:%s*['\"]([^'\"]+)['\"]")
-  if layout then
+  -- Safely extract layout
+  local ok, layout = pcall(function() return content:match("layout%s*:%s*['\"]([^'\"]+)['\"]") end)
+  if ok and layout then
     metadata.layout = layout
   end
 
-  -- Extract middleware
-  for middleware in content:gmatch("middleware%s*:%s*['\"]([^'\"]+)['\"]") do
-    table.insert(metadata.middleware, middleware)
+  -- Safely extract middleware
+  local ok_mw, middleware_matches = pcall(function()
+    local matches = {}
+    for middleware in content:gmatch("middleware%s*:%s*['\"]([^'\"]+)['\"]") do
+      table.insert(matches, middleware)
+    end
+    return matches
+  end)
+  if ok_mw and middleware_matches then
+    metadata.middleware = middleware_matches
   end
 
   -- Also check for middleware array
-  local middleware_array = content:match("middleware%s*:%s*%[([^%]]+)%]")
-  if middleware_array then
+  local ok_arr, middleware_array = pcall(function() return content:match("middleware%s*:%s*%[([^%]]+)%]") end)
+  if ok_arr and middleware_array then
     for middleware in middleware_array:gmatch("['\"]([^'\"]+)['\"]") do
       table.insert(metadata.middleware, middleware)
     end
   end
 
-  -- Extract route name
-  local name = content:match("name%s*:%s*['\"]([^'\"]+)['\"]")
-  if name then
+  -- Safely extract route name
+  local ok_name, name = pcall(function() return content:match("name%s*:%s*['\"]([^'\"]+)['\"]") end)
+  if ok_name and name then
     metadata.name = name
   end
 
@@ -61,34 +77,57 @@ function M.extract_page_metadata(file_path)
 end
 
 -- Get all pages with metadata
+-- @return table: List of page objects with path, route, metadata
+-- @return string|nil: Error message if failed
 function M.get_all_pages()
-  local root = utils.find_nuxt_root()
-  if not root then return {} end
+  local root, err = utils.find_nuxt_root()
+  if not root then
+    return {}, err or "No Nuxt project root found"
+  end
 
-  local pages_dirs = utils.get_directory_paths("pages")
+  local pages_dirs, dir_err = utils.get_directory_paths("pages")
+  if not pages_dirs or #pages_dirs == 0 then
+    return {}, dir_err or "No pages directory found"
+  end
+
   local pages = {}
+  local found_pages_dir = false
 
   for _, pages_dir in ipairs(pages_dirs) do
     if vim.fn.isdirectory(pages_dir) == 1 then
-      local files = vim.fn.glob(pages_dir .. "/**/*.vue", false, true)
+      found_pages_dir = true
+      -- Safely glob files
+      local ok, files = pcall(vim.fn.glob, pages_dir .. "/**/*.vue", false, true)
+      if ok and files and #files > 0 then
+        for _, file in ipairs(files) do
+          -- Validate file is readable
+          if vim.fn.filereadable(file) == 1 then
+            local route = M.parse_route_from_path(file, pages_dir)
+            local metadata = M.extract_page_metadata(file)
 
-      for _, file in ipairs(files) do
-        local route = M.parse_route_from_path(file, pages_dir)
-        local metadata = M.extract_page_metadata(file)
-
-        table.insert(pages, {
-          file = file,
-          route = route,
-          layout = metadata.layout or "default",
-          middleware = metadata.middleware,
-          name = metadata.name,
-          relative_path = file:gsub(root .. "/", ""),
-        })
+            table.insert(pages, {
+              file = file,
+              route = route,
+              layout = metadata.layout or "default",
+              middleware = metadata.middleware,
+              name = metadata.name,
+              relative_path = file:gsub(vim.pesc(root) .. "/", ""),
+            })
+          end
+        end
       end
     end
   end
 
-  return pages
+  if not found_pages_dir then
+    return {}, "Pages directory does not exist. Create pages/ or app/pages/ directory."
+  end
+
+  if #pages == 0 then
+    return {}, "No .vue files found in pages directory"
+  end
+
+  return pages, nil
 end
 
 -- Get all components
@@ -121,10 +160,14 @@ end
 
 -- Show page picker using vim.ui.select (fallback) or Telescope
 function M.show_page_picker()
-  local pages = M.get_all_pages()
+  local pages, err = M.get_all_pages()
 
-  if #pages == 0 then
-    vim.notify("No pages found in project", vim.log.levels.WARN)
+  if not pages or #pages == 0 then
+    local msg = err or "No pages found in project"
+    vim.notify(
+      "[Nuxt] " .. msg .. "\n\nMake sure you have:\n• A pages/ or app/pages/ directory\n• At least one .vue file in it",
+      vim.log.levels.WARN
+    )
     return
   end
 
