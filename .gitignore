@@ -5,3 +5,8 @@
 Thumbs.db
 .idea/
 .vscode/
+
+# Log files
+*.log
+logs/
+lsp-server/*.log
