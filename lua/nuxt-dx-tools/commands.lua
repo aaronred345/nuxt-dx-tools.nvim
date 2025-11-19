@@ -102,11 +102,51 @@ function M.setup(plugin)
 
   -- === Debug Commands ===
   vim.api.nvim_create_user_command("NuxtDebug", function()
-    require("nuxt-dx-tools").enable_debug()
-    require("nuxt-dx-tools.type-parser").enable_debug()
-    require("nuxt-dx-tools.components").enable_debug()
-    vim.notify("Nuxt DX debug mode enabled", vim.log.levels.INFO)
-  end, { desc = "Nuxt: Enable debug logging" })
+    -- Toggle Lua module debug modes
+    require("nuxt-dx-tools").toggle_debug()
+    require("nuxt-dx-tools.type-parser").toggle_debug()
+    require("nuxt-dx-tools.components").toggle_debug()
+
+    -- Toggle LSP server debug mode
+    local clients = vim.lsp.get_clients({ name = 'nuxt-dx-tools-lsp' })
+    if #clients > 0 then
+      local client = clients[1]
+      -- Execute the LSP command to toggle debug mode
+      client.request('workspace/executeCommand', {
+        command = 'nuxt-dx-tools.toggleDebug',
+        arguments = {},
+      }, function(err, result)
+        if err then
+          vim.notify("Failed to toggle LSP debug mode: " .. vim.inspect(err), vim.log.levels.ERROR)
+        end
+      end)
+    else
+      vim.notify("Nuxt DX Tools LSP not attached - only toggling Lua debug mode", vim.log.levels.WARN)
+    end
+  end, { desc = "Nuxt: Toggle debug logging (Lua modules + LSP server)" })
+
+  vim.api.nvim_create_user_command("NuxtDXLspInfo", function()
+    local buf = vim.api.nvim_get_current_buf()
+    local clients = vim.lsp.get_clients({ bufnr = buf, name = 'nuxt-dx-tools-lsp' })
+
+    if #clients == 0 then
+      vim.notify('[Nuxt DX Tools] LSP server NOT attached to this buffer', vim.log.levels.WARN)
+    else
+      local client = clients[1]
+      local cap = client.server_capabilities
+      vim.notify(string.format(
+        '[Nuxt DX Tools] LSP attached!\n' ..
+        'Definition: %s\n' ..
+        'Hover: %s\n' ..
+        'Completion: %s\n' ..
+        'Root: %s',
+        cap.definitionProvider and 'enabled' or 'disabled',
+        cap.hoverProvider and 'enabled' or 'disabled',
+        cap.completionProvider and 'enabled' or 'disabled',
+        client.config.root_dir or 'unknown'
+      ), vim.log.levels.INFO)
+    end
+  end, { desc = 'Show Nuxt DX LSP info' })
 end
 
 return M

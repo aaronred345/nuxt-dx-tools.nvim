@@ -19,6 +19,9 @@ export class Logger {
   }
 
   private writeToFile(message: string) {
+    if (!this.debugMode) {
+      return;
+    }
     try {
       fs.appendFileSync(this.logFilePath, `[${new Date().toISOString()}] ${message}\n`);
     } catch (err) {
@@ -27,25 +30,46 @@ export class Logger {
   }
 
   setDebugMode(enabled: boolean) {
+    const previousMode = this.debugMode;
     this.debugMode = enabled;
-    this.writeToFile(`Debug mode set to: ${enabled}`);
+
+    if (enabled && !previousMode) {
+      // Clear log file when enabling debug mode
+      try {
+        fs.writeFileSync(this.logFilePath, `[${new Date().toISOString()}] Debug mode enabled\n`);
+      } catch (err) {
+        // Silently fail if we can't write
+      }
+    } else if (enabled) {
+      this.writeToFile(`Debug mode re-enabled`);
+    }
+  }
+
+  getDebugMode(): boolean {
+    return this.debugMode;
   }
 
   info(message: string) {
     const msg = `[INFO] ${message}`;
-    this.connection.console.log(msg);
+    if (this.debugMode) {
+      this.connection.console.log(msg);
+    }
     this.writeToFile(msg);
   }
 
   warn(message: string) {
     const msg = `[WARN] ${message}`;
-    this.connection.console.warn(msg);
+    if (this.debugMode) {
+      this.connection.console.warn(msg);
+    }
     this.writeToFile(msg);
   }
 
   error(message: string) {
     const msg = `[ERROR] ${message}`;
-    this.connection.console.error(msg);
+    if (this.debugMode) {
+      this.connection.console.error(msg);
+    }
     this.writeToFile(msg);
   }
 

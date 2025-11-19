@@ -6,6 +6,7 @@ export declare class Logger {
     constructor(connection: Connection);
     private writeToFile;
     setDebugMode(enabled: boolean): void;
+    getDebugMode(): boolean;
     info(message: string): void;
     warn(message: string): void;
     error(message: string): void;
