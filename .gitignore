@@ -10,3 +10,8 @@ Thumbs.db
 *.log
 logs/
 lsp-server/*.log
+lsp-server/dist/nuxt
+lsp-server/dist/providers
+lsp-server/dist/utils
+lsp-server/dist/server.d.ts
+lsp-server/dist/server.js
