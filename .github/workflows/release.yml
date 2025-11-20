@@ -54,11 +54,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish to npm (if configured)
-        if: secrets.NPM_TOKEN != ''
+      - name: Publish to npm (optional)
+        continue-on-error: true
         run: |
           cd lsp-server
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-          npm publish || echo "NPM publish skipped or failed"
+          if [ -n "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+            npm publish
+          else
+            echo "NPM_TOKEN not configured, skipping npm publish"
+          fi
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
