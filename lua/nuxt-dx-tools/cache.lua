@@ -59,4 +59,9 @@ function M.load_all()
   M.get_composables()
 end
 
+-- Clear all caches
+function M.clear_all()
+  M.clear()
+end
+
 return M

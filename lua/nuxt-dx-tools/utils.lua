@@ -8,6 +8,14 @@ function M.set_config(cfg)
   config = cfg
 end
 
+-- Clear all caches (call when .nuxt directory changes)
+function M.clear_cache()
+  structure_cache = nil
+  config.nuxt_root = nil
+  local cache = require("nuxt-dx-tools.cache")
+  cache.clear_all()
+end
+
 -- Detect if project uses Nuxt 4 app/ directory structure
 -- @return table: Structure info with has_app_dir and root fields
 function M.detect_structure()

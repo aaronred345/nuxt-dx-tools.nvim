@@ -131,31 +131,45 @@ function M.get_all_pages()
 end
 
 -- Get all components
+-- @return table: List of component objects
+-- @return string|nil: Error message if failed
 function M.get_all_components()
-  local root = utils.find_nuxt_root()
-  if not root then return {} end
+  local root, err = utils.find_nuxt_root()
+  if not root then
+    return {}, err or "No Nuxt project root found"
+  end
 
-  local component_dirs = utils.get_directory_paths("components")
+  local component_dirs, dir_err = utils.get_directory_paths("components")
+  if not component_dirs or #component_dirs == 0 then
+    return {}, dir_err or "No components directory found"
+  end
+
   local components = {}
+  local sep = package.config:sub(1,1)
 
   for _, comp_dir in ipairs(component_dirs) do
     if vim.fn.isdirectory(comp_dir) == 1 then
-      local files = vim.fn.glob(comp_dir .. "/**/*.vue", false, true)
+      local ok, files = pcall(vim.fn.glob, comp_dir .. "/**/*.vue", false, true)
+      if ok and files then
+        for _, file in ipairs(files) do
+          local name = vim.fn.fnamemodify(file, ":t:r")
+          local relative_path = file:gsub(vim.pesc(root .. sep), "")
 
-      for _, file in ipairs(files) do
-        local name = vim.fn.fnamemodify(file, ":t:r")
-        local relative_path = file:gsub(root .. "/", "")
-
-        table.insert(components, {
-          file = file,
-          name = name,
-          relative_path = relative_path,
-        })
+          table.insert(components, {
+            file = file,
+            name = name,
+            relative_path = relative_path,
+          })
+        end
       end
     end
   end
 
-  return components
+  if #components == 0 then
+    return {}, "No .vue files found in components directory"
+  end
+
+  return components, nil
 end
 
 -- Show page picker using vim.ui.select (fallback) or Telescope

@@ -62,10 +62,11 @@ jobs:
           cd lsp-server
           npm ci
 
-      - name: Run tests
+      - name: Run TypeScript tests
         run: |
           cd lsp-server
-          npm test || echo "Tests not fully implemented yet"
+          npm test
+        continue-on-error: false
 
   cross-platform-build:
     name: Build on ${{ matrix.os }}
@@ -137,8 +138,8 @@ jobs:
         run: luarocks install luacheck
 
       - name: Run luacheck
-        run: luacheck lua/ plugin/ --std luajit --globals vim || echo "Luacheck warnings found"
-        continue-on-error: true
+        run: luacheck lua/ plugin/ --std luajit --globals vim --no-unused-args --no-max-line-length
+        continue-on-error: true  # Allow lint warnings but run the check
 
   validate-structure:
     name: Validate Project Structure
