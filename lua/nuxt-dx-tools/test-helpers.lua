@@ -2,6 +2,7 @@
 local M = {}
 
 local utils = require("nuxt-dx-tools.utils")
+local path = require("nuxt-dx-tools.path")
 
 -- Common test file patterns
 M.test_patterns = {
@@ -29,7 +30,7 @@ function M.find_test_file(file_path)
       local dir = vim.fn.fnamemodify(file_path, ":h")
       local filename = vim.fn.fnamemodify(file_path, ":t")
       local test_filename = filename:gsub(pattern.from, pattern.to)
-      test_file = dir .. "/" .. pattern.dir_change .. "/" .. test_filename
+      test_file = path.join(dir, pattern.dir_change, test_filename)
     else
       -- Look for test file in same directory
       test_file = file_path:gsub(pattern.from, pattern.to)
@@ -51,7 +52,7 @@ function M.find_source_file(test_file)
   for _, pattern in ipairs(M.test_patterns) do
     if pattern.dir_change then
       -- Remove __tests__ directory
-      local source_file = test_file:gsub("/" .. pattern.dir_change .. "/", "/")
+      local source_file = test_file:gsub(path.separator() .. pattern.dir_change .. path.separator(), path.separator())
       source_file = source_file:gsub(pattern.to, pattern.from)
       if utils.file_exists(source_file) then
         return source_file
@@ -261,7 +262,7 @@ function M.run_current_test()
     end
   end
 
-  local relative_path = current_file:gsub(utils.find_nuxt_root() .. "/", "")
+  local relative_path = current_file:gsub(utils.find_nuxt_root() .. path.separator(), "")
 
   -- Open terminal and run test
   vim.cmd("botright split")

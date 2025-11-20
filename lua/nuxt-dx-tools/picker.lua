@@ -111,7 +111,7 @@ function M.get_all_pages()
               layout = metadata.layout or "default",
               middleware = metadata.middleware,
               name = metadata.name,
-              relative_path = file:gsub(vim.pesc(root) .. "/", ""),
+              relative_path = file:gsub(vim.pesc(root .. path.separator()), ""),
             })
           end
         end

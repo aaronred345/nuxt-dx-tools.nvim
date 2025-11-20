@@ -2,6 +2,7 @@
 local M = {}
 
 local utils = require("nuxt-dx-tools.utils")
+local path = require("nuxt-dx-tools.path")
 
 -- Extract route path from navigateTo call
 local function extract_navigate_to_path()
@@ -93,7 +94,7 @@ function M.resolve_route_to_file(route_path)
   -- Search for the file
   for _, base_dir in ipairs(base_dirs) do
     for _, pattern in ipairs(patterns) do
-      local file_path = base_dir .. "/" .. pattern
+      local file_path = path.join(base_dir, pattern)
       if vim.fn.filereadable(file_path) == 1 then
         return file_path
       end

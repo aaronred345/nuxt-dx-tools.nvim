@@ -2,6 +2,7 @@
 local M = {}
 
 local utils = require("nuxt-dx-tools.utils")
+local path = require("nuxt-dx-tools.path")
 
 -- Debug flag
 local DEBUG = false
@@ -152,7 +153,7 @@ function M.parse_components()
         absolute_path = vim.fn.simplify(root .. "/.nuxt/" .. path)
       elseif not path:match("^/") then
         -- Relative path without ../, assume it's from root
-        absolute_path = root .. "/" .. path
+        absolute_path = path.join(root, path)
       end
 
       components[name] = {
@@ -175,7 +176,7 @@ function M.parse_components()
         absolute_path = vim.fn.simplify(root .. "/.nuxt/" .. path)
       elseif not path:match("^/") then
         -- Relative path without ../, assume it's from root
-        absolute_path = root .. "/" .. path
+        absolute_path = path.join(root, path)
       end
 
       components[name] = {

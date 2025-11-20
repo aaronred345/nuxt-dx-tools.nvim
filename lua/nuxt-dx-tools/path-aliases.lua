@@ -4,6 +4,7 @@ local M = {}
 
 -- Dependencies
 local utils = require("nuxt-dx-tools.utils")
+local path = require("nuxt-dx-tools.path")
 
 -- Forward declaration
 local parse_tsconfig_regex
@@ -67,7 +68,7 @@ local function parse_tsconfig_file(filepath)
         local target = target_pattern:gsub("^%./", ""):gsub("/%*$", "")
 
         -- Resolve target path relative to tsconfig directory, then make it relative to Nuxt root
-        local absolute_target = vim.fn.fnamemodify(tsconfig_dir .. "/" .. target, ":p")
+        local absolute_target = vim.fn.fnamemodify(path.join(tsconfig_dir, target), ":p")
         -- Remove trailing separator
         absolute_target = absolute_target:gsub("[/\\]$", "")
 
@@ -104,7 +105,7 @@ parse_tsconfig_regex = function(content, filepath)
 
       -- Resolve target path relative to tsconfig directory
       if filepath and filepath ~= "" then
-        local absolute_target = vim.fn.fnamemodify(tsconfig_dir .. "/" .. target, ":p")
+        local absolute_target = vim.fn.fnamemodify(path.join(tsconfig_dir, target), ":p")
         absolute_target = absolute_target:gsub("[/\\]$", "")
         paths[alias] = absolute_target
       else
@@ -178,7 +179,7 @@ local function load_all_path_mappings()
 
   -- Parse each referenced tsconfig file
   for _, ref_path in ipairs(ref_paths) do
-    local full_path = root .. "/" .. ref_path
+    local full_path = path.join(root, ref_path)
     local paths = parse_tsconfig_file(full_path)
 
     -- Merge paths into all_paths
@@ -248,7 +249,7 @@ function M.find_file_from_import(import_path)
     local root = M.get_nuxt_root()
     if root then
       local stripped = import_path:gsub("^~+/", ""):gsub("^@/", "")
-      resolved_path = root .. "/" .. stripped
+      resolved_path = path.join(root, stripped)
     else
       return nil
     end
@@ -392,7 +393,7 @@ function M.debug_info()
       table.insert(lines, "Referenced tsconfig files:")
       for i, ref in ipairs(tsconfig.references) do
         if type(ref) == "table" and ref.path then
-          local ref_path = root .. "/" .. ref.path
+          local ref_path = path.join(root, ref.path)
           local exists = utils.file_exists(ref_path)
           local status = exists and "✓" or "❌"
           table.insert(lines, string.format("  %d. %s %s", i, status, ref.path))

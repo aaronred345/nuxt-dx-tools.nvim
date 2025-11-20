@@ -1,5 +1,6 @@
 -- Blink.cmp completion source for Nuxt path aliases and relative paths (Clean Rewrite)
 local M = {}
+local path = require("nuxt-dx-tools.path")
 
 -- Create a new source instance
 function M.new()
@@ -64,7 +65,7 @@ local function resolve_relative_path(current_file, relative_path)
   if remaining_path ~= "" and remaining_path ~= "." and remaining_path ~= ".." then
     local subdir = remaining_path:match("^(.+)/[^/]*$")
     if subdir then
-      working_dir = working_dir .. "/" .. subdir
+      working_dir = path.join(working_dir, subdir)
     end
   end
 
@@ -94,7 +95,7 @@ local function get_label_prefix(typed_path)
     if typed_path:match("^" .. vim.pesc(alias)) then
       local subdir = typed_path:match("^" .. vim.pesc(alias) .. "/?(.+)/[^/]*$")
       if subdir then
-        return alias .. "/" .. subdir .. "/"
+        return path.join(alias, subdir) .. path.separator()
       end
       return alias .. "/"
     end
@@ -105,7 +106,7 @@ local function get_label_prefix(typed_path)
   if custom_alias then
     local subdir = typed_path:match("^#[^/]*/(.+)/[^/]*$")
     if subdir then
-      return custom_alias .. "/" .. subdir .. "/"
+      return custom_path.join(alias, subdir) .. path.separator()
     end
     return custom_alias .. "/"
   end
@@ -123,7 +124,7 @@ local function get_directory_contents(dir_path)
   local items = vim.fn.readdir(dir_path)
 
   for _, name in ipairs(items) do
-    local full_path = dir_path .. "/" .. name
+    local full_path = path.join(dir_path, name)
     local is_directory = vim.fn.isdirectory(full_path) == 1
 
     if is_directory then
@@ -326,7 +327,7 @@ function M:get_completions(ctx, callback)
       if path_after_alias ~= "" then
         local subdir = path_after_alias:match("^(.+)/[^/]*$")
         if subdir then
-          search_dir = base_dir .. "/" .. subdir
+          search_dir = path.join(base_dir, subdir)
           -- Normalize the path
           search_dir = vim.fn.fnamemodify(search_dir, ":p")
           search_dir = search_dir:gsub("[/\\]$", "")

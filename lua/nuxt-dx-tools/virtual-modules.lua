@@ -2,6 +2,7 @@
 local M = {}
 
 local utils = require("nuxt-dx-tools.utils")
+local path = require("nuxt-dx-tools.path")
 
 -- Map of virtual modules to their descriptions and real file locations
 M.virtual_modules = {
@@ -101,7 +102,7 @@ function M.get_virtual_module_file(module)
 
   local module_info = M.virtual_modules[module]
   if module_info and module_info.file then
-    return root .. "/" .. module_info.file
+    return path.join(root, module_info.file)
   end
 
   return nil

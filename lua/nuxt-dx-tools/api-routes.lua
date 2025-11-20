@@ -259,7 +259,7 @@ function M.show_hover()
   file:close()
 
   local preview = table.concat(preview_lines, "\n")
-  local relative_path = route_file:gsub(utils.find_nuxt_root() .. "/", "")
+  local relative_path = route_file:gsub(vim.pesc(utils.find_nuxt_root() .. path.separator()), "")
 
   -- Extract signature information
   local signature = M.extract_handler_signature(route_file)
@@ -352,7 +352,7 @@ function M.open_handler_in_terminal()
   end
 
   local root = utils.find_nuxt_root()
-  local relative_path = route_file:gsub(root .. "/", "")
+  local relative_path = route_file:gsub(vim.pesc(root .. path.separator()), "")
 
   -- Open terminal with helpful commands
   vim.cmd("botright split")

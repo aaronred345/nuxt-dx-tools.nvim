@@ -2,6 +2,7 @@
 local M = {}
 
 local utils = require("nuxt-dx-tools.utils")
+local path = require("nuxt-dx-tools.path")
 
 local function find_layout(layout_name)
   local root = utils.find_nuxt_root()
@@ -11,7 +12,7 @@ local function find_layout(layout_name)
   local possible_dirs = utils.get_directory_paths("layouts")
 
   for _, layouts_dir in ipairs(possible_dirs) do
-    local result = utils.try_file_extensions(layouts_dir .. "/" .. layout_name, { ".vue", ".ts", ".js" })
+    local result = utils.try_file_extensions(path.join(layouts_dir, layout_name), { ".vue", ".ts", ".js" })
     if result then
       return result
     end
@@ -29,8 +30,8 @@ local function find_middleware(middleware_name)
 
   for _, middleware_dir in ipairs(possible_dirs) do
     local patterns = {
-      middleware_dir .. "/" .. middleware_name,
-      middleware_dir .. "/" .. middleware_name .. ".global",
+      path.join(middleware_dir, middleware_name),
+      path.join(middleware_dir, middleware_name) .. ".global",
     }
 
     for _, pattern in ipairs(patterns) do
